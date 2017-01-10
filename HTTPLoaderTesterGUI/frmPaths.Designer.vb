@@ -23,14 +23,19 @@ Partial Class frmPaths
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtRecorderPort = New System.Windows.Forms.TextBox()
-        Me.cmdBrowseTestPlanDirectory = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtTesterJar = New System.Windows.Forms.TextBox()
+        Me.cmdBrowseJavaHome = New System.Windows.Forms.Button()
+        Me.txtJavaHome = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.dirDialog = New System.Windows.Forms.FolderBrowserDialog()
+        Me.cmdBrowseTesterJar = New System.Windows.Forms.Button()
+        Me.DirDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.cmdOk = New System.Windows.Forms.Button()
         Me.cmdCancel = New System.Windows.Forms.Button()
+        Me.FileDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtRecorderMaxHeap = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtPlayerMaxHeap = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label2
@@ -42,28 +47,28 @@ Partial Class frmPaths
         Me.Label2.TabIndex = 9
         Me.Label2.Text = "HTTPLoadTester Jar"
         '
-        'txtRecorderPort
+        'txtTesterJar
         '
-        Me.txtRecorderPort.Location = New System.Drawing.Point(116, 38)
-        Me.txtRecorderPort.Name = "txtRecorderPort"
-        Me.txtRecorderPort.Size = New System.Drawing.Size(561, 20)
-        Me.txtRecorderPort.TabIndex = 8
+        Me.txtTesterJar.Location = New System.Drawing.Point(116, 38)
+        Me.txtTesterJar.Name = "txtTesterJar"
+        Me.txtTesterJar.Size = New System.Drawing.Size(561, 20)
+        Me.txtTesterJar.TabIndex = 8
         '
-        'cmdBrowseTestPlanDirectory
+        'cmdBrowseJavaHome
         '
-        Me.cmdBrowseTestPlanDirectory.Location = New System.Drawing.Point(683, 10)
-        Me.cmdBrowseTestPlanDirectory.Name = "cmdBrowseTestPlanDirectory"
-        Me.cmdBrowseTestPlanDirectory.Size = New System.Drawing.Size(75, 23)
-        Me.cmdBrowseTestPlanDirectory.TabIndex = 7
-        Me.cmdBrowseTestPlanDirectory.Text = "Browse..."
-        Me.cmdBrowseTestPlanDirectory.UseVisualStyleBackColor = True
+        Me.cmdBrowseJavaHome.Location = New System.Drawing.Point(683, 10)
+        Me.cmdBrowseJavaHome.Name = "cmdBrowseJavaHome"
+        Me.cmdBrowseJavaHome.Size = New System.Drawing.Size(75, 23)
+        Me.cmdBrowseJavaHome.TabIndex = 7
+        Me.cmdBrowseJavaHome.Text = "Browse..."
+        Me.cmdBrowseJavaHome.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'txtJavaHome
         '
-        Me.TextBox1.Location = New System.Drawing.Point(116, 12)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(561, 20)
-        Me.TextBox1.TabIndex = 6
+        Me.txtJavaHome.Location = New System.Drawing.Point(116, 12)
+        Me.txtJavaHome.Name = "txtJavaHome"
+        Me.txtJavaHome.Size = New System.Drawing.Size(561, 20)
+        Me.txtJavaHome.TabIndex = 6
         '
         'Label1
         '
@@ -74,18 +79,18 @@ Partial Class frmPaths
         Me.Label1.TabIndex = 5
         Me.Label1.Text = "Java Directory"
         '
-        'Button1
+        'cmdBrowseTesterJar
         '
-        Me.Button1.Location = New System.Drawing.Point(683, 36)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 10
-        Me.Button1.Text = "Browse..."
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.cmdBrowseTesterJar.Location = New System.Drawing.Point(683, 36)
+        Me.cmdBrowseTesterJar.Name = "cmdBrowseTesterJar"
+        Me.cmdBrowseTesterJar.Size = New System.Drawing.Size(75, 23)
+        Me.cmdBrowseTesterJar.TabIndex = 10
+        Me.cmdBrowseTesterJar.Text = "Browse..."
+        Me.cmdBrowseTesterJar.UseVisualStyleBackColor = True
         '
         'cmdOk
         '
-        Me.cmdOk.Location = New System.Drawing.Point(6, 64)
+        Me.cmdOk.Location = New System.Drawing.Point(6, 93)
         Me.cmdOk.Name = "cmdOk"
         Me.cmdOk.Size = New System.Drawing.Size(374, 32)
         Me.cmdOk.TabIndex = 11
@@ -94,25 +99,66 @@ Partial Class frmPaths
         '
         'cmdCancel
         '
-        Me.cmdCancel.Location = New System.Drawing.Point(384, 64)
+        Me.cmdCancel.Location = New System.Drawing.Point(384, 93)
         Me.cmdCancel.Name = "cmdCancel"
         Me.cmdCancel.Size = New System.Drawing.Size(374, 32)
         Me.cmdCancel.TabIndex = 13
         Me.cmdCancel.Text = "Cancel"
         Me.cmdCancel.UseVisualStyleBackColor = True
         '
+        'FileDialog
+        '
+        Me.FileDialog.Filter = "jar|*.jar"
+        Me.FileDialog.Title = "Select File"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(3, 67)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(103, 13)
+        Me.Label3.TabIndex = 15
+        Me.Label3.Text = "Recorder Max Heap"
+        '
+        'txtRecorderMaxHeap
+        '
+        Me.txtRecorderMaxHeap.Location = New System.Drawing.Point(116, 64)
+        Me.txtRecorderMaxHeap.Name = "txtRecorderMaxHeap"
+        Me.txtRecorderMaxHeap.Size = New System.Drawing.Size(264, 20)
+        Me.txtRecorderMaxHeap.TabIndex = 14
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(386, 67)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(88, 13)
+        Me.Label4.TabIndex = 17
+        Me.Label4.Text = "Player Max Heap"
+        '
+        'txtPlayerMaxHeap
+        '
+        Me.txtPlayerMaxHeap.Location = New System.Drawing.Point(480, 64)
+        Me.txtPlayerMaxHeap.Name = "txtPlayerMaxHeap"
+        Me.txtPlayerMaxHeap.Size = New System.Drawing.Size(278, 20)
+        Me.txtPlayerMaxHeap.TabIndex = 16
+        '
         'frmPaths
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(765, 108)
+        Me.ClientSize = New System.Drawing.Size(765, 137)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.txtPlayerMaxHeap)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.txtRecorderMaxHeap)
         Me.Controls.Add(Me.cmdCancel)
         Me.Controls.Add(Me.cmdOk)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.cmdBrowseTesterJar)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.txtRecorderPort)
-        Me.Controls.Add(Me.cmdBrowseTestPlanDirectory)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtTesterJar)
+        Me.Controls.Add(Me.cmdBrowseJavaHome)
+        Me.Controls.Add(Me.txtJavaHome)
         Me.Controls.Add(Me.Label1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
@@ -125,12 +171,17 @@ Partial Class frmPaths
     End Sub
 
     Friend WithEvents Label2 As Label
-    Friend WithEvents txtRecorderPort As TextBox
-    Friend WithEvents cmdBrowseTestPlanDirectory As Button
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents txtTesterJar As TextBox
+    Friend WithEvents cmdBrowseJavaHome As Button
+    Friend WithEvents txtJavaHome As TextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents Button1 As Button
-    Friend WithEvents dirDialog As FolderBrowserDialog
+    Friend WithEvents cmdBrowseTesterJar As Button
+    Friend WithEvents DirDialog As FolderBrowserDialog
     Friend WithEvents cmdOk As Button
     Friend WithEvents cmdCancel As Button
+    Friend WithEvents FileDialog As OpenFileDialog
+    Friend WithEvents Label3 As Label
+    Friend WithEvents txtRecorderMaxHeap As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txtPlayerMaxHeap As TextBox
 End Class
