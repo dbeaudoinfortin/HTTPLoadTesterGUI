@@ -5,13 +5,21 @@ Public Class Settings
 
     Public JavaHome As String
     Public LoadTesterJar As String
+
     Public RecorderTestDirectory As String
     Public RecorderListenerPort As String
     Public RecorderForwardingHost As String
     Public RecorderForwardingHTTPPort As String
     Public RecorderForwardingHTTPsPort As String
     Public RecorderMaxHeap As String
+    Public RecorderStartImmediately As Boolean
+    Public RecorderStartJConsole As Boolean
+    Public RecorderPathSubstitutions As String
+    Public RecorderQuerySubstitutions As String
+    Public RecorderBodySubstitutions As String
+
     Public PlayerMaxHeap As String
+    Public PlayerStartJConsole As Boolean
 
     Public Sub New()
         Dim javaHomeEnv As String = System.Environment.GetEnvironmentVariable("JAVA_HOME")
@@ -32,6 +40,10 @@ Public Class Settings
         RecorderForwardingHTTPsPort = "443"
         PlayerMaxHeap = "1G"
         RecorderMaxHeap = "512m"
+
+        RecorderStartImmediately = False
+        RecorderStartJConsole = True
+        PlayerStartJConsole = True
     End Sub
 
     Public Shared Function Load(ByRef path As String) As Settings

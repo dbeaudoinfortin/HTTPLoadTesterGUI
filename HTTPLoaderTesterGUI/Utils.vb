@@ -17,21 +17,4 @@ Module Utils
         End Using
     End Sub
 
-    Public Sub AppendOutput(ByRef consoleProcess As Process, ByRef console As TextBox)
-        Dim err As String = consoleProcess.StandardError.ReadLine
-        Dim out As String = consoleProcess.StandardOutput.ReadLine
-        While (out IsNot Nothing) Or (err IsNot Nothing)
-            If out IsNot Nothing Then
-                console.AppendText(out)
-                console.AppendText(vbCrLf)
-            End If
-            If err IsNot Nothing Then
-                console.AppendText(err)
-                console.AppendText(vbCrLf)
-            End If
-            out = consoleProcess.StandardOutput.ReadLine
-            err = consoleProcess.StandardError.ReadLine
-            Application.DoEvents()
-        End While
-    End Sub
 End Module
