@@ -1,4 +1,5 @@
 ﻿Imports System.Text
+Imports Newtonsoft
 
 Public Class frmMain
 
@@ -91,7 +92,10 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GlobalSettings = Settings.Load(Settings.settingsPath)
+        ReloadFromSettings()
+    End Sub
+
+    Private Sub ReloadFromSettings()
         txtRecorderHost.Text = GlobalSettings.RecorderForwardingHost
         txtRecorderHttpPort.Text = GlobalSettings.RecorderForwardingHTTPPort
         txtRecorderHttpsPort.Text = GlobalSettings.RecorderForwardingHTTPsPort
@@ -131,20 +135,33 @@ Public Class frmMain
         javaCommand.Append(""" ")
         javaCommand.Append(RECORDER_PROXY_CLASS)
         javaCommand.Append(" -dir ")
-        javaCommand.Append(txtTestPlanDir.Text)
+        javaCommand.Append(GlobalSettings.RecorderTestDirectory)
         javaCommand.Append(" -port ")
-        javaCommand.Append(txtRecorderPort.Text)
-        javaCommand.Append(" -fhost ")
-        javaCommand.Append(txtRecorderHost.Text)
-        javaCommand.Append(" -fhttpport ")
-        javaCommand.Append(txtRecorderHttpPort.Text)
+        javaCommand.Append(GlobalSettings.RecorderListenerPort)
+        javaCommand.Append(" -fHost ")
+        javaCommand.Append(GlobalSettings.RecorderForwardingHost)
+        javaCommand.Append(" -fHttpPort ")
+        javaCommand.Append(GlobalSettings.RecorderForwardingHTTPPort)
+        javaCommand.Append(" -fHttpsPort ")
+        javaCommand.Append(GlobalSettings.RecorderForwardingHTTPsPort)
 
         If GlobalSettings.RecorderStartImmediately Then
             javaCommand.Append(" -start ")
         End If
 
         If GlobalSettings.RecorderPathSubstitutions IsNot Nothing And GlobalSettings.RecorderPathSubstitutions <> "" Then
-            sds
+            javaCommand.Append(" -pathSubs ")
+            javaCommand.Append(Convert.ToBase64String(Encoding.UTF8.GetBytes(GlobalSettings.RecorderPathSubstitutions)))
+        End If
+
+        If GlobalSettings.RecorderQuerySubstitutions IsNot Nothing And GlobalSettings.RecorderQuerySubstitutions <> "" Then
+            javaCommand.Append(" -querySubs ")
+            javaCommand.Append(Convert.ToBase64String(Encoding.UTF8.GetBytes(GlobalSettings.RecorderQuerySubstitutions)))
+        End If
+
+        If GlobalSettings.RecorderBodySubstitutions IsNot Nothing And GlobalSettings.RecorderBodySubstitutions <> "" Then
+            javaCommand.Append(" -bodySubs ")
+            javaCommand.Append(Convert.ToBase64String(Encoding.UTF8.GetBytes(GlobalSettings.RecorderBodySubstitutions)))
         End If
 
         javaCommand.Append("""")
@@ -224,5 +241,30 @@ Public Class frmMain
     Private Sub chJConsoleStart_CheckedChanged(sender As Object, e As EventArgs) Handles chJConsoleStart.CheckedChanged
         GlobalSettings.RecorderStartJConsole = chJConsoleStart.Checked
         GlobalSettings.Save()
+    End Sub
+
+    Private Sub ImportSettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportSettingsToolStripMenuItem.Click
+        If OpenFileDialog.ShowDialog() = DialogResult.OK Then
+            Try
+                GlobalSettings = Settings.Load(OpenFileDialog.FileName)
+            Catch ex As Exception
+                MsgBox("Unable to import settings from file '" + OpenFileDialog.FileName + "'." & vbCrLf & vbCrLf & ex.Message, MsgBoxStyle.Critical, "Error")
+                Return
+            End Try
+
+            GlobalSettings.Save()
+        End If
+
+        Me.ReloadFromSettings()
+    End Sub
+
+    Private Sub ExportSettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportSettingsToolStripMenuItem.Click
+        If SaveFileDialog.ShowDialog = DialogResult.OK Then
+            Try
+                Settings.Save(GlobalSettings, SaveFileDialog.FileName)
+            Catch ex As Exception
+                MsgBox("Unable to export settings to file '" + SaveFileDialog.FileName + "'." & vbCrLf & vbCrLf & ex.Message, MsgBoxStyle.Critical, "Error")
+            End Try
+        End If
     End Sub
 End Class

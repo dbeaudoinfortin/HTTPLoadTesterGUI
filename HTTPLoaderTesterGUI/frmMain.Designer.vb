@@ -65,6 +65,8 @@ Partial Class frmMain
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.DirDialog = New System.Windows.Forms.FolderBrowserDialog()
+        Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
+        Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -453,6 +455,20 @@ Partial Class frmMain
         Me.TabPage3.Text = "Player"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'OpenFileDialog
+        '
+        Me.OpenFileDialog.DefaultExt = "json"
+        Me.OpenFileDialog.FileName = "settings.json"
+        Me.OpenFileDialog.Filter = "json|*.json"
+        Me.OpenFileDialog.Title = "Load Settings"
+        '
+        'SaveFileDialog
+        '
+        Me.SaveFileDialog.DefaultExt = "json"
+        Me.SaveFileDialog.FileName = "settings.json"
+        Me.SaveFileDialog.Filter = "json|*.json"
+        Me.SaveFileDialog.Title = "Save Settings"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -521,4 +537,6 @@ Partial Class frmMain
     Friend WithEvents txtRecorderBodySub As TextBox
     Friend WithEvents txtRecorderQuerySub As TextBox
     Friend WithEvents txtRecorderPathSub As TextBox
+    Friend WithEvents OpenFileDialog As OpenFileDialog
+    Friend WithEvents SaveFileDialog As SaveFileDialog
 End Class

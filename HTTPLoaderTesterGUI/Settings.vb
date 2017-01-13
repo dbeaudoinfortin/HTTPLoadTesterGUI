@@ -47,11 +47,9 @@ Public Class Settings
     End Sub
 
     Public Shared Function Load(ByRef path As String) As Settings
-        'If the path doesn't exist, create it
+        'If the path doesn't exist, return an default settings
         If Not System.IO.File.Exists(Settings.settingsPath) Then
-            Dim newSettings As Settings = New Settings()
-            Save(newSettings, Settings.settingsPath)
-            Return newSettings
+            Return New Settings()
         End If
 
         'Attempt to load settings
