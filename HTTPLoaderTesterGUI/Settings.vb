@@ -20,6 +20,19 @@ Public Class Settings
 
     Public PlayerMaxHeap As String
     Public PlayerStartJConsole As Boolean
+    Public PlayerTestPlanFile As String
+    Public PlayerThreadCount As String
+    Public PlayerStaggerTime As String
+    Public PlayerMinRunTime As String
+    Public PlayerCalcMinRunTime As Boolean
+    Public PlayerActionDelay As String
+    Public PlayerCalcActionDelay As Boolean
+    Public PlayerHost As String
+    Public PlayerHTTPPort As String
+    Public PlayerHTTPSPort As String
+    Public PlayerPauseOnStart As Boolean
+    Public PlayerOverrideHTTPS As Boolean
+    Public PlayerApplySubs As Boolean
 
     Public Sub New()
         Dim javaHomeEnv As String = System.Environment.GetEnvironmentVariable("JAVA_HOME")
@@ -44,6 +57,20 @@ Public Class Settings
         RecorderStartImmediately = False
         RecorderStartJConsole = True
         PlayerStartJConsole = True
+
+        PlayerTestPlanFile = "C:\"
+        PlayerThreadCount = "1"
+        PlayerStaggerTime = "10"
+        PlayerMinRunTime = "120"
+        PlayerCalcMinRunTime = True
+        PlayerActionDelay = "10"
+        PlayerCalcActionDelay = True
+        PlayerHost = "localhost"
+        PlayerHTTPPort = "80"
+        PlayerHTTPSPort = "443"
+        PlayerPauseOnStart = True
+        PlayerOverrideHTTPS = True
+        PlayerApplySubs = False
     End Sub
 
     Public Shared Function Load(ByRef path As String) As Settings

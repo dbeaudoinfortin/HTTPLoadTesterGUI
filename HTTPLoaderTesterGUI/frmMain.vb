@@ -14,7 +14,7 @@ Public Class frmMain
             Exit Sub
         End If
         LaunchRecorderThread(BuildRecorderJavaCommand())
-        If GlobalSettings.RecorderStartJConsole Then LaunchJConsole(BuildJConsoleCommand())
+        If GlobalSettings.RecorderStartJConsole Then LaunchJConsole(BuildJConsoleCommand("9011"))
     End Sub
     Private Sub LaunchJConsole(ByRef CommandString As String)
 
@@ -100,21 +100,44 @@ Public Class frmMain
         txtRecorderHttpPort.Text = GlobalSettings.RecorderForwardingHTTPPort
         txtRecorderHttpsPort.Text = GlobalSettings.RecorderForwardingHTTPsPort
         txtRecorderPort.Text = GlobalSettings.RecorderListenerPort
-        txtTestPlanDir.Text = GlobalSettings.RecorderTestDirectory
-        chRecorderStart.Checked = GlobalSettings.RecorderStartImmediately
-        chJConsoleStart.Checked = GlobalSettings.RecorderStartJConsole
+        txtRecorderTestPlanDir.Text = GlobalSettings.RecorderTestDirectory
+        cbRecorderStart.Checked = GlobalSettings.RecorderStartImmediately
+        cbRecorderJConsoleStart.Checked = GlobalSettings.RecorderStartJConsole
         txtRecorderPathSub.Text = GlobalSettings.RecorderPathSubstitutions
         txtRecorderQuerySub.Text = GlobalSettings.RecorderQuerySubstitutions
         txtRecorderBodySub.Text = GlobalSettings.RecorderBodySubstitutions
+
+        cbPlayerJConsoleStart.Checked = GlobalSettings.PlayerStartJConsole
+        txtPlayerTestPlanFile.Text = GlobalSettings.PlayerTestPlanFile
+        txtPlayerThreadCount.Text = GlobalSettings.PlayerThreadCount
+        txtPlayerStaggerTime.Text = GlobalSettings.PlayerStaggerTime
+        txtPlayerMinRunTime.Text = GlobalSettings.PlayerMinRunTime
+        cbPlayerCalcMinRunTime.Checked = GlobalSettings.PlayerCalcMinRunTime
+        txtPlayerActionDelay.Text = GlobalSettings.PlayerActionDelay
+        cbPlayerCalcActionDelay.Checked = GlobalSettings.PlayerCalcActionDelay
+        txtPlayerHost.Text = GlobalSettings.PlayerHost
+        txtPlayerHTTPPort.Text = GlobalSettings.PlayerHTTPPort
+        txtPlayerHTTPSPort.Text = GlobalSettings.PlayerHTTPSPort
+        cbPlayerPause.Checked = GlobalSettings.PlayerPauseOnStart
+        cbPlayerOverrideHTTPS.Checked = GlobalSettings.PlayerOverrideHTTPS
+        cbPlayerApplySubs.Checked = GlobalSettings.PlayerApplySubs
+
+        txtPlayerMinRunTime.Enabled = Not GlobalSettings.PlayerCalcMinRunTime
+        txtPlayerActionDelay.Enabled = Not GlobalSettings.PlayerCalcActionDelay
+        txtPlayerHTTPSPort.Enabled = Not GlobalSettings.PlayerOverrideHTTPS
     End Sub
 
     Private Sub cmdBrowseTestPlanDirectory_Click(sender As Object, e As EventArgs) Handles cmdBrowseTestPlanDirectory.Click
-        If (txtTestPlanDir.Text IsNot Nothing And Not txtTestPlanDir.Text = "") Then
-            DirDialog.SelectedPath = txtTestPlanDir.Text
+        If (txtRecorderTestPlanDir.Text IsNot Nothing And Not txtRecorderTestPlanDir.Text = "") Then
+            DirDialog.SelectedPath = txtRecorderTestPlanDir.Text
         End If
 
         If (DirDialog.ShowDialog() = DialogResult.OK) Then
-            txtTestPlanDir.Text = DirDialog.SelectedPath
+            txtRecorderTestPlanDir.Text = DirDialog.SelectedPath
+        End If
+        If GlobalSettings.RecorderTestDirectory <> txtRecorderTestPlanDir.Text Then
+            GlobalSettings.RecorderTestDirectory = txtRecorderTestPlanDir.Text
+            GlobalSettings.Save()
         End If
     End Sub
 
@@ -134,9 +157,15 @@ Public Class frmMain
         javaCommand.Append(GlobalSettings.LoadTesterJar)
         javaCommand.Append(""" ")
         javaCommand.Append(RECORDER_PROXY_CLASS)
-        javaCommand.Append(" -dir ")
+        javaCommand.Append(" -dir """)
         javaCommand.Append(GlobalSettings.RecorderTestDirectory)
-        javaCommand.Append(" -port ")
+
+        'Deal with a special case where the trailing slash is seen as an escape character
+        If (GlobalSettings.RecorderTestDirectory.EndsWith("\")) Then
+            javaCommand.Append("\")
+        End If
+
+        javaCommand.Append(""" -port ")
         javaCommand.Append(GlobalSettings.RecorderListenerPort)
         javaCommand.Append(" -fHost ")
         javaCommand.Append(GlobalSettings.RecorderForwardingHost)
@@ -168,10 +197,11 @@ Public Class frmMain
         Return javaCommand.ToString
     End Function
 
-    Private Function BuildJConsoleCommand() As String
+    Private Function BuildJConsoleCommand(ByRef port As String) As String
         Dim javaCommand As New StringBuilder()
         With javaCommand
-            .Append("localhost:9011")
+            .Append("localhost:")
+            .Append(port)
         End With
         Return javaCommand.ToString
     End Function
@@ -184,9 +214,9 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub txtTestPlanDir_LostFocus(sender As Object, e As EventArgs) Handles txtTestPlanDir.LostFocus
-        If GlobalSettings.RecorderTestDirectory <> txtTestPlanDir.Text Then
-            GlobalSettings.RecorderTestDirectory = txtTestPlanDir.Text
+    Private Sub txtTestPlanDir_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderTestPlanDir.LostFocus
+        If GlobalSettings.RecorderTestDirectory <> txtRecorderTestPlanDir.Text Then
+            GlobalSettings.RecorderTestDirectory = txtRecorderTestPlanDir.Text
             GlobalSettings.Save()
         End If
     End Sub
@@ -233,13 +263,13 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub chRecorderStart_CheckedChanged(sender As Object, e As EventArgs) Handles chRecorderStart.CheckedChanged
-        GlobalSettings.RecorderStartImmediately = chRecorderStart.Checked
+    Private Sub chRecorderStart_CheckedChanged(sender As Object, e As EventArgs) Handles cbRecorderStart.CheckedChanged
+        GlobalSettings.RecorderStartImmediately = cbRecorderStart.Checked
         GlobalSettings.Save()
     End Sub
 
-    Private Sub chJConsoleStart_CheckedChanged(sender As Object, e As EventArgs) Handles chJConsoleStart.CheckedChanged
-        GlobalSettings.RecorderStartJConsole = chJConsoleStart.Checked
+    Private Sub chJConsoleStart_CheckedChanged(sender As Object, e As EventArgs) Handles cbRecorderJConsoleStart.CheckedChanged
+        GlobalSettings.RecorderStartJConsole = cbRecorderJConsoleStart.Checked
         GlobalSettings.Save()
     End Sub
 
@@ -266,5 +296,222 @@ Public Class frmMain
                 MsgBox("Unable to export settings to file '" + SaveFileDialog.FileName + "'." & vbCrLf & vbCrLf & ex.Message, MsgBoxStyle.Critical, "Error")
             End Try
         End If
+    End Sub
+
+    Private Sub cbPlayerOverrideHTTPS_CheckedChanged(sender As Object, e As EventArgs) Handles cbPlayerOverrideHTTPS.CheckedChanged
+        txtPlayerHTTPSPort.Enabled = Not cbPlayerOverrideHTTPS.Checked
+        GlobalSettings.PlayerOverrideHTTPS = cbPlayerOverrideHTTPS.Checked
+        GlobalSettings.Save()
+    End Sub
+
+    Private Sub cbPlayerCalcMinRunTime_CheckedChanged(sender As Object, e As EventArgs) Handles cbPlayerCalcMinRunTime.CheckedChanged
+        txtPlayerMinRunTime.Enabled = Not cbPlayerCalcMinRunTime.Checked
+        GlobalSettings.PlayerCalcMinRunTime = cbPlayerCalcMinRunTime.Checked
+        GlobalSettings.Save()
+    End Sub
+
+    Private Sub cbPlayerCalcActionDelay_CheckedChanged(sender As Object, e As EventArgs) Handles cbPlayerCalcActionDelay.CheckedChanged
+        txtPlayerActionDelay.Enabled = Not cbPlayerCalcActionDelay.Checked
+        GlobalSettings.PlayerCalcActionDelay = cbPlayerCalcActionDelay.Checked
+        GlobalSettings.Save()
+    End Sub
+
+    Private Sub cmdPlayerBrowse_Click(sender As Object, e As EventArgs) Handles cmdPlayerBrowse.Click
+        If (txtPlayerTestPlanFile.Text IsNot Nothing And Not txtPlayerTestPlanFile.Text = "") Then
+            OpenFileDialog.FileName = txtPlayerTestPlanFile.Text
+        End If
+
+        If (OpenFileDialog.ShowDialog() = DialogResult.OK) Then
+            txtPlayerTestPlanFile.Text = OpenFileDialog.FileName
+        End If
+
+        If GlobalSettings.PlayerTestPlanFile <> txtPlayerTestPlanFile.Text Then
+            GlobalSettings.PlayerTestPlanFile = txtPlayerTestPlanFile.Text
+            GlobalSettings.Save()
+        End If
+    End Sub
+
+    Private Sub txtPlayerTestPlanFile_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerTestPlanFile.LostFocus
+        If GlobalSettings.PlayerTestPlanFile <> txtPlayerTestPlanFile.Text Then
+            GlobalSettings.PlayerTestPlanFile = txtPlayerTestPlanFile.Text
+            GlobalSettings.Save()
+        End If
+    End Sub
+
+    Private Sub txtPlayerThreadCount_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerThreadCount.LostFocus
+        If GlobalSettings.PlayerThreadCount <> txtPlayerThreadCount.Text Then
+            GlobalSettings.PlayerThreadCount = txtPlayerThreadCount.Text
+            GlobalSettings.Save()
+        End If
+    End Sub
+
+    Private Sub txtPlayerStaggerTime_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerStaggerTime.LostFocus
+        If GlobalSettings.PlayerStaggerTime <> txtPlayerStaggerTime.Text Then
+            GlobalSettings.PlayerStaggerTime = txtPlayerStaggerTime.Text
+            GlobalSettings.Save()
+        End If
+    End Sub
+
+    Private Sub txtPlayerHost_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerHost.LostFocus
+        If GlobalSettings.PlayerHost <> txtPlayerHost.Text Then
+            GlobalSettings.PlayerHost = txtPlayerHost.Text
+            GlobalSettings.Save()
+        End If
+    End Sub
+
+    Private Sub txtPlayerHTTPPort_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerHTTPPort.LostFocus
+        If GlobalSettings.PlayerHTTPPort <> txtPlayerHTTPPort.Text Then
+            GlobalSettings.PlayerHTTPPort = txtPlayerHTTPPort.Text
+            GlobalSettings.Save()
+        End If
+    End Sub
+
+    Private Sub txtPlayerHTTPSPort_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerHTTPSPort.LostFocus
+        If GlobalSettings.PlayerHTTPSPort <> txtPlayerHTTPSPort.Text Then
+            GlobalSettings.PlayerHTTPSPort = txtPlayerHTTPSPort.Text
+            GlobalSettings.Save()
+        End If
+    End Sub
+
+    Private Sub txtPlayerMinRunTime_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerMinRunTime.LostFocus
+        If GlobalSettings.PlayerMinRunTime <> txtPlayerMinRunTime.Text Then
+            GlobalSettings.PlayerMinRunTime = txtPlayerMinRunTime.Text
+            GlobalSettings.Save()
+        End If
+    End Sub
+
+    Private Sub txtPlayerActionDelay_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerActionDelay.LostFocus
+        If GlobalSettings.PlayerActionDelay <> txtPlayerActionDelay.Text Then
+            GlobalSettings.PlayerActionDelay = txtPlayerActionDelay.Text
+            GlobalSettings.Save()
+        End If
+    End Sub
+
+    Private Sub cbPlayerPause_CheckedChanged(sender As Object, e As EventArgs) Handles cbPlayerPause.CheckedChanged
+        GlobalSettings.PlayerPauseOnStart = cbPlayerPause.Checked
+        GlobalSettings.Save()
+
+    End Sub
+
+    Private Sub cbPlayerJConsoleStart_CheckedChanged(sender As Object, e As EventArgs) Handles cbPlayerJConsoleStart.CheckedChanged
+        GlobalSettings.PlayerStartJConsole = cbPlayerJConsoleStart.Checked
+        GlobalSettings.Save()
+    End Sub
+
+    Private Sub cbPlayerApplySubs_CheckedChanged(sender As Object, e As EventArgs) Handles cbPlayerApplySubs.CheckedChanged
+        GlobalSettings.PlayerApplySubs = cbPlayerApplySubs.Checked
+        GlobalSettings.Save()
+    End Sub
+
+    Private Sub txtPlayerHost_TextChanged(sender As Object, e As EventArgs) Handles txtPlayerHost.TextChanged
+
+    End Sub
+
+    Private Sub cmdPlayerLaunch_Click(sender As Object, e As EventArgs) Handles cmdPlayerLaunch.Click
+
+        If (GlobalSettings.JavaHome = "") Then
+            MsgBox("Java path not set.", MsgBoxStyle.Critical, "Error")
+            Exit Sub
+        End If
+        LaunchPlayerThread(BuildPlayerJavaCommand())
+        If GlobalSettings.PlayerStartJConsole Then LaunchJConsole(BuildJConsoleCommand("9012"))
+    End Sub
+
+    Private Function BuildPlayerJavaCommand() As String
+        Dim javaCommand As New StringBuilder()
+        javaCommand.Append("/K """"")
+        javaCommand.Append(GlobalSettings.JavaHome)
+        javaCommand.Append("\java.exe"" ")
+        javaCommand.Append("-Xmx")
+        javaCommand.Append(GlobalSettings.PlayerMaxHeap)
+        javaCommand.Append(" -Dcom.sun.management.jmxremote")
+        javaCommand.Append(" -Dcom.sun.management.jmxremote.port=9012")
+        javaCommand.Append(" -Dcom.sun.management.jmxremote.local.only=false")
+        javaCommand.Append(" -Dcom.sun.management.jmxremote.authenticate=false")
+        javaCommand.Append(" -Dcom.sun.management.jmxremote.ssl=false")
+        javaCommand.Append(" -cp """)
+        javaCommand.Append(GlobalSettings.LoadTesterJar)
+        javaCommand.Append(""" ")
+        javaCommand.Append(PLAYER_CLASS)
+        javaCommand.Append(" -testPlanFile """)
+        javaCommand.Append(GlobalSettings.PlayerTestPlanFile)
+
+        'Deal with a special case where the trailing slash is seen as an escape character
+        If (GlobalSettings.PlayerTestPlanFile.EndsWith("\")) Then
+            javaCommand.Append("\")
+        End If
+
+        javaCommand.Append(""" -threadCount ")
+        javaCommand.Append(GlobalSettings.PlayerThreadCount)
+        javaCommand.Append(" -staggerTime ")
+        javaCommand.Append(GlobalSettings.PlayerStaggerTime)
+
+        If (Not GlobalSettings.PlayerCalcMinRunTime) Then
+            javaCommand.Append(" -minRunTime ")
+            javaCommand.Append(GlobalSettings.PlayerMinRunTime)
+        End If
+
+        If (Not GlobalSettings.PlayerCalcActionDelay) Then
+            javaCommand.Append(" -actionDelay ")
+            javaCommand.Append(GlobalSettings.PlayerActionDelay)
+        End If
+
+        javaCommand.Append(" -host ")
+        javaCommand.Append(GlobalSettings.PlayerHost)
+        javaCommand.Append(" -httpPort ")
+        javaCommand.Append(GlobalSettings.PlayerHTTPPort)
+        javaCommand.Append(" -httpsPort ")
+        javaCommand.Append(GlobalSettings.PlayerHTTPSPort)
+
+        If GlobalSettings.PlayerPauseOnStart Then
+            javaCommand.Append(" -pause ")
+        End If
+
+        If GlobalSettings.PlayerOverrideHTTPS Then
+            javaCommand.Append(" -overrideHttps ")
+        End If
+
+        If GlobalSettings.PlayerApplySubs Then
+        End If
+
+        javaCommand.Append("""")
+        Return javaCommand.ToString
+    End Function
+
+    Private Sub LaunchPlayerThread(ByVal JavaCommandString As String)
+
+        Dim PlayerProcess As New Process()
+        PlayerProcess.StartInfo.FileName = "CMD"
+        PlayerProcess.StartInfo.UseShellExecute = False
+        PlayerProcess.StartInfo.CreateNoWindow = False
+        PlayerProcess.StartInfo.RedirectStandardOutput = False
+        PlayerProcess.StartInfo.RedirectStandardError = False
+        PlayerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
+        PlayerProcess.StartInfo.Arguments = JavaCommandString
+        If Environment.OSVersion.Version.Major >= 6 Then
+            PlayerProcess.StartInfo.Verb = "runas"
+        End If
+
+        txtPlayerConsole.Text = "Using command: CMD " & JavaCommandString & vbCrLf & vbCrLf & "Launching Player Proxy process..." & vbCrLf & vbCrLf
+        tsPlayerStatus.Text = "Player Started"
+        cmdPlayerLaunch.Enabled = False
+        Application.DoEvents()
+
+        'Launch a new thread to monitor the process
+        Task.Run(Sub()
+                     Try
+                         PlayerProcess.Start()
+                         PlayerProcess.WaitForExit()
+
+                         Me.Invoke(Sub()
+                                       txtPlayerConsole.AppendText("Player process terminated." & vbCrLf & vbCrLf)
+                                       tsPlayerStatus.Text = "Player Stopped"
+                                       cmdPlayerLaunch.Enabled = True
+                                   End Sub)
+                         PlayerProcess.Close()
+                     Catch ex As Exception
+                         MsgBox("Unable to start Player process." & vbCrLf & vbCrLf & ex.ToString, MsgBoxStyle.Critical, "Error")
+                     End Try
+                 End Sub)
     End Sub
 End Class
