@@ -34,6 +34,8 @@ Public Class Settings
     Public PlayerOverrideHTTPS As Boolean
     Public PlayerApplySubs As Boolean
 
+    Public EditorTestPlanFile As String
+
     Public Sub New()
         Dim javaHomeEnv As String = System.Environment.GetEnvironmentVariable("JAVA_HOME")
 

@@ -4,4 +4,5 @@
 
     Public GlobalSettings As Settings = Settings.Load(Settings.settingsPath)
 
+    Public EditorTestPlan As List(Of HTTPAction)
 End Module

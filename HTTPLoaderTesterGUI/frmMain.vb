@@ -121,12 +121,87 @@ Public Class frmMain
         cbPlayerPause.Checked = GlobalSettings.PlayerPauseOnStart
         cbPlayerOverrideHTTPS.Checked = GlobalSettings.PlayerOverrideHTTPS
         cbPlayerApplySubs.Checked = GlobalSettings.PlayerApplySubs
+        txtEditorTestPlanFile.Text = GlobalSettings.EditorTestPlanFile
 
         txtPlayerMinRunTime.Enabled = Not GlobalSettings.PlayerCalcMinRunTime
         txtPlayerActionDelay.Enabled = Not GlobalSettings.PlayerCalcActionDelay
         txtPlayerHTTPSPort.Enabled = Not GlobalSettings.PlayerOverrideHTTPS
+
+        LoadTestPlan()
     End Sub
 
+    Private Sub LoadTestPlan()
+        If (GlobalSettings.EditorTestPlanFile Is Nothing Or GlobalSettings.EditorTestPlanFile = "") Then
+            ClearTestPlanEditor()
+            Return
+        End If
+
+        Try
+            Dim testPlanString As String = Utils.GetFileContents(GlobalSettings.EditorTestPlanFile)
+            EditorTestPlan = Json.JsonConvert.DeserializeObject(Of List(Of HTTPAction))(testPlanString)
+        Catch ex As Exception
+            ClearTestPlanEditor()
+            Application.DoEvents()
+            MsgBox("Unable to load test plan '" + GlobalSettings.EditorTestPlanFile + "'." & vbCrLf & vbCrLf & ex.ToString, MsgBoxStyle.Critical, "Error")
+            Return
+        End Try
+
+    End Sub
+    Private Sub UpdateTestPlanEditor(ByRef EditorTestPlan As List(Of HTTPAction))
+        lbActions.Items.Clear()
+        lbActions.Enabled = True
+        lbActions.Items.Add("Test Plan Start...")
+        lbActions.Items.AddRange(EditorTestPlan)
+
+        tsTestPlanStatus.Text = "No Test Plan Loaded"
+
+        txtActionDelay.Text = ""
+        txtActionDelay.Enabled = False
+        cbActionScheme.SelectedItem = Nothing
+        cbActionScheme.Enabled = False
+        cbActionMethod.SelectedItem = Nothing
+        cbActionMethod.Enabled = False
+        txtActionPath.Text = ""
+        txtActionPath.Enabled = False
+        txtActionQuery.Text = ""
+        txtActionQuery.Enabled = False
+        txtActionEncoding.Enabled = False
+        txtActionEncoding.Text = ""
+        txtActionHeaders.Text = ""
+        txtActionHeaders.Enabled = False
+        txtActionBody.Text = ""
+        txtActionBody.Enabled = False
+
+        cmdAddAction.Enabled = False
+        cmdDeleteActions.Enabled = False
+        cmdUpdateAction.Enabled = False
+
+    End Sub
+
+    Private Sub ClearTestPlanEditor()
+        lbActions.Items.Clear()
+        lbActions.Enabled = False
+        txtActionDelay.Text = ""
+        txtActionDelay.Enabled = False
+        cbActionScheme.SelectedItem = Nothing
+        cbActionScheme.Enabled = False
+        cbActionMethod.SelectedItem = Nothing
+        cbActionMethod.Enabled = False
+        txtActionPath.Text = ""
+        txtActionPath.Enabled = False
+        txtActionQuery.Text = ""
+        txtActionQuery.Enabled = False
+        txtActionEncoding.Enabled = False
+        txtActionEncoding.Text = ""
+        txtActionHeaders.Text = ""
+        txtActionHeaders.Enabled = False
+        txtActionBody.Text = ""
+        txtActionBody.Enabled = False
+        cmdAddAction.Enabled = False
+        cmdDeleteActions.Enabled = False
+        cmdUpdateAction.Enabled = False
+        tsTestPlanStatus.Text = "No Test Plan Loaded"
+    End Sub
     Private Sub cmdBrowseTestPlanDirectory_Click(sender As Object, e As EventArgs) Handles cmdBrowseTestPlanDirectory.Click
         If (txtRecorderTestPlanDir.Text IsNot Nothing And Not txtRecorderTestPlanDir.Text = "") Then
             DirDialog.SelectedPath = txtRecorderTestPlanDir.Text
@@ -513,5 +588,22 @@ Public Class frmMain
                          MsgBox("Unable to start Player process." & vbCrLf & vbCrLf & ex.ToString, MsgBoxStyle.Critical, "Error")
                      End Try
                  End Sub)
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles cmdLoadTestPlan.Click
+        If (txtEditorTestPlanFile.Text IsNot Nothing And Not txtEditorTestPlanFile.Text = "") Then
+            OpenFileDialog.FileName = txtEditorTestPlanFile.Text
+        End If
+
+        If (OpenFileDialog.ShowDialog() = DialogResult.OK) Then
+            txtEditorTestPlanFile.Text = OpenFileDialog.FileName
+        End If
+
+        If GlobalSettings.EditorTestPlanFile <> txtEditorTestPlanFile.Text Then
+            GlobalSettings.EditorTestPlanFile = txtEditorTestPlanFile.Text
+            GlobalSettings.Save()
+        End If
+
+        LoadTestPlan()
     End Sub
 End Class

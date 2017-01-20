@@ -32,7 +32,6 @@ Partial Class frmMain
         Me.tsPlayerStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConfigurePathsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -89,20 +88,46 @@ Partial Class frmMain
         Me.txtPlayerTestPlanFile = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.lbActions = New System.Windows.Forms.CheckedListBox()
         Me.DirDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.ttGeneral = New System.Windows.Forms.ToolTip(Me.components)
+        Me.txtActionDelay = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.txtActionPath = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.txtActionQuery = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.txtActionEncoding = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.txtActionHeaders = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.txtActionBody = New System.Windows.Forms.TextBox()
+        Me.cmdDeleteActions = New System.Windows.Forms.Button()
+        Me.cmdUpdateAction = New System.Windows.Forms.Button()
+        Me.cmdAddAction = New System.Windows.Forms.Button()
+        Me.cbActionScheme = New System.Windows.Forms.ComboBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cbActionMethod = New System.Windows.Forms.ComboBox()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.txtEditorTestPlanFile = New System.Windows.Forms.TextBox()
+        Me.cmdLoadTestPlan = New System.Windows.Forms.Button()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip
         '
-        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsRecorderStatus, Me.ToolStripStatusLabel1, Me.tsTestPlanStatus, Me.ToolStripStatusLabel2, Me.tsPlayerStatus})
+        Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsRecorderStatus, Me.ToolStripStatusLabel1, Me.tsPlayerStatus, Me.ToolStripStatusLabel2, Me.tsTestPlanStatus})
         Me.StatusStrip.Location = New System.Drawing.Point(0, 699)
         Me.StatusStrip.Name = "StatusStrip"
         Me.StatusStrip.Size = New System.Drawing.Size(850, 22)
@@ -150,16 +175,10 @@ Partial Class frmMain
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
-        '
-        'OpenToolStripMenuItem
-        '
-        Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.OpenToolStripMenuItem.Text = "Open"
         '
         'ExitToolStripMenuItem
         '
@@ -751,6 +770,12 @@ Partial Class frmMain
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.cmdLoadTestPlan)
+        Me.TabPage2.Controls.Add(Me.txtEditorTestPlanFile)
+        Me.TabPage2.Controls.Add(Me.Label25)
+        Me.TabPage2.Controls.Add(Me.cmdDeleteActions)
+        Me.TabPage2.Controls.Add(Me.lbActions)
+        Me.TabPage2.Controls.Add(Me.GroupBox1)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -758,6 +783,15 @@ Partial Class frmMain
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Test Plan Editor"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'lbActions
+        '
+        Me.lbActions.FormattingEnabled = True
+        Me.lbActions.IntegralHeight = False
+        Me.lbActions.Location = New System.Drawing.Point(6, 36)
+        Me.lbActions.Name = "lbActions"
+        Me.lbActions.Size = New System.Drawing.Size(307, 553)
+        Me.lbActions.TabIndex = 0
         '
         'OpenFileDialog
         '
@@ -772,6 +806,234 @@ Partial Class frmMain
         Me.SaveFileDialog.FileName = "settings.json"
         Me.SaveFileDialog.Filter = "json|*.json"
         Me.SaveFileDialog.Title = "Save Settings"
+        '
+        'txtActionDelay
+        '
+        Me.txtActionDelay.Location = New System.Drawing.Point(108, 19)
+        Me.txtActionDelay.Name = "txtActionDelay"
+        Me.txtActionDelay.Size = New System.Drawing.Size(376, 20)
+        Me.txtActionDelay.TabIndex = 6
+        Me.txtActionDelay.Text = "10"
+        Me.ttGeneral.SetToolTip(Me.txtActionDelay, "The amount of time to wait before executing this action.")
+        '
+        'Label6
+        '
+        Me.Label6.Location = New System.Drawing.Point(42, 20)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(60, 16)
+        Me.Label6.TabIndex = 5
+        Me.Label6.Text = "Time Delay (ms)"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label7
+        '
+        Me.Label7.Location = New System.Drawing.Point(42, 46)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(60, 16)
+        Me.Label7.TabIndex = 7
+        Me.Label7.Text = "Scheme"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label12
+        '
+        Me.Label12.Location = New System.Drawing.Point(42, 73)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(60, 16)
+        Me.Label12.TabIndex = 9
+        Me.Label12.Text = "Method"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtActionPath
+        '
+        Me.txtActionPath.Location = New System.Drawing.Point(108, 99)
+        Me.txtActionPath.Name = "txtActionPath"
+        Me.txtActionPath.Size = New System.Drawing.Size(376, 20)
+        Me.txtActionPath.TabIndex = 12
+        '
+        'Label13
+        '
+        Me.Label13.Location = New System.Drawing.Point(42, 100)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(60, 16)
+        Me.Label13.TabIndex = 11
+        Me.Label13.Text = "Path"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtActionQuery
+        '
+        Me.txtActionQuery.Location = New System.Drawing.Point(108, 125)
+        Me.txtActionQuery.Name = "txtActionQuery"
+        Me.txtActionQuery.Size = New System.Drawing.Size(376, 20)
+        Me.txtActionQuery.TabIndex = 14
+        '
+        'Label21
+        '
+        Me.Label21.Location = New System.Drawing.Point(24, 126)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(78, 16)
+        Me.Label21.TabIndex = 13
+        Me.Label21.Text = "Query String"
+        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtActionEncoding
+        '
+        Me.txtActionEncoding.Location = New System.Drawing.Point(108, 151)
+        Me.txtActionEncoding.Name = "txtActionEncoding"
+        Me.txtActionEncoding.Size = New System.Drawing.Size(376, 20)
+        Me.txtActionEncoding.TabIndex = 16
+        '
+        'Label22
+        '
+        Me.Label22.Location = New System.Drawing.Point(-3, 150)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(105, 20)
+        Me.Label22.TabIndex = 15
+        Me.Label22.Text = "Character Encoding"
+        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtActionHeaders
+        '
+        Me.txtActionHeaders.AcceptsReturn = True
+        Me.txtActionHeaders.AcceptsTab = True
+        Me.txtActionHeaders.CausesValidation = False
+        Me.txtActionHeaders.Location = New System.Drawing.Point(108, 177)
+        Me.txtActionHeaders.Multiline = True
+        Me.txtActionHeaders.Name = "txtActionHeaders"
+        Me.txtActionHeaders.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtActionHeaders.Size = New System.Drawing.Size(376, 108)
+        Me.txtActionHeaders.TabIndex = 17
+        Me.ttGeneral.SetToolTip(Me.txtActionHeaders, "HTTP Request Headers in JSON format.")
+        '
+        'Label23
+        '
+        Me.Label23.Location = New System.Drawing.Point(42, 178)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(60, 16)
+        Me.Label23.TabIndex = 18
+        Me.Label23.Text = "Headers"
+        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label24
+        '
+        Me.Label24.Location = New System.Drawing.Point(42, 292)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(60, 16)
+        Me.Label24.TabIndex = 20
+        Me.Label24.Text = "Body"
+        Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtActionBody
+        '
+        Me.txtActionBody.AcceptsReturn = True
+        Me.txtActionBody.AcceptsTab = True
+        Me.txtActionBody.CausesValidation = False
+        Me.txtActionBody.Location = New System.Drawing.Point(108, 291)
+        Me.txtActionBody.Multiline = True
+        Me.txtActionBody.Name = "txtActionBody"
+        Me.txtActionBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtActionBody.Size = New System.Drawing.Size(376, 262)
+        Me.txtActionBody.TabIndex = 19
+        Me.ttGeneral.SetToolTip(Me.txtActionBody, "HTTP Request Headers in JSON format.")
+        '
+        'cmdDeleteActions
+        '
+        Me.cmdDeleteActions.Location = New System.Drawing.Point(6, 595)
+        Me.cmdDeleteActions.Name = "cmdDeleteActions"
+        Me.cmdDeleteActions.Size = New System.Drawing.Size(307, 30)
+        Me.cmdDeleteActions.TabIndex = 23
+        Me.cmdDeleteActions.Text = "Deleted Checked Actions"
+        Me.cmdDeleteActions.UseVisualStyleBackColor = True
+        '
+        'cmdUpdateAction
+        '
+        Me.cmdUpdateAction.Location = New System.Drawing.Point(6, 559)
+        Me.cmdUpdateAction.Name = "cmdUpdateAction"
+        Me.cmdUpdateAction.Size = New System.Drawing.Size(236, 30)
+        Me.cmdUpdateAction.TabIndex = 24
+        Me.cmdUpdateAction.Text = "Update Action"
+        Me.cmdUpdateAction.UseVisualStyleBackColor = True
+        '
+        'cmdAddAction
+        '
+        Me.cmdAddAction.Location = New System.Drawing.Point(248, 559)
+        Me.cmdAddAction.Name = "cmdAddAction"
+        Me.cmdAddAction.Size = New System.Drawing.Size(236, 30)
+        Me.cmdAddAction.TabIndex = 25
+        Me.cmdAddAction.Text = "Add New "
+        Me.cmdAddAction.UseVisualStyleBackColor = True
+        '
+        'cbActionScheme
+        '
+        Me.cbActionScheme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbActionScheme.FormattingEnabled = True
+        Me.cbActionScheme.Items.AddRange(New Object() {"HTTP", "HTTPS"})
+        Me.cbActionScheme.Location = New System.Drawing.Point(108, 45)
+        Me.cbActionScheme.Name = "cbActionScheme"
+        Me.cbActionScheme.Size = New System.Drawing.Size(376, 21)
+        Me.cbActionScheme.TabIndex = 26
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.cbActionMethod)
+        Me.GroupBox1.Controls.Add(Me.txtActionDelay)
+        Me.GroupBox1.Controls.Add(Me.cbActionScheme)
+        Me.GroupBox1.Controls.Add(Me.cmdAddAction)
+        Me.GroupBox1.Controls.Add(Me.Label24)
+        Me.GroupBox1.Controls.Add(Me.cmdUpdateAction)
+        Me.GroupBox1.Controls.Add(Me.Label6)
+        Me.GroupBox1.Controls.Add(Me.Label23)
+        Me.GroupBox1.Controls.Add(Me.txtActionBody)
+        Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.Label12)
+        Me.GroupBox1.Controls.Add(Me.txtActionHeaders)
+        Me.GroupBox1.Controls.Add(Me.txtActionPath)
+        Me.GroupBox1.Controls.Add(Me.Label22)
+        Me.GroupBox1.Controls.Add(Me.txtActionEncoding)
+        Me.GroupBox1.Controls.Add(Me.Label13)
+        Me.GroupBox1.Controls.Add(Me.txtActionQuery)
+        Me.GroupBox1.Controls.Add(Me.Label21)
+        Me.GroupBox1.Location = New System.Drawing.Point(322, 36)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(490, 601)
+        Me.GroupBox1.TabIndex = 28
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Edit Action"
+        '
+        'cbActionMethod
+        '
+        Me.cbActionMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbActionMethod.FormattingEnabled = True
+        Me.cbActionMethod.Items.AddRange(New Object() {"POST", "PUT", "HEAD", "GET", "DELETE"})
+        Me.cbActionMethod.Location = New System.Drawing.Point(108, 72)
+        Me.cbActionMethod.Name = "cbActionMethod"
+        Me.cbActionMethod.Size = New System.Drawing.Size(376, 21)
+        Me.cbActionMethod.TabIndex = 27
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(6, 11)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(71, 13)
+        Me.Label25.TabIndex = 29
+        Me.Label25.Text = "Test Plan File"
+        '
+        'txtEditorTestPlanFile
+        '
+        Me.txtEditorTestPlanFile.Location = New System.Drawing.Point(83, 8)
+        Me.txtEditorTestPlanFile.Name = "txtEditorTestPlanFile"
+        Me.txtEditorTestPlanFile.ReadOnly = True
+        Me.txtEditorTestPlanFile.Size = New System.Drawing.Size(633, 20)
+        Me.txtEditorTestPlanFile.TabIndex = 30
+        '
+        'cmdLoadTestPlan
+        '
+        Me.cmdLoadTestPlan.Location = New System.Drawing.Point(722, 6)
+        Me.cmdLoadTestPlan.Name = "cmdLoadTestPlan"
+        Me.cmdLoadTestPlan.Size = New System.Drawing.Size(90, 23)
+        Me.cmdLoadTestPlan.TabIndex = 31
+        Me.cmdLoadTestPlan.Text = "Load..."
+        Me.cmdLoadTestPlan.UseVisualStyleBackColor = True
         '
         'frmMain
         '
@@ -796,6 +1058,10 @@ Partial Class frmMain
         Me.TabPage1.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -804,7 +1070,6 @@ Partial Class frmMain
     Friend WithEvents StatusStrip As StatusStrip
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
@@ -870,4 +1135,28 @@ Partial Class frmMain
     Friend WithEvents cbPlayerOverrideHTTPS As CheckBox
     Friend WithEvents cbPlayerCalcActionDelay As CheckBox
     Friend WithEvents cbPlayerApplySubs As CheckBox
+    Friend WithEvents lbActions As CheckedListBox
+    Friend WithEvents cmdLoadTestPlan As Button
+    Friend WithEvents txtEditorTestPlanFile As TextBox
+    Friend WithEvents Label25 As Label
+    Friend WithEvents cmdDeleteActions As Button
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents cbActionMethod As ComboBox
+    Friend WithEvents txtActionDelay As TextBox
+    Friend WithEvents cbActionScheme As ComboBox
+    Friend WithEvents cmdAddAction As Button
+    Friend WithEvents Label24 As Label
+    Friend WithEvents cmdUpdateAction As Button
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label23 As Label
+    Friend WithEvents txtActionBody As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents txtActionHeaders As TextBox
+    Friend WithEvents txtActionPath As TextBox
+    Friend WithEvents Label22 As Label
+    Friend WithEvents txtActionEncoding As TextBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents txtActionQuery As TextBox
+    Friend WithEvents Label21 As Label
 End Class

@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.vb" />
+    <Compile Include="HTTPAction.vb" />
     <Compile Include="Utils.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="frmPaths.Designer.vb">
