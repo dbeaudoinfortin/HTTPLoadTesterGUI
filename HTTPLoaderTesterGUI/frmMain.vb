@@ -138,7 +138,13 @@ Public Class frmMain
 
         Try
             Dim testPlanString As String = Utils.GetFileContents(GlobalSettings.EditorTestPlanFile)
-            EditorTestPlan = Json.JsonConvert.DeserializeObject(Of List(Of HTTPAction))(testPlanString)
+            If (testPlanString = "") Then
+                EditorTestPlan = New List(Of HTTPAction)
+            Else
+                EditorTestPlan = Json.JsonConvert.DeserializeObject(Of List(Of HTTPAction))(testPlanString)
+            End If
+
+            UpdateTestPlanEditor(EditorTestPlan)
         Catch ex As Exception
             ClearTestPlanEditor()
             Application.DoEvents()
@@ -150,56 +156,60 @@ Public Class frmMain
     Private Sub UpdateTestPlanEditor(ByRef EditorTestPlan As List(Of HTTPAction))
         lbActions.Items.Clear()
         lbActions.Enabled = True
-        lbActions.Items.Add("Test Plan Start...")
-        lbActions.Items.AddRange(EditorTestPlan)
+        lbActions.Items.Add(New HTTPAction(True))
+        lbActions.SelectedIndex = 0
+        For Each action As HTTPAction In EditorTestPlan
+            lbActions.Items.Add(action)
+        Next
 
-        tsTestPlanStatus.Text = "No Test Plan Loaded"
-
-        txtActionDelay.Text = ""
-        txtActionDelay.Enabled = False
-        cbActionScheme.SelectedItem = Nothing
-        cbActionScheme.Enabled = False
-        cbActionMethod.SelectedItem = Nothing
-        cbActionMethod.Enabled = False
-        txtActionPath.Text = ""
-        txtActionPath.Enabled = False
-        txtActionQuery.Text = ""
-        txtActionQuery.Enabled = False
-        txtActionEncoding.Enabled = False
-        txtActionEncoding.Text = ""
-        txtActionHeaders.Text = ""
-        txtActionHeaders.Enabled = False
-        txtActionBody.Text = ""
-        txtActionBody.Enabled = False
-
-        cmdAddAction.Enabled = False
-        cmdDeleteActions.Enabled = False
-        cmdUpdateAction.Enabled = False
-
+        tsTestPlanStatus.Text = EditorTestPlan.Count.ToString + "Testplan Action(s) Loaded"
+        UpdateActionEditor(DirectCast(lbActions.SelectedItem, HTTPAction), True)
     End Sub
 
+    Private Sub UpdateActionEditor(ByRef action As HTTPAction, ByRef enabled As Boolean)
+        Dim hasAction As Boolean = (action IsNot Nothing) AndAlso (Not action.isStartDummy)
+        Dim hasBody As Boolean = False
+
+        If (hasAction) Then
+            txtActionDelay.Text = action.timePassed.ToString
+            cbActionScheme.SelectedIndex = cbActionScheme.FindString(action.scheme)
+            cbActionMethod.SelectedIndex = cbActionMethod.FindString(action.method)
+            txtActionPath.Text = action.path
+            txtActionQuery.Text = action.queryString
+            txtActionEncoding.Text = action.characterEncoding
+            txtActionHeaders.Text = action.headers
+            txtActionBody.Text = action.content
+
+            hasBody = action.method = "POST" Or action.method = "PUT"
+        Else
+            txtActionDelay.Text = ""
+            cbActionScheme.SelectedIndex = 0
+            cbActionMethod.SelectedIndex = 0
+            txtActionPath.Text = ""
+            txtActionQuery.Text = ""
+            txtActionEncoding.Text = ""
+            txtActionHeaders.Text = ""
+            txtActionBody.Text = ""
+        End If
+
+        txtActionDelay.Enabled = enabled
+        cbActionScheme.Enabled = enabled
+        cbActionMethod.Enabled = enabled
+        txtActionPath.Enabled = enabled
+        txtActionQuery.Enabled = enabled
+        txtActionEncoding.Enabled = enabled
+        txtActionHeaders.Enabled = enabled
+        txtActionBody.Enabled = hasBody And enabled
+
+
+        cmdAddAction.Enabled = enabled
+        cmdDeleteActions.Enabled = enabled And hasAction
+        cmdUpdateAction.Enabled = enabled And hasAction
+    End Sub
     Private Sub ClearTestPlanEditor()
         lbActions.Items.Clear()
         lbActions.Enabled = False
-        txtActionDelay.Text = ""
-        txtActionDelay.Enabled = False
-        cbActionScheme.SelectedItem = Nothing
-        cbActionScheme.Enabled = False
-        cbActionMethod.SelectedItem = Nothing
-        cbActionMethod.Enabled = False
-        txtActionPath.Text = ""
-        txtActionPath.Enabled = False
-        txtActionQuery.Text = ""
-        txtActionQuery.Enabled = False
-        txtActionEncoding.Enabled = False
-        txtActionEncoding.Text = ""
-        txtActionHeaders.Text = ""
-        txtActionHeaders.Enabled = False
-        txtActionBody.Text = ""
-        txtActionBody.Enabled = False
-        cmdAddAction.Enabled = False
-        cmdDeleteActions.Enabled = False
-        cmdUpdateAction.Enabled = False
+        UpdateActionEditor(Nothing, False)
         tsTestPlanStatus.Text = "No Test Plan Loaded"
     End Sub
     Private Sub cmdBrowseTestPlanDirectory_Click(sender As Object, e As EventArgs) Handles cmdBrowseTestPlanDirectory.Click
@@ -590,9 +600,11 @@ Public Class frmMain
                  End Sub)
     End Sub
 
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles cmdLoadTestPlan.Click
+    Private Sub cmdLoadTestPlan_Click(sender As Object, e As EventArgs) Handles cmdLoadTestPlan.Click
         If (txtEditorTestPlanFile.Text IsNot Nothing And Not txtEditorTestPlanFile.Text = "") Then
             OpenFileDialog.FileName = txtEditorTestPlanFile.Text
+        Else
+            OpenFileDialog.FileName = "testplan.json"
         End If
 
         If (OpenFileDialog.ShowDialog() = DialogResult.OK) Then
@@ -605,5 +617,62 @@ Public Class frmMain
         End If
 
         LoadTestPlan()
+    End Sub
+
+    Private Sub lbActions_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbActions.SelectedIndexChanged
+        UpdateActionEditor(DirectCast(lbActions.SelectedItem, HTTPAction), True)
+    End Sub
+
+    Private Sub cbActionMethod_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbActionMethod.SelectedIndexChanged
+        Dim HasBody As Boolean = cbActionMethod.SelectedItem.ToString = "POST" Or cbActionMethod.SelectedItem.ToString = "PUT"
+        txtActionBody.Enabled = HasBody
+    End Sub
+
+    Private Function validateAndCreateAction(ByRef PreviousAction As HTTPAction) As HTTPAction
+        Dim action As New HTTPAction
+
+        If Not Long.TryParse(txtActionDelay.Text, action.timePassed) Or action.timePassed < 0 Then
+            MsgBox("Time Delay must be a positive integer.", MsgBoxStyle.Critical, "Error")
+            Return Nothing
+        End If
+
+        'AbsoluteTime is based on the previous action and the time passed
+        If (PreviousAction Is Nothing Or PreviousAction.isStartDummy) Then
+            action.absoluteTime = Now.AddMilliseconds(action.timePassed)
+        Else
+            action.absoluteTime = PreviousAction.absoluteTime.AddMilliseconds(action.timePassed)
+        End If
+
+        action.path = txtActionPath.Text
+        action.method = cbActionMethod.SelectedItem.ToString
+
+        Return action
+    End Function
+    Private Sub cmdAddAction_Click(sender As Object, e As EventArgs) Handles cmdAddAction.Click
+        Dim action As HTTPAction = validateAndCreateAction(DirectCast(lbActions.SelectedItem, HTTPAction))
+        If (action Is Nothing) Then Return
+
+        Dim insertIndex As Integer = lbActions.SelectedIndex
+
+        If (insertIndex < 0) Then
+            insertIndex = lbActions.Items.Count - 1
+        Else
+            insertIndex += 0
+        End If
+
+        lbActions.Items.Insert(insertIndex, action)
+        EditorTestPlan.Insert(insertIndex, action)
+        SaveEditorTestPlan()gg
+    End Sub
+
+    Private Sub cmdUpdateAction_Click(sender As Object, e As EventArgs) Handles cmdUpdateAction.Click
+        Dim action As HTTPAction = validateAndCreateAction(DirectCast(lbActions.SelectedItem, HTTPAction))
+        If (action Is Nothing) Then Return
+
+        Dim insertIndex As Integer = lbActions.SelectedIndex
+
+        lbActions.Items.Item(insertIndex) = action
+        EditorTestPlan.Item(insertIndex) = action
+        SaveEditorTestPlan()
     End Sub
 End Class

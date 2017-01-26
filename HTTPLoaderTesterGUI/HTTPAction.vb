@@ -1,4 +1,6 @@
-﻿Public Class HTTPAction
+﻿Imports Newtonsoft.Json
+
+Public Class HTTPAction
     Public absoluteTime As Date
     Public timePassed As Long
     Public path As String
@@ -9,13 +11,17 @@
     Public contentType As String
     Public scheme As String
     Public queryString As String
-    Private headers As String
+    Public headers As String
 
-
-    Private transient isStartDummy As Boolean
+    <JsonIgnore>
+    Public isStartDummy As Boolean
 
     Public Sub New()
-        isStartDummy = False
+        Me.New(False)
+    End Sub
+
+    Public Sub New(ByRef isStartDummy As Boolean)
+        Me.isStartDummy = isStartDummy
         absoluteTime = Now
         timePassed = 0
         path = ""
@@ -30,6 +36,10 @@
     End Sub
 
     Public Overrides Function ToString() As String
+        If (isStartDummy) Then
+            Return "Test Plan Start..."
+        End If
+
         Dim sb As New System.Text.StringBuilder()
         sb.Append(method)
         sb.Append(" ")
