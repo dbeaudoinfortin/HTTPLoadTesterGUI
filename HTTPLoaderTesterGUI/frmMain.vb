@@ -97,9 +97,10 @@ Public Class frmMain
 
     Private Sub ReloadFromSettings()
         txtRecorderHost.Text = GlobalSettings.RecorderForwardingHost
-        txtRecorderHttpPort.Text = GlobalSettings.RecorderForwardingHTTPPort
-        txtRecorderHttpsPort.Text = GlobalSettings.RecorderForwardingHTTPsPort
-        txtRecorderPort.Text = GlobalSettings.RecorderListenerPort
+        txtRecorderFHttpPort.Text = GlobalSettings.RecorderForwardingHTTPPort
+        txtRecorderFHttpsPort.Text = GlobalSettings.RecorderForwardingHTTPsPort
+        txtRecorderHttpPort.Text = GlobalSettings.RecorderListenerHttpPort
+        txtRecorderHttpsPort.Text = GlobalSettings.RecorderListenerHttpsPort
         txtRecorderTestPlanDir.Text = GlobalSettings.RecorderTestDirectory
         cbRecorderStart.Checked = GlobalSettings.RecorderStartImmediately
         cbRecorderJConsoleStart.Checked = GlobalSettings.RecorderStartJConsole
@@ -250,8 +251,10 @@ Public Class frmMain
             javaCommand.Append("\")
         End If
 
-        javaCommand.Append(""" -port ")
-        javaCommand.Append(GlobalSettings.RecorderListenerPort)
+        javaCommand.Append(""" -httpPort ")
+        javaCommand.Append(GlobalSettings.RecorderListenerHTTPPort)
+        javaCommand.Append(" -httpsPort ")
+        javaCommand.Append(GlobalSettings.RecorderListenerHTTPSPort)
         javaCommand.Append(" -fHost ")
         javaCommand.Append(GlobalSettings.RecorderForwardingHost)
         javaCommand.Append(" -fHttpPort ")
@@ -291,9 +294,17 @@ Public Class frmMain
         Return javaCommand.ToString
     End Function
 
-    Private Sub txtRecorderPort_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderPort.LostFocus
-        If GlobalSettings.RecorderListenerPort <> txtRecorderPort.Text Then
-            GlobalSettings.RecorderListenerPort = txtRecorderPort.Text
+    Private Sub txtRecorderHttpPort_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderHttpPort.LostFocus
+        If GlobalSettings.RecorderListenerHTTPPort <> txtRecorderHttpPort.Text Then
+            GlobalSettings.RecorderListenerHTTPPort = txtRecorderHttpPort.Text
+            GlobalSettings.Save()
+        End If
+
+    End Sub
+
+    Private Sub txtRecorderHttpsPort_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderHttpsPort.LostFocus
+        If GlobalSettings.RecorderListenerHTTPSPort <> txtRecorderHttpsPort.Text Then
+            GlobalSettings.RecorderListenerHTTPSPort = txtRecorderHttpsPort.Text
             GlobalSettings.Save()
         End If
 
@@ -313,16 +324,16 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub txtRecorderHttpPort_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderHttpPort.LostFocus
-        If GlobalSettings.RecorderForwardingHTTPPort <> txtRecorderHttpPort.Text Then
-            GlobalSettings.RecorderForwardingHTTPPort = txtRecorderHttpPort.Text
+    Private Sub txtRecorderFHttpPort_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderFHttpPort.LostFocus
+        If GlobalSettings.RecorderForwardingHTTPPort <> txtRecorderFHttpPort.Text Then
+            GlobalSettings.RecorderForwardingHTTPPort = txtRecorderFHttpPort.Text
             GlobalSettings.Save()
         End If
     End Sub
 
-    Private Sub txtRecorderHttpsPort_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderHttpsPort.LostFocus
-        If GlobalSettings.RecorderForwardingHTTPsPort <> txtRecorderHttpsPort.Text Then
-            GlobalSettings.RecorderForwardingHTTPsPort = txtRecorderHttpsPort.Text
+    Private Sub txtRecorderFHttpsPort_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderFHttpsPort.LostFocus
+        If GlobalSettings.RecorderForwardingHTTPsPort <> txtRecorderFHttpsPort.Text Then
+            GlobalSettings.RecorderForwardingHTTPsPort = txtRecorderFHttpsPort.Text
             GlobalSettings.Save()
         End If
     End Sub
@@ -557,6 +568,7 @@ Public Class frmMain
         End If
 
         If GlobalSettings.PlayerApplySubs Then
+            javaCommand.Append(" -applySubs ")
         End If
 
         javaCommand.Append("""")
@@ -614,9 +626,8 @@ Public Class frmMain
         If GlobalSettings.EditorTestPlanFile <> txtEditorTestPlanFile.Text Then
             GlobalSettings.EditorTestPlanFile = txtEditorTestPlanFile.Text
             GlobalSettings.Save()
+            LoadTestPlan()
         End If
-
-        LoadTestPlan()
     End Sub
 
     Private Sub lbActions_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbActions.SelectedIndexChanged
@@ -662,7 +673,7 @@ Public Class frmMain
 
         lbActions.Items.Insert(insertIndex, action)
         EditorTestPlan.Insert(insertIndex, action)
-        SaveEditorTestPlan()gg
+        SaveEditorTestPlan()
     End Sub
 
     Private Sub cmdUpdateAction_Click(sender As Object, e As EventArgs) Handles cmdUpdateAction.Click

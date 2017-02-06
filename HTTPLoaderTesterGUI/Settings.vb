@@ -7,7 +7,8 @@ Public Class Settings
     Public LoadTesterJar As String
 
     Public RecorderTestDirectory As String
-    Public RecorderListenerPort As String
+    Public RecorderListenerHTTPPort As String
+    Public RecorderListenerHTTPSPort As String
     Public RecorderForwardingHost As String
     Public RecorderForwardingHTTPPort As String
     Public RecorderForwardingHTTPsPort As String
@@ -49,7 +50,8 @@ Public Class Settings
 
         RecorderTestDirectory = "C:\"
 
-        RecorderListenerPort = "80"
+        RecorderListenerHTTPPort = "80"
+        RecorderListenerHTTPSPort = "443"
         RecorderForwardingHost = "localhost"
         RecorderForwardingHTTPPort = "80"
         RecorderForwardingHTTPsPort = "443"

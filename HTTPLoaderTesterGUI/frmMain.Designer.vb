@@ -40,6 +40,8 @@ Partial Class frmMain
         Me.ExportSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.txtRecorderHttpsPort = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -51,13 +53,13 @@ Partial Class frmMain
         Me.txtRecorderConsole = New System.Windows.Forms.TextBox()
         Me.cmdRecorderLaunch = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.txtRecorderHttpsPort = New System.Windows.Forms.TextBox()
+        Me.txtRecorderFHttpsPort = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtRecorderHttpPort = New System.Windows.Forms.TextBox()
+        Me.txtRecorderFHttpPort = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtRecorderHost = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtRecorderPort = New System.Windows.Forms.TextBox()
+        Me.txtRecorderHttpPort = New System.Windows.Forms.TextBox()
         Me.cmdBrowseTestPlanDirectory = New System.Windows.Forms.Button()
         Me.txtRecorderTestPlanDir = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -229,6 +231,8 @@ Partial Class frmMain
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Label26)
+        Me.TabPage1.Controls.Add(Me.txtRecorderHttpsPort)
         Me.TabPage1.Controls.Add(Me.Label10)
         Me.TabPage1.Controls.Add(Me.Label9)
         Me.TabPage1.Controls.Add(Me.Label8)
@@ -240,13 +244,13 @@ Partial Class frmMain
         Me.TabPage1.Controls.Add(Me.txtRecorderConsole)
         Me.TabPage1.Controls.Add(Me.cmdRecorderLaunch)
         Me.TabPage1.Controls.Add(Me.Label5)
-        Me.TabPage1.Controls.Add(Me.txtRecorderHttpsPort)
+        Me.TabPage1.Controls.Add(Me.txtRecorderFHttpsPort)
         Me.TabPage1.Controls.Add(Me.Label4)
-        Me.TabPage1.Controls.Add(Me.txtRecorderHttpPort)
+        Me.TabPage1.Controls.Add(Me.txtRecorderFHttpPort)
         Me.TabPage1.Controls.Add(Me.Label3)
         Me.TabPage1.Controls.Add(Me.txtRecorderHost)
         Me.TabPage1.Controls.Add(Me.Label2)
-        Me.TabPage1.Controls.Add(Me.txtRecorderPort)
+        Me.TabPage1.Controls.Add(Me.txtRecorderHttpPort)
         Me.TabPage1.Controls.Add(Me.cmdBrowseTestPlanDirectory)
         Me.TabPage1.Controls.Add(Me.txtRecorderTestPlanDir)
         Me.TabPage1.Controls.Add(Me.Label1)
@@ -258,10 +262,29 @@ Partial Class frmMain
         Me.TabPage1.Text = "Recorder"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Label26
+        '
+        Me.Label26.AutoSize = True
+        Me.Label26.Location = New System.Drawing.Point(50, 61)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(105, 13)
+        Me.Label26.TabIndex = 24
+        Me.Label26.Text = "Listener HTTPS Port"
+        Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtRecorderHttpsPort
+        '
+        Me.txtRecorderHttpsPort.Location = New System.Drawing.Point(161, 58)
+        Me.txtRecorderHttpsPort.Name = "txtRecorderHttpsPort"
+        Me.txtRecorderHttpsPort.Size = New System.Drawing.Size(570, 20)
+        Me.txtRecorderHttpsPort.TabIndex = 23
+        Me.txtRecorderHttpsPort.Text = "443"
+        Me.ttGeneral.SetToolTip(Me.txtRecorderHttpsPort, "HTTP port for listening to requests.")
+        '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(18, 315)
+        Me.Label10.Location = New System.Drawing.Point(18, 341)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(137, 13)
         Me.Label10.TabIndex = 22
@@ -271,7 +294,7 @@ Partial Class frmMain
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(57, 227)
+        Me.Label9.Location = New System.Drawing.Point(57, 253)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(98, 13)
         Me.Label9.TabIndex = 21
@@ -281,7 +304,7 @@ Partial Class frmMain
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(63, 139)
+        Me.Label8.Location = New System.Drawing.Point(63, 165)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(92, 13)
         Me.Label8.TabIndex = 20
@@ -292,7 +315,7 @@ Partial Class frmMain
         '
         Me.txtRecorderBodySub.AcceptsReturn = True
         Me.txtRecorderBodySub.AcceptsTab = True
-        Me.txtRecorderBodySub.Location = New System.Drawing.Point(161, 312)
+        Me.txtRecorderBodySub.Location = New System.Drawing.Point(161, 338)
         Me.txtRecorderBodySub.Multiline = True
         Me.txtRecorderBodySub.Name = "txtRecorderBodySub"
         Me.txtRecorderBodySub.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
@@ -304,7 +327,7 @@ Partial Class frmMain
         '
         Me.txtRecorderQuerySub.AcceptsReturn = True
         Me.txtRecorderQuerySub.AcceptsTab = True
-        Me.txtRecorderQuerySub.Location = New System.Drawing.Point(161, 224)
+        Me.txtRecorderQuerySub.Location = New System.Drawing.Point(161, 250)
         Me.txtRecorderQuerySub.Multiline = True
         Me.txtRecorderQuerySub.Name = "txtRecorderQuerySub"
         Me.txtRecorderQuerySub.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
@@ -316,7 +339,7 @@ Partial Class frmMain
         '
         Me.txtRecorderPathSub.AcceptsReturn = True
         Me.txtRecorderPathSub.AcceptsTab = True
-        Me.txtRecorderPathSub.Location = New System.Drawing.Point(161, 136)
+        Me.txtRecorderPathSub.Location = New System.Drawing.Point(161, 162)
         Me.txtRecorderPathSub.Multiline = True
         Me.txtRecorderPathSub.Name = "txtRecorderPathSub"
         Me.txtRecorderPathSub.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
@@ -327,7 +350,7 @@ Partial Class frmMain
         'cbRecorderJConsoleStart
         '
         Me.cbRecorderJConsoleStart.AutoSize = True
-        Me.cbRecorderJConsoleStart.Location = New System.Drawing.Point(173, 400)
+        Me.cbRecorderJConsoleStart.Location = New System.Drawing.Point(173, 426)
         Me.cbRecorderJConsoleStart.Name = "cbRecorderJConsoleStart"
         Me.cbRecorderJConsoleStart.Size = New System.Drawing.Size(160, 17)
         Me.cbRecorderJConsoleStart.TabIndex = 16
@@ -338,7 +361,7 @@ Partial Class frmMain
         'cbRecorderStart
         '
         Me.cbRecorderStart.AutoSize = True
-        Me.cbRecorderStart.Location = New System.Drawing.Point(9, 400)
+        Me.cbRecorderStart.Location = New System.Drawing.Point(9, 426)
         Me.cbRecorderStart.Name = "cbRecorderStart"
         Me.cbRecorderStart.Size = New System.Drawing.Size(158, 17)
         Me.cbRecorderStart.TabIndex = 14
@@ -351,17 +374,17 @@ Partial Class frmMain
         Me.txtRecorderConsole.AcceptsTab = True
         Me.txtRecorderConsole.AllowDrop = True
         Me.txtRecorderConsole.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtRecorderConsole.Location = New System.Drawing.Point(6, 457)
+        Me.txtRecorderConsole.Location = New System.Drawing.Point(6, 483)
         Me.txtRecorderConsole.Multiline = True
         Me.txtRecorderConsole.Name = "txtRecorderConsole"
         Me.txtRecorderConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txtRecorderConsole.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
-        Me.txtRecorderConsole.Size = New System.Drawing.Size(806, 180)
+        Me.txtRecorderConsole.Size = New System.Drawing.Size(806, 154)
         Me.txtRecorderConsole.TabIndex = 12
         '
         'cmdRecorderLaunch
         '
-        Me.cmdRecorderLaunch.Location = New System.Drawing.Point(3, 422)
+        Me.cmdRecorderLaunch.Location = New System.Drawing.Point(6, 448)
         Me.cmdRecorderLaunch.Name = "cmdRecorderLaunch"
         Me.cmdRecorderLaunch.Size = New System.Drawing.Size(806, 29)
         Me.cmdRecorderLaunch.TabIndex = 11
@@ -371,45 +394,45 @@ Partial Class frmMain
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(6, 113)
+        Me.Label5.Location = New System.Drawing.Point(6, 139)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(149, 13)
         Me.Label5.TabIndex = 10
         Me.Label5.Text = "Proxy Forwarding HTTPS Port"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'txtRecorderHttpsPort
+        'txtRecorderFHttpsPort
         '
-        Me.txtRecorderHttpsPort.Location = New System.Drawing.Point(161, 110)
-        Me.txtRecorderHttpsPort.Name = "txtRecorderHttpsPort"
-        Me.txtRecorderHttpsPort.Size = New System.Drawing.Size(570, 20)
-        Me.txtRecorderHttpsPort.TabIndex = 9
-        Me.txtRecorderHttpsPort.Text = "443"
-        Me.ttGeneral.SetToolTip(Me.txtRecorderHttpsPort, "The port used for forwarding HTTPS requests. ")
+        Me.txtRecorderFHttpsPort.Location = New System.Drawing.Point(161, 136)
+        Me.txtRecorderFHttpsPort.Name = "txtRecorderFHttpsPort"
+        Me.txtRecorderFHttpsPort.Size = New System.Drawing.Size(570, 20)
+        Me.txtRecorderFHttpsPort.TabIndex = 9
+        Me.txtRecorderFHttpsPort.Text = "443"
+        Me.ttGeneral.SetToolTip(Me.txtRecorderFHttpsPort, "The port used for forwarding HTTPS requests. ")
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(13, 87)
+        Me.Label4.Location = New System.Drawing.Point(13, 113)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(142, 13)
         Me.Label4.TabIndex = 8
         Me.Label4.Text = "Proxy Forwarding HTTP Port"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'txtRecorderHttpPort
+        'txtRecorderFHttpPort
         '
-        Me.txtRecorderHttpPort.Location = New System.Drawing.Point(161, 84)
-        Me.txtRecorderHttpPort.Name = "txtRecorderHttpPort"
-        Me.txtRecorderHttpPort.Size = New System.Drawing.Size(570, 20)
-        Me.txtRecorderHttpPort.TabIndex = 7
-        Me.txtRecorderHttpPort.Text = "80"
-        Me.ttGeneral.SetToolTip(Me.txtRecorderHttpPort, "The port used for forwarding HTTP requests. ")
+        Me.txtRecorderFHttpPort.Location = New System.Drawing.Point(161, 110)
+        Me.txtRecorderFHttpPort.Name = "txtRecorderFHttpPort"
+        Me.txtRecorderFHttpPort.Size = New System.Drawing.Size(570, 20)
+        Me.txtRecorderFHttpPort.TabIndex = 7
+        Me.txtRecorderFHttpPort.Text = "80"
+        Me.ttGeneral.SetToolTip(Me.txtRecorderFHttpPort, "The port used for forwarding HTTP requests. ")
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(42, 61)
+        Me.Label3.Location = New System.Drawing.Point(42, 87)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(113, 13)
         Me.Label3.TabIndex = 6
@@ -418,7 +441,7 @@ Partial Class frmMain
         '
         'txtRecorderHost
         '
-        Me.txtRecorderHost.Location = New System.Drawing.Point(161, 58)
+        Me.txtRecorderHost.Location = New System.Drawing.Point(161, 84)
         Me.txtRecorderHost.Name = "txtRecorderHost"
         Me.txtRecorderHost.Size = New System.Drawing.Size(570, 20)
         Me.txtRecorderHost.TabIndex = 5
@@ -435,14 +458,14 @@ Partial Class frmMain
         Me.Label2.Text = "Listener HTTP Port"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'txtRecorderPort
+        'txtRecorderHttpPort
         '
-        Me.txtRecorderPort.Location = New System.Drawing.Point(161, 32)
-        Me.txtRecorderPort.Name = "txtRecorderPort"
-        Me.txtRecorderPort.Size = New System.Drawing.Size(570, 20)
-        Me.txtRecorderPort.TabIndex = 3
-        Me.txtRecorderPort.Text = "80"
-        Me.ttGeneral.SetToolTip(Me.txtRecorderPort, "HTTP port for listening to requests.")
+        Me.txtRecorderHttpPort.Location = New System.Drawing.Point(161, 32)
+        Me.txtRecorderHttpPort.Name = "txtRecorderHttpPort"
+        Me.txtRecorderHttpPort.Size = New System.Drawing.Size(570, 20)
+        Me.txtRecorderHttpPort.TabIndex = 3
+        Me.txtRecorderHttpPort.Text = "80"
+        Me.ttGeneral.SetToolTip(Me.txtRecorderHttpPort, "HTTP port for listening to requests.")
         '
         'cmdBrowseTestPlanDirectory
         '
@@ -658,11 +681,11 @@ Partial Class frmMain
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(63, 61)
+        Me.Label15.Location = New System.Drawing.Point(26, 61)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(92, 13)
+        Me.Label15.Size = New System.Drawing.Size(129, 13)
         Me.Label15.TabIndex = 26
-        Me.Label15.Text = "Stagger Time (ms)"
+        Me.Label15.Text = "Thread Stagger Time (ms)"
         Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txtPlayerStaggerTime
@@ -1079,11 +1102,11 @@ Partial Class frmMain
     Friend WithEvents cmdBrowseTestPlanDirectory As Button
     Friend WithEvents txtRecorderTestPlanDir As TextBox
     Friend WithEvents Label2 As Label
-    Friend WithEvents txtRecorderPort As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents txtRecorderHttpsPort As TextBox
-    Friend WithEvents Label4 As Label
     Friend WithEvents txtRecorderHttpPort As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents txtRecorderFHttpsPort As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txtRecorderFHttpPort As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txtRecorderHost As TextBox
     Friend WithEvents tsRecorderStatus As ToolStripStatusLabel
@@ -1159,4 +1182,6 @@ Partial Class frmMain
     Friend WithEvents Label13 As Label
     Friend WithEvents txtActionQuery As TextBox
     Friend WithEvents Label21 As Label
+    Friend WithEvents Label26 As Label
+    Friend WithEvents txtRecorderHttpsPort As TextBox
 End Class
