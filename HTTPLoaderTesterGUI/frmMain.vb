@@ -138,13 +138,7 @@ Public Class frmMain
         End If
 
         Try
-            Dim testPlanString As String = Utils.GetFileContents(GlobalSettings.EditorTestPlanFile)
-            If (testPlanString = "") Then
-                EditorTestPlan = New List(Of HTTPAction)
-            Else
-                EditorTestPlan = Json.JsonConvert.DeserializeObject(Of List(Of HTTPAction))(testPlanString)
-            End If
-
+            LoadTestPlanFromFile()
             UpdateTestPlanEditor(EditorTestPlan)
         Catch ex As Exception
             ClearTestPlanEditor()
@@ -157,17 +151,27 @@ Public Class frmMain
     Private Sub UpdateTestPlanEditor(ByRef EditorTestPlan As List(Of HTTPAction))
         lbActions.Items.Clear()
         lbActions.Enabled = True
-        lbActions.Items.Add(New HTTPAction(True))
+        lbActions.Items.Add(New HTTPAction(True), CheckState.Indeterminate)
         lbActions.SelectedIndex = 0
         For Each action As HTTPAction In EditorTestPlan
             lbActions.Items.Add(action)
         Next
 
-        tsTestPlanStatus.Text = EditorTestPlan.Count.ToString + "Testplan Action(s) Loaded"
+        tsTestPlanStatus.Text = "Test Plan Loaded - " + EditorTestPlan.Count.ToString + " Action(s)"
         UpdateActionEditor(DirectCast(lbActions.SelectedItem, HTTPAction), True)
+        UpdateTestPlanButtons(True)
     End Sub
 
-    Private Sub UpdateActionEditor(ByRef action As HTTPAction, ByRef enabled As Boolean)
+    Private Sub UpdateActionHeaders(ByRef headers As Dictionary(Of String, String))
+        dgActionHeaders.Rows.Clear()
+        If headers Is Nothing Then Return
+
+        For Each header As KeyValuePair(Of String, String) In headers
+            dgActionHeaders.Rows.Add(header.Key, header.Value)
+        Next
+    End Sub
+
+    Private Sub UpdateActionEditor(ByRef action As HTTPAction, ByRef TestPlanEnabled As Boolean)
         Dim hasAction As Boolean = (action IsNot Nothing) AndAlso (Not action.isStartDummy)
         Dim hasBody As Boolean = False
 
@@ -178,39 +182,57 @@ Public Class frmMain
             txtActionPath.Text = action.path
             txtActionQuery.Text = action.queryString
             txtActionEncoding.Text = action.characterEncoding
-            txtActionHeaders.Text = action.headers
+            txtActionContentType.Text = action.contentType
             txtActionBody.Text = action.content
+            UpdateActionHeaders(action.headers)
 
             hasBody = action.method = "POST" Or action.method = "PUT"
         Else
             txtActionDelay.Text = ""
             cbActionScheme.SelectedIndex = 0
             cbActionMethod.SelectedIndex = 0
+            txtActionContentType.Text = ""
             txtActionPath.Text = ""
             txtActionQuery.Text = ""
             txtActionEncoding.Text = ""
-            txtActionHeaders.Text = ""
+            updateActionHeaders(Nothing)
             txtActionBody.Text = ""
         End If
 
-        txtActionDelay.Enabled = enabled
-        cbActionScheme.Enabled = enabled
-        cbActionMethod.Enabled = enabled
-        txtActionPath.Enabled = enabled
-        txtActionQuery.Enabled = enabled
-        txtActionEncoding.Enabled = enabled
-        txtActionHeaders.Enabled = enabled
-        txtActionBody.Enabled = hasBody And enabled
+        txtActionDelay.Enabled = TestPlanEnabled
+        cbActionScheme.Enabled = TestPlanEnabled
+        cbActionMethod.Enabled = TestPlanEnabled
+        txtActionPath.Enabled = TestPlanEnabled
+        txtActionQuery.Enabled = TestPlanEnabled
+        txtActionEncoding.Enabled = TestPlanEnabled
+        txtActionContentType.Enabled = TestPlanEnabled
+        dgActionHeaders.Enabled = TestPlanEnabled
+        txtActionBody.Enabled = hasBody And TestPlanEnabled
 
-
-        cmdAddAction.Enabled = enabled
-        cmdDeleteActions.Enabled = enabled And hasAction
-        cmdUpdateAction.Enabled = enabled And hasAction
+        cmdAddAction.Enabled = TestPlanEnabled
+        cmdUpdateAction.Enabled = TestPlanEnabled And hasAction
     End Sub
+    Private Sub UpdateTestPlanButtons(ByRef TestPlanEnabled As Boolean)
+        cmdDeleteActions.Enabled = TestPlanEnabled
+        If Not TestPlanEnabled Then Return
+
+        Dim hasValidCheckedAction As Boolean = False
+
+        Dim checkActions As CheckedListBox.CheckedItemCollection = lbActions.CheckedItems
+        If (checkActions.Count > 1) Then
+            hasValidCheckedAction = True
+        ElseIf (checkActions.Count = 1) Then
+            hasValidCheckedAction = Not DirectCast(checkActions.Item(0), HTTPAction).isStartDummy
+        End If
+
+        cmdDeleteActions.Enabled = hasValidCheckedAction
+    End Sub
+
     Private Sub ClearTestPlanEditor()
         lbActions.Items.Clear()
         lbActions.Enabled = False
         UpdateActionEditor(Nothing, False)
+        UpdateTestPlanButtons(False)
         tsTestPlanStatus.Text = "No Test Plan Loaded"
     End Sub
     Private Sub cmdBrowseTestPlanDirectory_Click(sender As Object, e As EventArgs) Handles cmdBrowseTestPlanDirectory.Click
@@ -632,6 +654,9 @@ Public Class frmMain
 
     Private Sub lbActions_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbActions.SelectedIndexChanged
         UpdateActionEditor(DirectCast(lbActions.SelectedItem, HTTPAction), True)
+
+        'Workaround needed since there is not ItemCheckChanged event
+        UpdateTestPlanButtons(True)
     End Sub
 
     Private Sub cbActionMethod_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbActionMethod.SelectedIndexChanged
@@ -654,8 +679,25 @@ Public Class frmMain
             action.absoluteTime = PreviousAction.absoluteTime.AddMilliseconds(action.timePassed)
         End If
 
-        action.path = txtActionPath.Text
+        action.scheme = cbActionScheme.SelectedItem.ToString
         action.method = cbActionMethod.SelectedItem.ToString
+        action.path = txtActionPath.Text
+        action.queryString = txtActionQuery.Text
+        action.characterEncoding = txtActionEncoding.Text
+
+        Dim headers As New Dictionary(Of String, String)
+        For Each header As DataGridViewRow In dgActionHeaders.Rows
+            Dim key As String = header.Cells(0).Value.ToString
+            If key = "" Then Continue For
+
+            Dim value As String = header.Cells(1).Value.ToString
+            headers.Add(key.ToString, value)
+        Next
+
+        action.contentType = txtActionContentType.Text
+
+        action.content = txtActionBody.Text
+        action.contentLength = action.content.Length
 
         Return action
     End Function
@@ -674,6 +716,9 @@ Public Class frmMain
         lbActions.Items.Insert(insertIndex, action)
         EditorTestPlan.Insert(insertIndex, action)
         SaveEditorTestPlan()
+
+
+        tsTestPlanStatus.Text = "Test Plan Loaded - " + EditorTestPlan.Count.ToString + " Action(s)"
     End Sub
 
     Private Sub cmdUpdateAction_Click(sender As Object, e As EventArgs) Handles cmdUpdateAction.Click
@@ -685,5 +730,29 @@ Public Class frmMain
         lbActions.Items.Item(insertIndex) = action
         EditorTestPlan.Item(insertIndex) = action
         SaveEditorTestPlan()
+    End Sub
+
+    Private Sub cmdDeleteActions_Click(sender As Object, e As EventArgs) Handles cmdDeleteActions.Click
+        Dim checkActions As CheckedListBox.CheckedItemCollection = lbActions.CheckedItems
+
+        For Each action In checkActions
+            lbActions.Items.Remove(action)
+        Next
+
+        cmdDeleteActions.Enabled = False
+    End Sub
+
+    Private Sub lbActions_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles lbActions.ItemCheck
+        If e.CurrentValue = CheckState.Indeterminate Then
+            e.NewValue = CheckState.Indeterminate
+        End If
+    End Sub
+
+    Private Sub frmMain_ResizeBegin(sender As Object, e As EventArgs) Handles Me.ResizeBegin
+        SuspendLayout()
+    End Sub
+
+    Private Sub frmMain_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
+        ResumeLayout()
     End Sub
 End Class

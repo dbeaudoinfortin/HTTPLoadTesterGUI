@@ -38,7 +38,7 @@ Partial Class frmMain
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ImportSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.tcMain = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.txtRecorderHttpsPort = New System.Windows.Forms.TextBox()
@@ -96,6 +96,11 @@ Partial Class frmMain
         Me.cmdDeleteActions = New System.Windows.Forms.Button()
         Me.lbActions = New System.Windows.Forms.CheckedListBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.txtActionContentType = New System.Windows.Forms.TextBox()
+        Me.dgActionHeaders = New System.Windows.Forms.DataGridView()
+        Me.clHeaderKey = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clHeaderVal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cbActionMethod = New System.Windows.Forms.ComboBox()
         Me.txtActionDelay = New System.Windows.Forms.TextBox()
         Me.cbActionScheme = New System.Windows.Forms.ComboBox()
@@ -107,7 +112,6 @@ Partial Class frmMain
         Me.txtActionBody = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.txtActionHeaders = New System.Windows.Forms.TextBox()
         Me.txtActionPath = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.txtActionEncoding = New System.Windows.Forms.TextBox()
@@ -120,11 +124,12 @@ Partial Class frmMain
         Me.ttGeneral = New System.Windows.Forms.ToolTip(Me.components)
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
-        Me.TabControl1.SuspendLayout()
+        Me.tcMain.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.dgActionHeaders, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'StatusStrip
@@ -132,7 +137,7 @@ Partial Class frmMain
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsRecorderStatus, Me.ToolStripStatusLabel1, Me.tsPlayerStatus, Me.ToolStripStatusLabel2, Me.tsTestPlanStatus})
         Me.StatusStrip.Location = New System.Drawing.Point(0, 699)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(850, 22)
+        Me.StatusStrip.Size = New System.Drawing.Size(826, 22)
         Me.StatusStrip.SizingGrip = False
         Me.StatusStrip.TabIndex = 1
         '
@@ -171,7 +176,7 @@ Partial Class frmMain
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.SettingsToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(850, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(826, 24)
         Me.MenuStrip1.TabIndex = 2
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -218,16 +223,19 @@ Partial Class frmMain
         Me.ExportSettingsToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
         Me.ExportSettingsToolStripMenuItem.Text = "Export Settings"
         '
-        'TabControl1
+        'tcMain
         '
-        Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 27)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(826, 669)
-        Me.TabControl1.TabIndex = 3
+        Me.tcMain.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tcMain.Controls.Add(Me.TabPage1)
+        Me.tcMain.Controls.Add(Me.TabPage3)
+        Me.tcMain.Controls.Add(Me.TabPage2)
+        Me.tcMain.Location = New System.Drawing.Point(0, 24)
+        Me.tcMain.Name = "tcMain"
+        Me.tcMain.SelectedIndex = 0
+        Me.tcMain.Size = New System.Drawing.Size(826, 672)
+        Me.tcMain.TabIndex = 3
         '
         'TabPage1
         '
@@ -257,7 +265,7 @@ Partial Class frmMain
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(818, 643)
+        Me.TabPage1.Size = New System.Drawing.Size(818, 672)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Recorder"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -274,6 +282,8 @@ Partial Class frmMain
         '
         'txtRecorderHttpsPort
         '
+        Me.txtRecorderHttpsPort.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderHttpsPort.Location = New System.Drawing.Point(161, 58)
         Me.txtRecorderHttpsPort.Name = "txtRecorderHttpsPort"
         Me.txtRecorderHttpsPort.Size = New System.Drawing.Size(570, 20)
@@ -315,6 +325,8 @@ Partial Class frmMain
         '
         Me.txtRecorderBodySub.AcceptsReturn = True
         Me.txtRecorderBodySub.AcceptsTab = True
+        Me.txtRecorderBodySub.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderBodySub.Location = New System.Drawing.Point(161, 338)
         Me.txtRecorderBodySub.Multiline = True
         Me.txtRecorderBodySub.Name = "txtRecorderBodySub"
@@ -327,6 +339,8 @@ Partial Class frmMain
         '
         Me.txtRecorderQuerySub.AcceptsReturn = True
         Me.txtRecorderQuerySub.AcceptsTab = True
+        Me.txtRecorderQuerySub.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderQuerySub.Location = New System.Drawing.Point(161, 250)
         Me.txtRecorderQuerySub.Multiline = True
         Me.txtRecorderQuerySub.Name = "txtRecorderQuerySub"
@@ -339,6 +353,8 @@ Partial Class frmMain
         '
         Me.txtRecorderPathSub.AcceptsReturn = True
         Me.txtRecorderPathSub.AcceptsTab = True
+        Me.txtRecorderPathSub.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderPathSub.Location = New System.Drawing.Point(161, 162)
         Me.txtRecorderPathSub.Multiline = True
         Me.txtRecorderPathSub.Name = "txtRecorderPathSub"
@@ -372,18 +388,22 @@ Partial Class frmMain
         '
         Me.txtRecorderConsole.AcceptsReturn = True
         Me.txtRecorderConsole.AcceptsTab = True
-        Me.txtRecorderConsole.AllowDrop = True
+        Me.txtRecorderConsole.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderConsole.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtRecorderConsole.Location = New System.Drawing.Point(6, 483)
         Me.txtRecorderConsole.Multiline = True
         Me.txtRecorderConsole.Name = "txtRecorderConsole"
         Me.txtRecorderConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtRecorderConsole.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
-        Me.txtRecorderConsole.Size = New System.Drawing.Size(806, 154)
+        Me.txtRecorderConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtRecorderConsole.Size = New System.Drawing.Size(806, 183)
         Me.txtRecorderConsole.TabIndex = 12
         '
         'cmdRecorderLaunch
         '
+        Me.cmdRecorderLaunch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdRecorderLaunch.Location = New System.Drawing.Point(6, 448)
         Me.cmdRecorderLaunch.Name = "cmdRecorderLaunch"
         Me.cmdRecorderLaunch.Size = New System.Drawing.Size(806, 29)
@@ -403,6 +423,8 @@ Partial Class frmMain
         '
         'txtRecorderFHttpsPort
         '
+        Me.txtRecorderFHttpsPort.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderFHttpsPort.Location = New System.Drawing.Point(161, 136)
         Me.txtRecorderFHttpsPort.Name = "txtRecorderFHttpsPort"
         Me.txtRecorderFHttpsPort.Size = New System.Drawing.Size(570, 20)
@@ -422,6 +444,8 @@ Partial Class frmMain
         '
         'txtRecorderFHttpPort
         '
+        Me.txtRecorderFHttpPort.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderFHttpPort.Location = New System.Drawing.Point(161, 110)
         Me.txtRecorderFHttpPort.Name = "txtRecorderFHttpPort"
         Me.txtRecorderFHttpPort.Size = New System.Drawing.Size(570, 20)
@@ -441,6 +465,8 @@ Partial Class frmMain
         '
         'txtRecorderHost
         '
+        Me.txtRecorderHost.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderHost.Location = New System.Drawing.Point(161, 84)
         Me.txtRecorderHost.Name = "txtRecorderHost"
         Me.txtRecorderHost.Size = New System.Drawing.Size(570, 20)
@@ -460,6 +486,8 @@ Partial Class frmMain
         '
         'txtRecorderHttpPort
         '
+        Me.txtRecorderHttpPort.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderHttpPort.Location = New System.Drawing.Point(161, 32)
         Me.txtRecorderHttpPort.Name = "txtRecorderHttpPort"
         Me.txtRecorderHttpPort.Size = New System.Drawing.Size(570, 20)
@@ -469,6 +497,7 @@ Partial Class frmMain
         '
         'cmdBrowseTestPlanDirectory
         '
+        Me.cmdBrowseTestPlanDirectory.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdBrowseTestPlanDirectory.Location = New System.Drawing.Point(737, 4)
         Me.cmdBrowseTestPlanDirectory.Name = "cmdBrowseTestPlanDirectory"
         Me.cmdBrowseTestPlanDirectory.Size = New System.Drawing.Size(75, 23)
@@ -478,6 +507,8 @@ Partial Class frmMain
         '
         'txtRecorderTestPlanDir
         '
+        Me.txtRecorderTestPlanDir.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderTestPlanDir.Location = New System.Drawing.Point(161, 6)
         Me.txtRecorderTestPlanDir.Name = "txtRecorderTestPlanDir"
         Me.txtRecorderTestPlanDir.Size = New System.Drawing.Size(570, 20)
@@ -524,7 +555,7 @@ Partial Class frmMain
         Me.TabPage3.Controls.Add(Me.Label11)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(818, 643)
+        Me.TabPage3.Size = New System.Drawing.Size(818, 672)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Player"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -542,6 +573,7 @@ Partial Class frmMain
         '
         'cbPlayerCalcActionDelay
         '
+        Me.cbPlayerCalcActionDelay.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbPlayerCalcActionDelay.AutoSize = True
         Me.cbPlayerCalcActionDelay.Checked = True
         Me.cbPlayerCalcActionDelay.CheckState = System.Windows.Forms.CheckState.Checked
@@ -555,6 +587,7 @@ Partial Class frmMain
         '
         'cbPlayerOverrideHTTPS
         '
+        Me.cbPlayerOverrideHTTPS.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbPlayerOverrideHTTPS.AutoSize = True
         Me.cbPlayerOverrideHTTPS.Location = New System.Drawing.Point(653, 138)
         Me.cbPlayerOverrideHTTPS.Name = "cbPlayerOverrideHTTPS"
@@ -567,6 +600,7 @@ Partial Class frmMain
         '
         'cbPlayerCalcMinRunTime
         '
+        Me.cbPlayerCalcMinRunTime.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbPlayerCalcMinRunTime.AutoSize = True
         Me.cbPlayerCalcMinRunTime.Checked = True
         Me.cbPlayerCalcMinRunTime.CheckState = System.Windows.Forms.CheckState.Checked
@@ -591,6 +625,8 @@ Partial Class frmMain
         '
         'txtPlayerActionDelay
         '
+        Me.txtPlayerActionDelay.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerActionDelay.Enabled = False
         Me.txtPlayerActionDelay.Location = New System.Drawing.Point(161, 188)
         Me.txtPlayerActionDelay.Name = "txtPlayerActionDelay"
@@ -612,6 +648,8 @@ Partial Class frmMain
         '
         'txtPlayerMinRunTime
         '
+        Me.txtPlayerMinRunTime.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerMinRunTime.Enabled = False
         Me.txtPlayerMinRunTime.Location = New System.Drawing.Point(161, 162)
         Me.txtPlayerMinRunTime.Name = "txtPlayerMinRunTime"
@@ -633,6 +671,8 @@ Partial Class frmMain
         '
         'txtPlayerHTTPSPort
         '
+        Me.txtPlayerHTTPSPort.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerHTTPSPort.Location = New System.Drawing.Point(161, 136)
         Me.txtPlayerHTTPSPort.Name = "txtPlayerHTTPSPort"
         Me.txtPlayerHTTPSPort.Size = New System.Drawing.Size(486, 20)
@@ -652,6 +692,8 @@ Partial Class frmMain
         '
         'txtPlayerHTTPPort
         '
+        Me.txtPlayerHTTPPort.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerHTTPPort.Location = New System.Drawing.Point(161, 110)
         Me.txtPlayerHTTPPort.Name = "txtPlayerHTTPPort"
         Me.txtPlayerHTTPPort.Size = New System.Drawing.Size(570, 20)
@@ -671,6 +713,8 @@ Partial Class frmMain
         '
         'txtPlayerHost
         '
+        Me.txtPlayerHost.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerHost.Location = New System.Drawing.Point(161, 84)
         Me.txtPlayerHost.Name = "txtPlayerHost"
         Me.txtPlayerHost.Size = New System.Drawing.Size(570, 20)
@@ -690,6 +734,8 @@ Partial Class frmMain
         '
         'txtPlayerStaggerTime
         '
+        Me.txtPlayerStaggerTime.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerStaggerTime.Location = New System.Drawing.Point(161, 58)
         Me.txtPlayerStaggerTime.Name = "txtPlayerStaggerTime"
         Me.txtPlayerStaggerTime.Size = New System.Drawing.Size(570, 20)
@@ -710,6 +756,8 @@ Partial Class frmMain
         '
         'txtPlayerThreadCount
         '
+        Me.txtPlayerThreadCount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerThreadCount.Location = New System.Drawing.Point(161, 32)
         Me.txtPlayerThreadCount.Name = "txtPlayerThreadCount"
         Me.txtPlayerThreadCount.Size = New System.Drawing.Size(570, 20)
@@ -744,18 +792,22 @@ Partial Class frmMain
         '
         Me.txtPlayerConsole.AcceptsReturn = True
         Me.txtPlayerConsole.AcceptsTab = True
-        Me.txtPlayerConsole.AllowDrop = True
+        Me.txtPlayerConsole.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerConsole.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPlayerConsole.Location = New System.Drawing.Point(6, 272)
         Me.txtPlayerConsole.Multiline = True
         Me.txtPlayerConsole.Name = "txtPlayerConsole"
         Me.txtPlayerConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtPlayerConsole.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
-        Me.txtPlayerConsole.Size = New System.Drawing.Size(806, 368)
+        Me.txtPlayerConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtPlayerConsole.Size = New System.Drawing.Size(806, 397)
         Me.txtPlayerConsole.TabIndex = 18
         '
         'cmdPlayerLaunch
         '
+        Me.cmdPlayerLaunch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdPlayerLaunch.Location = New System.Drawing.Point(6, 237)
         Me.cmdPlayerLaunch.Name = "cmdPlayerLaunch"
         Me.cmdPlayerLaunch.Size = New System.Drawing.Size(806, 29)
@@ -765,6 +817,7 @@ Partial Class frmMain
         '
         'cmdPlayerBrowse
         '
+        Me.cmdPlayerBrowse.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdPlayerBrowse.Location = New System.Drawing.Point(737, 4)
         Me.cmdPlayerBrowse.Name = "cmdPlayerBrowse"
         Me.cmdPlayerBrowse.Size = New System.Drawing.Size(75, 23)
@@ -774,6 +827,8 @@ Partial Class frmMain
         '
         'txtPlayerTestPlanFile
         '
+        Me.txtPlayerTestPlanFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerTestPlanFile.Location = New System.Drawing.Point(161, 6)
         Me.txtPlayerTestPlanFile.Name = "txtPlayerTestPlanFile"
         Me.txtPlayerTestPlanFile.Size = New System.Drawing.Size(570, 20)
@@ -802,13 +857,14 @@ Partial Class frmMain
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(818, 643)
+        Me.TabPage2.Size = New System.Drawing.Size(818, 646)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Test Plan Editor"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'cmdLoadTestPlan
         '
+        Me.cmdLoadTestPlan.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdLoadTestPlan.Location = New System.Drawing.Point(722, 6)
         Me.cmdLoadTestPlan.Name = "cmdLoadTestPlan"
         Me.cmdLoadTestPlan.Size = New System.Drawing.Size(90, 23)
@@ -818,6 +874,8 @@ Partial Class frmMain
         '
         'txtEditorTestPlanFile
         '
+        Me.txtEditorTestPlanFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtEditorTestPlanFile.Location = New System.Drawing.Point(83, 8)
         Me.txtEditorTestPlanFile.Name = "txtEditorTestPlanFile"
         Me.txtEditorTestPlanFile.ReadOnly = True
@@ -835,7 +893,8 @@ Partial Class frmMain
         '
         'cmdDeleteActions
         '
-        Me.cmdDeleteActions.Location = New System.Drawing.Point(6, 595)
+        Me.cmdDeleteActions.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cmdDeleteActions.Location = New System.Drawing.Point(6, 609)
         Me.cmdDeleteActions.Name = "cmdDeleteActions"
         Me.cmdDeleteActions.Size = New System.Drawing.Size(307, 30)
         Me.cmdDeleteActions.TabIndex = 23
@@ -844,15 +903,23 @@ Partial Class frmMain
         '
         'lbActions
         '
+        Me.lbActions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lbActions.FormattingEnabled = True
         Me.lbActions.IntegralHeight = False
         Me.lbActions.Location = New System.Drawing.Point(6, 36)
         Me.lbActions.Name = "lbActions"
-        Me.lbActions.Size = New System.Drawing.Size(307, 553)
+        Me.lbActions.Size = New System.Drawing.Size(307, 567)
         Me.lbActions.TabIndex = 0
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.Label27)
+        Me.GroupBox1.Controls.Add(Me.txtActionContentType)
+        Me.GroupBox1.Controls.Add(Me.dgActionHeaders)
         Me.GroupBox1.Controls.Add(Me.cbActionMethod)
         Me.GroupBox1.Controls.Add(Me.txtActionDelay)
         Me.GroupBox1.Controls.Add(Me.cbActionScheme)
@@ -864,7 +931,6 @@ Partial Class frmMain
         Me.GroupBox1.Controls.Add(Me.txtActionBody)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Label12)
-        Me.GroupBox1.Controls.Add(Me.txtActionHeaders)
         Me.GroupBox1.Controls.Add(Me.txtActionPath)
         Me.GroupBox1.Controls.Add(Me.Label22)
         Me.GroupBox1.Controls.Add(Me.txtActionEncoding)
@@ -873,13 +939,58 @@ Partial Class frmMain
         Me.GroupBox1.Controls.Add(Me.Label21)
         Me.GroupBox1.Location = New System.Drawing.Point(322, 36)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(490, 601)
+        Me.GroupBox1.Size = New System.Drawing.Size(490, 607)
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Edit Action"
         '
+        'Label27
+        '
+        Me.Label27.Location = New System.Drawing.Point(-3, 176)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(105, 20)
+        Me.Label27.TabIndex = 29
+        Me.Label27.Text = "Content Type"
+        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtActionContentType
+        '
+        Me.txtActionContentType.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtActionContentType.Location = New System.Drawing.Point(108, 177)
+        Me.txtActionContentType.Name = "txtActionContentType"
+        Me.txtActionContentType.Size = New System.Drawing.Size(376, 20)
+        Me.txtActionContentType.TabIndex = 30
+        '
+        'dgActionHeaders
+        '
+        Me.dgActionHeaders.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgActionHeaders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgActionHeaders.BackgroundColor = System.Drawing.SystemColors.Window
+        Me.dgActionHeaders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgActionHeaders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clHeaderKey, Me.clHeaderVal})
+        Me.dgActionHeaders.Location = New System.Drawing.Point(108, 203)
+        Me.dgActionHeaders.Name = "dgActionHeaders"
+        Me.dgActionHeaders.RowHeadersVisible = False
+        Me.dgActionHeaders.Size = New System.Drawing.Size(376, 165)
+        Me.dgActionHeaders.TabIndex = 28
+        Me.ttGeneral.SetToolTip(Me.dgActionHeaders, "HTTP Request Headers")
+        '
+        'clHeaderKey
+        '
+        Me.clHeaderKey.HeaderText = "Key"
+        Me.clHeaderKey.Name = "clHeaderKey"
+        '
+        'clHeaderVal
+        '
+        Me.clHeaderVal.HeaderText = "Value"
+        Me.clHeaderVal.Name = "clHeaderVal"
+        '
         'cbActionMethod
         '
+        Me.cbActionMethod.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbActionMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbActionMethod.FormattingEnabled = True
         Me.cbActionMethod.Items.AddRange(New Object() {"POST", "PUT", "HEAD", "GET", "DELETE"})
@@ -890,6 +1001,8 @@ Partial Class frmMain
         '
         'txtActionDelay
         '
+        Me.txtActionDelay.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtActionDelay.Location = New System.Drawing.Point(108, 19)
         Me.txtActionDelay.Name = "txtActionDelay"
         Me.txtActionDelay.Size = New System.Drawing.Size(376, 20)
@@ -899,6 +1012,8 @@ Partial Class frmMain
         '
         'cbActionScheme
         '
+        Me.cbActionScheme.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbActionScheme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbActionScheme.FormattingEnabled = True
         Me.cbActionScheme.Items.AddRange(New Object() {"HTTP", "HTTPS"})
@@ -909,16 +1024,18 @@ Partial Class frmMain
         '
         'cmdAddAction
         '
-        Me.cmdAddAction.Location = New System.Drawing.Point(248, 559)
+        Me.cmdAddAction.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdAddAction.Location = New System.Drawing.Point(6, 575)
         Me.cmdAddAction.Name = "cmdAddAction"
-        Me.cmdAddAction.Size = New System.Drawing.Size(236, 30)
+        Me.cmdAddAction.Size = New System.Drawing.Size(478, 26)
         Me.cmdAddAction.TabIndex = 25
         Me.cmdAddAction.Text = "Add New "
         Me.cmdAddAction.UseVisualStyleBackColor = True
         '
         'Label24
         '
-        Me.Label24.Location = New System.Drawing.Point(42, 292)
+        Me.Label24.Location = New System.Drawing.Point(42, 375)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(60, 16)
         Me.Label24.TabIndex = 20
@@ -927,9 +1044,11 @@ Partial Class frmMain
         '
         'cmdUpdateAction
         '
-        Me.cmdUpdateAction.Location = New System.Drawing.Point(6, 559)
+        Me.cmdUpdateAction.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdUpdateAction.Location = New System.Drawing.Point(6, 543)
         Me.cmdUpdateAction.Name = "cmdUpdateAction"
-        Me.cmdUpdateAction.Size = New System.Drawing.Size(236, 30)
+        Me.cmdUpdateAction.Size = New System.Drawing.Size(478, 28)
         Me.cmdUpdateAction.TabIndex = 24
         Me.cmdUpdateAction.Text = "Update Action"
         Me.cmdUpdateAction.UseVisualStyleBackColor = True
@@ -945,7 +1064,7 @@ Partial Class frmMain
         '
         'Label23
         '
-        Me.Label23.Location = New System.Drawing.Point(42, 178)
+        Me.Label23.Location = New System.Drawing.Point(42, 203)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(60, 16)
         Me.Label23.TabIndex = 18
@@ -956,14 +1075,17 @@ Partial Class frmMain
         '
         Me.txtActionBody.AcceptsReturn = True
         Me.txtActionBody.AcceptsTab = True
+        Me.txtActionBody.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtActionBody.CausesValidation = False
-        Me.txtActionBody.Location = New System.Drawing.Point(108, 291)
+        Me.txtActionBody.Location = New System.Drawing.Point(108, 374)
         Me.txtActionBody.Multiline = True
         Me.txtActionBody.Name = "txtActionBody"
         Me.txtActionBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtActionBody.Size = New System.Drawing.Size(376, 262)
+        Me.txtActionBody.Size = New System.Drawing.Size(376, 163)
         Me.txtActionBody.TabIndex = 19
-        Me.ttGeneral.SetToolTip(Me.txtActionBody, "HTTP Request Headers in JSON format.")
+        Me.ttGeneral.SetToolTip(Me.txtActionBody, "HTTP Request Body")
         '
         'Label7
         '
@@ -983,21 +1105,10 @@ Partial Class frmMain
         Me.Label12.Text = "Method"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'txtActionHeaders
-        '
-        Me.txtActionHeaders.AcceptsReturn = True
-        Me.txtActionHeaders.AcceptsTab = True
-        Me.txtActionHeaders.CausesValidation = False
-        Me.txtActionHeaders.Location = New System.Drawing.Point(108, 177)
-        Me.txtActionHeaders.Multiline = True
-        Me.txtActionHeaders.Name = "txtActionHeaders"
-        Me.txtActionHeaders.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtActionHeaders.Size = New System.Drawing.Size(376, 108)
-        Me.txtActionHeaders.TabIndex = 17
-        Me.ttGeneral.SetToolTip(Me.txtActionHeaders, "HTTP Request Headers in JSON format.")
-        '
         'txtActionPath
         '
+        Me.txtActionPath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtActionPath.Location = New System.Drawing.Point(108, 99)
         Me.txtActionPath.Name = "txtActionPath"
         Me.txtActionPath.Size = New System.Drawing.Size(376, 20)
@@ -1014,6 +1125,8 @@ Partial Class frmMain
         '
         'txtActionEncoding
         '
+        Me.txtActionEncoding.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtActionEncoding.Location = New System.Drawing.Point(108, 151)
         Me.txtActionEncoding.Name = "txtActionEncoding"
         Me.txtActionEncoding.Size = New System.Drawing.Size(376, 20)
@@ -1030,6 +1143,8 @@ Partial Class frmMain
         '
         'txtActionQuery
         '
+        Me.txtActionQuery.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtActionQuery.Location = New System.Drawing.Point(108, 125)
         Me.txtActionQuery.Name = "txtActionQuery"
         Me.txtActionQuery.Size = New System.Drawing.Size(376, 20)
@@ -1062,21 +1177,19 @@ Partial Class frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(850, 721)
-        Me.Controls.Add(Me.TabControl1)
+        Me.ClientSize = New System.Drawing.Size(826, 721)
+        Me.Controls.Add(Me.tcMain)
         Me.Controls.Add(Me.StatusStrip)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
+        Me.MinimumSize = New System.Drawing.Size(700, 700)
         Me.Name = "frmMain"
         Me.Text = "HTTP Load Tester GUI"
         Me.StatusStrip.ResumeLayout(False)
         Me.StatusStrip.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        Me.TabControl1.ResumeLayout(False)
+        Me.tcMain.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         Me.TabPage3.ResumeLayout(False)
@@ -1085,6 +1198,7 @@ Partial Class frmMain
         Me.TabPage2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.dgActionHeaders, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1094,7 +1208,7 @@ Partial Class frmMain
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents tcMain As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Label1 As Label
     Friend WithEvents TabPage2 As TabPage
@@ -1175,7 +1289,6 @@ Partial Class frmMain
     Friend WithEvents txtActionBody As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label12 As Label
-    Friend WithEvents txtActionHeaders As TextBox
     Friend WithEvents txtActionPath As TextBox
     Friend WithEvents Label22 As Label
     Friend WithEvents txtActionEncoding As TextBox
@@ -1184,4 +1297,9 @@ Partial Class frmMain
     Friend WithEvents Label21 As Label
     Friend WithEvents Label26 As Label
     Friend WithEvents txtRecorderHttpsPort As TextBox
+    Friend WithEvents dgActionHeaders As DataGridView
+    Friend WithEvents clHeaderKey As DataGridViewTextBoxColumn
+    Friend WithEvents clHeaderVal As DataGridViewTextBoxColumn
+    Friend WithEvents Label27 As Label
+    Friend WithEvents txtActionContentType As TextBox
 End Class

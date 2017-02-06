@@ -11,7 +11,7 @@ Public Class HTTPAction
     Public contentType As String
     Public scheme As String
     Public queryString As String
-    Public headers As String
+    Public headers As Dictionary(Of String, String)
 
     <JsonIgnore>
     Public isStartDummy As Boolean
@@ -32,7 +32,7 @@ Public Class HTTPAction
         contentType = "text/html"
         scheme = "HTTP"
         queryString = ""
-        headers = "{}"
+        headers = New Dictionary(Of String, String)
     End Sub
 
     Public Overrides Function ToString() As String
