@@ -26,12 +26,9 @@ Public Class HTTPAction
         timePassed = 0
         path = ""
         method = "POST"
-        characterEncoding = "utf-8"
-        content = ""
         contentLength = 0
         contentType = "text/html"
         scheme = "HTTP"
-        queryString = ""
         headers = New Dictionary(Of String, String)
     End Sub
 

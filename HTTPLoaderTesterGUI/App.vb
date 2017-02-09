@@ -1,4 +1,5 @@
-﻿Imports Newtonsoft
+﻿Imports System.Text
+Imports Newtonsoft
 
 Module App
     Public Const RECORDER_PROXY_CLASS = "com.dbf.loadtester.recorder.proxy.RecorderProxy"
@@ -9,7 +10,11 @@ Module App
     Public EditorTestPlan As List(Of HTTPAction)
 
     Public Sub SaveEditorTestPlan()
-        Utils.SaveTextToFile(Json.JsonConvert.SerializeObject(EditorTestPlan), GlobalSettings.EditorTestPlanFile)
+        Dim testPlan As New StringBuilder()
+        For Each action As HTTPAction In EditorTestPlan
+            testPlan.AppendLine(Json.JsonConvert.SerializeObject(action))
+        Next
+        Utils.SaveTextToFile(testPlan.ToString, GlobalSettings.EditorTestPlanFile)
     End Sub
 
     Public Sub LoadTestPlanFromFile()

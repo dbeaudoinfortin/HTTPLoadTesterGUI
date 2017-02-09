@@ -2,6 +2,8 @@
 Imports Newtonsoft
 
 Public Class frmMain
+    Dim ActionCheckCount As Integer = 0
+    Dim lbActionSelection As HTTPAction = Nothing
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Application.Exit()
@@ -139,7 +141,7 @@ Public Class frmMain
 
         Try
             LoadTestPlanFromFile()
-            UpdateTestPlanEditor(EditorTestPlan)
+            UpdateTestPlanEditor()
         Catch ex As Exception
             ClearTestPlanEditor()
             Application.DoEvents()
@@ -148,7 +150,7 @@ Public Class frmMain
         End Try
 
     End Sub
-    Private Sub UpdateTestPlanEditor(ByRef EditorTestPlan As List(Of HTTPAction))
+    Private Sub UpdateTestPlanEditor()
         lbActions.Items.Clear()
         lbActions.Enabled = True
         lbActions.Items.Add(New HTTPAction(True), CheckState.Indeterminate)
@@ -195,7 +197,7 @@ Public Class frmMain
             txtActionPath.Text = ""
             txtActionQuery.Text = ""
             txtActionEncoding.Text = ""
-            updateActionHeaders(Nothing)
+            UpdateActionHeaders(Nothing)
             txtActionBody.Text = ""
         End If
 
@@ -213,19 +215,7 @@ Public Class frmMain
         cmdUpdateAction.Enabled = TestPlanEnabled And hasAction
     End Sub
     Private Sub UpdateTestPlanButtons(ByRef TestPlanEnabled As Boolean)
-        cmdDeleteActions.Enabled = TestPlanEnabled
-        If Not TestPlanEnabled Then Return
-
-        Dim hasValidCheckedAction As Boolean = False
-
-        Dim checkActions As CheckedListBox.CheckedItemCollection = lbActions.CheckedItems
-        If (checkActions.Count > 1) Then
-            hasValidCheckedAction = True
-        ElseIf (checkActions.Count = 1) Then
-            hasValidCheckedAction = Not DirectCast(checkActions.Item(0), HTTPAction).isStartDummy
-        End If
-
-        cmdDeleteActions.Enabled = hasValidCheckedAction
+        cmdDeleteActions.Enabled = TestPlanEnabled And ActionCheckCount > 0
     End Sub
 
     Private Sub ClearTestPlanEditor()
@@ -648,15 +638,10 @@ Public Class frmMain
         If GlobalSettings.EditorTestPlanFile <> txtEditorTestPlanFile.Text Then
             GlobalSettings.EditorTestPlanFile = txtEditorTestPlanFile.Text
             GlobalSettings.Save()
-            LoadTestPlan()
         End If
-    End Sub
 
-    Private Sub lbActions_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbActions.SelectedIndexChanged
-        UpdateActionEditor(DirectCast(lbActions.SelectedItem, HTTPAction), True)
-
-        'Workaround needed since there is not ItemCheckChanged event
-        UpdateTestPlanButtons(True)
+        'Attempt to reload the file regardless of if it's the same
+        LoadTestPlan()
     End Sub
 
     Private Sub cbActionMethod_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbActionMethod.SelectedIndexChanged
@@ -664,7 +649,7 @@ Public Class frmMain
         txtActionBody.Enabled = HasBody
     End Sub
 
-    Private Function validateAndCreateAction(ByRef PreviousAction As HTTPAction) As HTTPAction
+    Private Function ValidateAndCreateAction(ByRef PreviousAction As HTTPAction) As HTTPAction
         Dim action As New HTTPAction
 
         If Not Long.TryParse(txtActionDelay.Text, action.timePassed) Or action.timePassed < 0 Then
@@ -687,12 +672,16 @@ Public Class frmMain
 
         Dim headers As New Dictionary(Of String, String)
         For Each header As DataGridViewRow In dgActionHeaders.Rows
-            Dim key As String = header.Cells(0).Value.ToString
+            Dim keyValue As Object = header.Cells(0).Value
+            If keyValue Is Nothing Then Continue For
+
+            Dim key As String = keyValue.ToString
             If key = "" Then Continue For
 
             Dim value As String = header.Cells(1).Value.ToString
             headers.Add(key.ToString, value)
         Next
+        action.headers = headers
 
         action.contentType = txtActionContentType.Text
 
@@ -710,49 +699,139 @@ Public Class frmMain
         If (insertIndex < 0) Then
             insertIndex = lbActions.Items.Count - 1
         Else
-            insertIndex += 0
+            insertIndex += 1
         End If
 
         lbActions.Items.Insert(insertIndex, action)
-        EditorTestPlan.Insert(insertIndex, action)
-        SaveEditorTestPlan()
+        EditorTestPlan.Insert(insertIndex - 1, action)
 
+        RecalculateAbsoluteTimes()
+        SaveEditorTestPlan()
 
         tsTestPlanStatus.Text = "Test Plan Loaded - " + EditorTestPlan.Count.ToString + " Action(s)"
     End Sub
 
     Private Sub cmdUpdateAction_Click(sender As Object, e As EventArgs) Handles cmdUpdateAction.Click
-        Dim action As HTTPAction = validateAndCreateAction(DirectCast(lbActions.SelectedItem, HTTPAction))
-        If (action Is Nothing) Then Return
+        Dim NewAction As HTTPAction = ValidateAndCreateAction(DirectCast(lbActions.SelectedItem, HTTPAction))
+        If (NewAction Is Nothing) Then Return
 
         Dim insertIndex As Integer = lbActions.SelectedIndex
+        Dim OldAction As HTTPAction = EditorTestPlan.Item(insertIndex - 1)
+        Dim RecalulateTimes As Boolean = Not OldAction.timePassed.Equals(NewAction.timePassed)
 
-        lbActions.Items.Item(insertIndex) = action
-        EditorTestPlan.Item(insertIndex) = action
+        lbActions.Items.Item(insertIndex) = NewAction
+        EditorTestPlan.Item(insertIndex - 1) = NewAction
+
+        If (RecalulateTimes) Then RecalculateAbsoluteTimes()
         SaveEditorTestPlan()
     End Sub
 
     Private Sub cmdDeleteActions_Click(sender As Object, e As EventArgs) Handles cmdDeleteActions.Click
-        Dim checkActions As CheckedListBox.CheckedItemCollection = lbActions.CheckedItems
+        Dim checkActions As List(Of HTTPAction) = lbActions.CheckedItems.Cast(Of HTTPAction).ToList
 
         For Each action In checkActions
+            If (action.isStartDummy) Then Continue For
             lbActions.Items.Remove(action)
+            EditorTestPlan.Remove(action)
         Next
-
+        SaveEditorTestPlan()
         cmdDeleteActions.Enabled = False
     End Sub
 
     Private Sub lbActions_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles lbActions.ItemCheck
         If e.CurrentValue = CheckState.Indeterminate Then
             e.NewValue = CheckState.Indeterminate
+            Return
+        End If
+
+        If e.NewValue = CheckState.Checked Then
+            ActionCheckCount += 1
+        Else
+            ActionCheckCount -= 1
+            If ActionCheckCount < 0 Then ActionCheckCount = 0
+        End If
+
+        UpdateTestPlanButtons(True)
+    End Sub
+
+    Private Sub cmdRefreshTestPlan_Click(sender As Object, e As EventArgs) Handles cmdRefreshTestPlan.Click
+        LoadTestPlan()
+    End Sub
+
+    Private Sub lbActions_MouseDown(sender As Object, e As MouseEventArgs) Handles lbActions.MouseDown
+
+        Dim newSelection As HTTPAction = DirectCast(lbActions.SelectedItem, HTTPAction)
+
+        If Not Object.ReferenceEquals(newSelection, lbActionSelection) Then
+            lbActionSelection = newSelection
+            UpdateActionEditor(DirectCast(lbActions.SelectedItem, HTTPAction), True)
+        End If
+
+        If newSelection Is Nothing Then Return
+        If lbActions.Items.Count < 3 Then Return
+        If DirectCast(lbActions.SelectedItem, HTTPAction).isStartDummy Then Return
+        lbActions.DoDragDrop(lbActions.SelectedItem, DragDropEffects.Move)
+    End Sub
+
+    Private Sub lbActions_DragOver(sender As Object, e As DragEventArgs) Handles lbActions.DragOver
+        e.Effect = DragDropEffects.Move
+        Dim point As Point = lbActions.PointToClient(New Point(e.X, e.Y))
+        Dim index As Integer = lbActions.IndexFromPoint(point)
+        If (index < 1) Then Return
+        lbActions.SelectedIndex = index
+    End Sub
+
+    Private Sub lbActions_DragDrop(sender As Object, e As DragEventArgs) Handles lbActions.DragDrop
+        Dim point As Point = lbActions.PointToClient(New Point(e.X, e.Y))
+        Dim NewIndex As Integer = lbActions.IndexFromPoint(point)
+        If (NewIndex < 1) Then Return
+
+        Dim ActionToMove As HTTPAction = DirectCast(e.Data.GetData(GetType(HTTPAction)), HTTPAction)
+        Dim OldIndex As Integer = lbActions.Items.IndexOf(ActionToMove)
+
+        'Don't replace an item with itself
+        If (OldIndex = NewIndex) Then Return
+
+        'We neeed to maintain the same checked state after the move
+        Dim OldCheckState As CheckState = lbActions.GetItemCheckState(OldIndex)
+        lbActions.Items.RemoveAt(OldIndex)
+        lbActions.Items.Insert(NewIndex, ActionToMove)
+        lbActions.SetItemCheckState(NewIndex, OldCheckState)
+
+        ReorderAction(ActionToMove, NewIndex)
+        lbActions.SelectedIndex = NewIndex
+    End Sub
+
+    Private Sub ReorderAction(ByRef ActionToMove As HTTPAction, ByRef NewIndex As Integer)
+        'If replacing the first action, swap the start times 
+        If (NewIndex = 1) Then
+            Dim absoluteTime As Date = ActionToMove.absoluteTime
+            Dim timePassed As Long = ActionToMove.timePassed
+            Dim FirstAction As HTTPAction = EditorTestPlan.Item(0)
+            ActionToMove.absoluteTime = FirstAction.absoluteTime
+            ActionToMove.timePassed = FirstAction.timePassed
+            FirstAction.absoluteTime = absoluteTime
+            FirstAction.timePassed = timePassed
+        End If
+
+        EditorTestPlan.Remove(ActionToMove)
+        EditorTestPlan.Insert(NewIndex - 1, ActionToMove)
+
+        'We need to recalculate all of the absolute times!
+        RecalculateAbsoluteTimes()
+        SaveEditorTestPlan()
+    End Sub
+
+    Private Sub RecalculateAbsoluteTimes()
+        If EditorTestPlan.Count > 1 Then
+            For i As Integer = 1 To EditorTestPlan.Count - 1
+                EditorTestPlan.Item(i).absoluteTime = EditorTestPlan.Item(i - 1).absoluteTime.AddMilliseconds(EditorTestPlan.Item(i).timePassed)
+            Next
         End If
     End Sub
 
-    Private Sub frmMain_ResizeBegin(sender As Object, e As EventArgs) Handles Me.ResizeBegin
-        SuspendLayout()
-    End Sub
-
-    Private Sub frmMain_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
-        ResumeLayout()
+    Private Sub lbActions_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbActions.SelectedIndexChanged
+        lbActionSelection = DirectCast(lbActions.SelectedItem, HTTPAction)
+        UpdateActionEditor(lbActionSelection, True)
     End Sub
 End Class
