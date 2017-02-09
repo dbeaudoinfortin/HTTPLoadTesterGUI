@@ -94,6 +94,9 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        lbActions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+
+
         ReloadFromSettings()
     End Sub
 
@@ -833,5 +836,13 @@ Public Class frmMain
     Private Sub lbActions_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lbActions.SelectedIndexChanged
         lbActionSelection = DirectCast(lbActions.SelectedItem, HTTPAction)
         UpdateActionEditor(lbActionSelection, True)
+    End Sub
+
+    Private Sub frmMain_ResizeBegin(sender As Object, e As EventArgs) Handles Me.ResizeBegin
+
+    End Sub
+
+    Private Sub frmMain_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
+
     End Sub
 End Class

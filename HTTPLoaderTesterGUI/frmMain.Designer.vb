@@ -94,35 +94,36 @@ Partial Class frmMain
         Me.cmdLoadTestPlan = New System.Windows.Forms.Button()
         Me.txtEditorTestPlanFile = New System.Windows.Forms.TextBox()
         Me.Label25 = New System.Windows.Forms.Label()
-        Me.cmdDeleteActions = New System.Windows.Forms.Button()
-        Me.lbActions = New System.Windows.Forms.CheckedListBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.txtActionContentType = New System.Windows.Forms.TextBox()
-        Me.dgActionHeaders = New System.Windows.Forms.DataGridView()
-        Me.clHeaderKey = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.clHeaderVal = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cbActionMethod = New System.Windows.Forms.ComboBox()
-        Me.txtActionDelay = New System.Windows.Forms.TextBox()
-        Me.cbActionScheme = New System.Windows.Forms.ComboBox()
-        Me.cmdAddAction = New System.Windows.Forms.Button()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.cmdUpdateAction = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.txtActionBody = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.txtActionPath = New System.Windows.Forms.TextBox()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.txtActionEncoding = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.txtActionQuery = New System.Windows.Forms.TextBox()
-        Me.Label21 = New System.Windows.Forms.Label()
         Me.DirDialog = New System.Windows.Forms.FolderBrowserDialog()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.ttGeneral = New System.Windows.Forms.ToolTip(Me.components)
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.txtActionQuery = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.txtActionEncoding = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.txtActionPath = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtActionBody = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.cmdUpdateAction = New System.Windows.Forms.Button()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.cmdAddAction = New System.Windows.Forms.Button()
+        Me.cbActionScheme = New System.Windows.Forms.ComboBox()
+        Me.txtActionDelay = New System.Windows.Forms.TextBox()
+        Me.cbActionMethod = New System.Windows.Forms.ComboBox()
+        Me.dgActionHeaders = New System.Windows.Forms.DataGridView()
+        Me.clHeaderVal = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.clHeaderKey = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.txtActionContentType = New System.Windows.Forms.TextBox()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.cmdDeleteActions = New System.Windows.Forms.Button()
+        Me.lbActions = New System.Windows.Forms.CheckedListBox()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.tcMain.SuspendLayout()
@@ -131,6 +132,10 @@ Partial Class frmMain
         Me.TabPage2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgActionHeaders, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.SuspendLayout()
         '
         'StatusStrip
@@ -853,13 +858,11 @@ Partial Class frmMain
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.SplitContainer1)
         Me.TabPage2.Controls.Add(Me.cmdRefreshTestPlan)
         Me.TabPage2.Controls.Add(Me.cmdLoadTestPlan)
         Me.TabPage2.Controls.Add(Me.txtEditorTestPlanFile)
         Me.TabPage2.Controls.Add(Me.Label25)
-        Me.TabPage2.Controls.Add(Me.cmdDeleteActions)
-        Me.TabPage2.Controls.Add(Me.lbActions)
-        Me.TabPage2.Controls.Add(Me.GroupBox1)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -908,27 +911,19 @@ Partial Class frmMain
         Me.Label25.TabIndex = 29
         Me.Label25.Text = "Test Plan File"
         '
-        'cmdDeleteActions
+        'OpenFileDialog
         '
-        Me.cmdDeleteActions.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.cmdDeleteActions.Location = New System.Drawing.Point(6, 609)
-        Me.cmdDeleteActions.Name = "cmdDeleteActions"
-        Me.cmdDeleteActions.Size = New System.Drawing.Size(307, 30)
-        Me.cmdDeleteActions.TabIndex = 1
-        Me.cmdDeleteActions.Text = "Deleted Checked Actions"
-        Me.cmdDeleteActions.UseVisualStyleBackColor = True
+        Me.OpenFileDialog.DefaultExt = "json"
+        Me.OpenFileDialog.FileName = "settings.json"
+        Me.OpenFileDialog.Filter = "json|*.json"
+        Me.OpenFileDialog.Title = "Load Settings"
         '
-        'lbActions
+        'SaveFileDialog
         '
-        Me.lbActions.AllowDrop = True
-        Me.lbActions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.lbActions.CheckOnClick = True
-        Me.lbActions.IntegralHeight = False
-        Me.lbActions.Location = New System.Drawing.Point(6, 36)
-        Me.lbActions.Name = "lbActions"
-        Me.lbActions.Size = New System.Drawing.Size(307, 567)
-        Me.lbActions.TabIndex = 0
+        Me.SaveFileDialog.DefaultExt = "json"
+        Me.SaveFileDialog.FileName = "settings.json"
+        Me.SaveFileDialog.Filter = "json|*.json"
+        Me.SaveFileDialog.Title = "Save Settings"
         '
         'GroupBox1
         '
@@ -955,139 +950,84 @@ Partial Class frmMain
         Me.GroupBox1.Controls.Add(Me.Label13)
         Me.GroupBox1.Controls.Add(Me.txtActionQuery)
         Me.GroupBox1.Controls.Add(Me.Label21)
-        Me.GroupBox1.Location = New System.Drawing.Point(322, 36)
+        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(490, 607)
+        Me.GroupBox1.Size = New System.Drawing.Size(436, 606)
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Edit Action"
         '
-        'Label27
+        'Label21
         '
-        Me.Label27.Location = New System.Drawing.Point(-3, 176)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(105, 20)
-        Me.Label27.TabIndex = 29
-        Me.Label27.Text = "Content Type"
-        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label21.Location = New System.Drawing.Point(24, 126)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(78, 16)
+        Me.Label21.TabIndex = 13
+        Me.Label21.Text = "Query String"
+        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'txtActionContentType
+        'txtActionQuery
         '
-        Me.txtActionContentType.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.txtActionQuery.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtActionContentType.Location = New System.Drawing.Point(108, 177)
-        Me.txtActionContentType.Name = "txtActionContentType"
-        Me.txtActionContentType.Size = New System.Drawing.Size(376, 20)
-        Me.txtActionContentType.TabIndex = 8
+        Me.txtActionQuery.Location = New System.Drawing.Point(108, 125)
+        Me.txtActionQuery.Name = "txtActionQuery"
+        Me.txtActionQuery.Size = New System.Drawing.Size(322, 20)
+        Me.txtActionQuery.TabIndex = 6
         '
-        'dgActionHeaders
+        'Label13
         '
-        Me.dgActionHeaders.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.Label13.Location = New System.Drawing.Point(42, 100)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(60, 16)
+        Me.Label13.TabIndex = 11
+        Me.Label13.Text = "Path"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtActionEncoding
+        '
+        Me.txtActionEncoding.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgActionHeaders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgActionHeaders.BackgroundColor = System.Drawing.SystemColors.Window
-        Me.dgActionHeaders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgActionHeaders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clHeaderKey, Me.clHeaderVal})
-        Me.dgActionHeaders.Location = New System.Drawing.Point(108, 203)
-        Me.dgActionHeaders.Name = "dgActionHeaders"
-        Me.dgActionHeaders.RowHeadersVisible = False
-        Me.dgActionHeaders.Size = New System.Drawing.Size(376, 165)
-        Me.dgActionHeaders.TabIndex = 9
-        Me.ttGeneral.SetToolTip(Me.dgActionHeaders, "HTTP Request Headers")
+        Me.txtActionEncoding.Location = New System.Drawing.Point(108, 151)
+        Me.txtActionEncoding.Name = "txtActionEncoding"
+        Me.txtActionEncoding.Size = New System.Drawing.Size(322, 20)
+        Me.txtActionEncoding.TabIndex = 7
         '
-        'clHeaderKey
+        'Label22
         '
-        Me.clHeaderKey.HeaderText = "Key"
-        Me.clHeaderKey.Name = "clHeaderKey"
+        Me.Label22.Location = New System.Drawing.Point(-3, 150)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(105, 20)
+        Me.Label22.TabIndex = 15
+        Me.Label22.Text = "Character Encoding"
+        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'clHeaderVal
+        'txtActionPath
         '
-        Me.clHeaderVal.HeaderText = "Value"
-        Me.clHeaderVal.Name = "clHeaderVal"
-        '
-        'cbActionMethod
-        '
-        Me.cbActionMethod.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.txtActionPath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbActionMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbActionMethod.FormattingEnabled = True
-        Me.cbActionMethod.Items.AddRange(New Object() {"POST", "PUT", "HEAD", "GET", "DELETE"})
-        Me.cbActionMethod.Location = New System.Drawing.Point(108, 72)
-        Me.cbActionMethod.Name = "cbActionMethod"
-        Me.cbActionMethod.Size = New System.Drawing.Size(376, 21)
-        Me.cbActionMethod.TabIndex = 4
+        Me.txtActionPath.Location = New System.Drawing.Point(108, 99)
+        Me.txtActionPath.Name = "txtActionPath"
+        Me.txtActionPath.Size = New System.Drawing.Size(322, 20)
+        Me.txtActionPath.TabIndex = 5
         '
-        'txtActionDelay
+        'Label12
         '
-        Me.txtActionDelay.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtActionDelay.Location = New System.Drawing.Point(108, 19)
-        Me.txtActionDelay.Name = "txtActionDelay"
-        Me.txtActionDelay.Size = New System.Drawing.Size(376, 20)
-        Me.txtActionDelay.TabIndex = 2
-        Me.txtActionDelay.Text = "10"
-        Me.ttGeneral.SetToolTip(Me.txtActionDelay, "The amount of time to wait before executing this action.")
+        Me.Label12.Location = New System.Drawing.Point(42, 73)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(60, 16)
+        Me.Label12.TabIndex = 9
+        Me.Label12.Text = "Method"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'cbActionScheme
+        'Label7
         '
-        Me.cbActionScheme.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbActionScheme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbActionScheme.FormattingEnabled = True
-        Me.cbActionScheme.Items.AddRange(New Object() {"HTTP", "HTTPS"})
-        Me.cbActionScheme.Location = New System.Drawing.Point(108, 45)
-        Me.cbActionScheme.Name = "cbActionScheme"
-        Me.cbActionScheme.Size = New System.Drawing.Size(376, 21)
-        Me.cbActionScheme.TabIndex = 3
-        '
-        'cmdAddAction
-        '
-        Me.cmdAddAction.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdAddAction.Location = New System.Drawing.Point(6, 575)
-        Me.cmdAddAction.Name = "cmdAddAction"
-        Me.cmdAddAction.Size = New System.Drawing.Size(478, 26)
-        Me.cmdAddAction.TabIndex = 12
-        Me.cmdAddAction.Text = "Add New "
-        Me.cmdAddAction.UseVisualStyleBackColor = True
-        '
-        'Label24
-        '
-        Me.Label24.Location = New System.Drawing.Point(42, 375)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(60, 16)
-        Me.Label24.TabIndex = 20
-        Me.Label24.Text = "Body"
-        Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'cmdUpdateAction
-        '
-        Me.cmdUpdateAction.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdUpdateAction.Location = New System.Drawing.Point(6, 543)
-        Me.cmdUpdateAction.Name = "cmdUpdateAction"
-        Me.cmdUpdateAction.Size = New System.Drawing.Size(478, 28)
-        Me.cmdUpdateAction.TabIndex = 11
-        Me.cmdUpdateAction.Text = "Update Action"
-        Me.cmdUpdateAction.UseVisualStyleBackColor = True
-        '
-        'Label6
-        '
-        Me.Label6.Location = New System.Drawing.Point(42, 20)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(60, 16)
-        Me.Label6.TabIndex = 5
-        Me.Label6.Text = "Time Delay (ms)"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label23
-        '
-        Me.Label23.Location = New System.Drawing.Point(42, 203)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(60, 16)
-        Me.Label23.TabIndex = 18
-        Me.Label23.Text = "Headers"
-        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label7.Location = New System.Drawing.Point(42, 46)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(60, 16)
+        Me.Label7.TabIndex = 7
+        Me.Label7.Text = "Scheme"
+        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txtActionBody
         '
@@ -1101,95 +1041,182 @@ Partial Class frmMain
         Me.txtActionBody.Multiline = True
         Me.txtActionBody.Name = "txtActionBody"
         Me.txtActionBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtActionBody.Size = New System.Drawing.Size(376, 163)
+        Me.txtActionBody.Size = New System.Drawing.Size(322, 162)
         Me.txtActionBody.TabIndex = 10
         Me.ttGeneral.SetToolTip(Me.txtActionBody, "HTTP Request Body")
         '
-        'Label7
+        'Label23
         '
-        Me.Label7.Location = New System.Drawing.Point(42, 46)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(60, 16)
-        Me.Label7.TabIndex = 7
-        Me.Label7.Text = "Scheme"
-        Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label23.Location = New System.Drawing.Point(42, 203)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(60, 16)
+        Me.Label23.TabIndex = 18
+        Me.Label23.Text = "Headers"
+        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Label12
+        'Label6
         '
-        Me.Label12.Location = New System.Drawing.Point(42, 73)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(60, 16)
-        Me.Label12.TabIndex = 9
-        Me.Label12.Text = "Method"
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label6.Location = New System.Drawing.Point(42, 20)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(60, 16)
+        Me.Label6.TabIndex = 5
+        Me.Label6.Text = "Time Delay (ms)"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'txtActionPath
+        'cmdUpdateAction
         '
-        Me.txtActionPath.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.cmdUpdateAction.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtActionPath.Location = New System.Drawing.Point(108, 99)
-        Me.txtActionPath.Name = "txtActionPath"
-        Me.txtActionPath.Size = New System.Drawing.Size(376, 20)
-        Me.txtActionPath.TabIndex = 5
+        Me.cmdUpdateAction.Location = New System.Drawing.Point(6, 542)
+        Me.cmdUpdateAction.Name = "cmdUpdateAction"
+        Me.cmdUpdateAction.Size = New System.Drawing.Size(424, 28)
+        Me.cmdUpdateAction.TabIndex = 11
+        Me.cmdUpdateAction.Text = "Update Action"
+        Me.cmdUpdateAction.UseVisualStyleBackColor = True
         '
-        'Label22
+        'Label24
         '
-        Me.Label22.Location = New System.Drawing.Point(-3, 150)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(105, 20)
-        Me.Label22.TabIndex = 15
-        Me.Label22.Text = "Character Encoding"
-        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Label24.Location = New System.Drawing.Point(42, 375)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(60, 16)
+        Me.Label24.TabIndex = 20
+        Me.Label24.Text = "Body"
+        Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'txtActionEncoding
+        'cmdAddAction
         '
-        Me.txtActionEncoding.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.cmdAddAction.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtActionEncoding.Location = New System.Drawing.Point(108, 151)
-        Me.txtActionEncoding.Name = "txtActionEncoding"
-        Me.txtActionEncoding.Size = New System.Drawing.Size(376, 20)
-        Me.txtActionEncoding.TabIndex = 7
+        Me.cmdAddAction.Location = New System.Drawing.Point(6, 574)
+        Me.cmdAddAction.Name = "cmdAddAction"
+        Me.cmdAddAction.Size = New System.Drawing.Size(424, 26)
+        Me.cmdAddAction.TabIndex = 12
+        Me.cmdAddAction.Text = "Add New "
+        Me.cmdAddAction.UseVisualStyleBackColor = True
         '
-        'Label13
+        'cbActionScheme
         '
-        Me.Label13.Location = New System.Drawing.Point(42, 100)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(60, 16)
-        Me.Label13.TabIndex = 11
-        Me.Label13.Text = "Path"
-        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtActionQuery
-        '
-        Me.txtActionQuery.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.cbActionScheme.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtActionQuery.Location = New System.Drawing.Point(108, 125)
-        Me.txtActionQuery.Name = "txtActionQuery"
-        Me.txtActionQuery.Size = New System.Drawing.Size(376, 20)
-        Me.txtActionQuery.TabIndex = 6
+        Me.cbActionScheme.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbActionScheme.FormattingEnabled = True
+        Me.cbActionScheme.Items.AddRange(New Object() {"HTTP", "HTTPS"})
+        Me.cbActionScheme.Location = New System.Drawing.Point(108, 45)
+        Me.cbActionScheme.Name = "cbActionScheme"
+        Me.cbActionScheme.Size = New System.Drawing.Size(322, 21)
+        Me.cbActionScheme.TabIndex = 3
         '
-        'Label21
+        'txtActionDelay
         '
-        Me.Label21.Location = New System.Drawing.Point(24, 126)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(78, 16)
-        Me.Label21.TabIndex = 13
-        Me.Label21.Text = "Query String"
-        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.txtActionDelay.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtActionDelay.Location = New System.Drawing.Point(108, 19)
+        Me.txtActionDelay.Name = "txtActionDelay"
+        Me.txtActionDelay.Size = New System.Drawing.Size(322, 20)
+        Me.txtActionDelay.TabIndex = 2
+        Me.txtActionDelay.Text = "10"
+        Me.ttGeneral.SetToolTip(Me.txtActionDelay, "The amount of time to wait before executing this action.")
         '
-        'OpenFileDialog
+        'cbActionMethod
         '
-        Me.OpenFileDialog.DefaultExt = "json"
-        Me.OpenFileDialog.FileName = "settings.json"
-        Me.OpenFileDialog.Filter = "json|*.json"
-        Me.OpenFileDialog.Title = "Load Settings"
+        Me.cbActionMethod.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbActionMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbActionMethod.FormattingEnabled = True
+        Me.cbActionMethod.Items.AddRange(New Object() {"POST", "PUT", "HEAD", "GET", "DELETE"})
+        Me.cbActionMethod.Location = New System.Drawing.Point(108, 72)
+        Me.cbActionMethod.Name = "cbActionMethod"
+        Me.cbActionMethod.Size = New System.Drawing.Size(322, 21)
+        Me.cbActionMethod.TabIndex = 4
         '
-        'SaveFileDialog
+        'dgActionHeaders
         '
-        Me.SaveFileDialog.DefaultExt = "json"
-        Me.SaveFileDialog.FileName = "settings.json"
-        Me.SaveFileDialog.Filter = "json|*.json"
-        Me.SaveFileDialog.Title = "Save Settings"
+        Me.dgActionHeaders.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgActionHeaders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgActionHeaders.BackgroundColor = System.Drawing.SystemColors.Window
+        Me.dgActionHeaders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgActionHeaders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clHeaderKey, Me.clHeaderVal})
+        Me.dgActionHeaders.Location = New System.Drawing.Point(108, 203)
+        Me.dgActionHeaders.Name = "dgActionHeaders"
+        Me.dgActionHeaders.RowHeadersVisible = False
+        Me.dgActionHeaders.Size = New System.Drawing.Size(322, 165)
+        Me.dgActionHeaders.TabIndex = 9
+        Me.ttGeneral.SetToolTip(Me.dgActionHeaders, "HTTP Request Headers")
+        '
+        'clHeaderVal
+        '
+        Me.clHeaderVal.HeaderText = "Value"
+        Me.clHeaderVal.Name = "clHeaderVal"
+        '
+        'clHeaderKey
+        '
+        Me.clHeaderKey.HeaderText = "Key"
+        Me.clHeaderKey.Name = "clHeaderKey"
+        '
+        'txtActionContentType
+        '
+        Me.txtActionContentType.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtActionContentType.Location = New System.Drawing.Point(108, 177)
+        Me.txtActionContentType.Name = "txtActionContentType"
+        Me.txtActionContentType.Size = New System.Drawing.Size(322, 20)
+        Me.txtActionContentType.TabIndex = 8
+        '
+        'Label27
+        '
+        Me.Label27.Location = New System.Drawing.Point(-3, 176)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(105, 20)
+        Me.Label27.TabIndex = 29
+        Me.Label27.Text = "Content Type"
+        Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'cmdDeleteActions
+        '
+        Me.cmdDeleteActions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdDeleteActions.Location = New System.Drawing.Point(3, 579)
+        Me.cmdDeleteActions.Name = "cmdDeleteActions"
+        Me.cmdDeleteActions.Size = New System.Drawing.Size(366, 30)
+        Me.cmdDeleteActions.TabIndex = 1
+        Me.cmdDeleteActions.Text = "Deleted Checked Actions"
+        Me.cmdDeleteActions.UseVisualStyleBackColor = True
+        '
+        'lbActions
+        '
+        Me.lbActions.AllowDrop = True
+        Me.lbActions.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbActions.CheckOnClick = True
+        Me.lbActions.IntegralHeight = False
+        Me.lbActions.Location = New System.Drawing.Point(3, 3)
+        Me.lbActions.Name = "lbActions"
+        Me.lbActions.Size = New System.Drawing.Size(366, 570)
+        Me.lbActions.TabIndex = 0
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 34)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.cmdDeleteActions)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.lbActions)
+        Me.SplitContainer1.Panel1MinSize = 200
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.GroupBox1)
+        Me.SplitContainer1.Panel2MinSize = 300
+        Me.SplitContainer1.Size = New System.Drawing.Size(818, 612)
+        Me.SplitContainer1.SplitterDistance = 372
+        Me.SplitContainer1.TabIndex = 32
         '
         'frmMain
         '
@@ -1217,6 +1244,10 @@ Partial Class frmMain
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.dgActionHeaders, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1290,12 +1321,21 @@ Partial Class frmMain
     Friend WithEvents cbPlayerOverrideHTTPS As CheckBox
     Friend WithEvents cbPlayerCalcActionDelay As CheckBox
     Friend WithEvents cbPlayerApplySubs As CheckBox
-    Friend WithEvents lbActions As CheckedListBox
     Friend WithEvents cmdLoadTestPlan As Button
     Friend WithEvents txtEditorTestPlanFile As TextBox
     Friend WithEvents Label25 As Label
+    Friend WithEvents Label26 As Label
+    Friend WithEvents txtRecorderHttpsPort As TextBox
+    Friend WithEvents cmdRefreshTestPlan As Button
+    Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents cmdDeleteActions As Button
+    Friend WithEvents lbActions As CheckedListBox
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label27 As Label
+    Friend WithEvents txtActionContentType As TextBox
+    Friend WithEvents dgActionHeaders As DataGridView
+    Friend WithEvents clHeaderKey As DataGridViewTextBoxColumn
+    Friend WithEvents clHeaderVal As DataGridViewTextBoxColumn
     Friend WithEvents cbActionMethod As ComboBox
     Friend WithEvents txtActionDelay As TextBox
     Friend WithEvents cbActionScheme As ComboBox
@@ -1313,12 +1353,4 @@ Partial Class frmMain
     Friend WithEvents Label13 As Label
     Friend WithEvents txtActionQuery As TextBox
     Friend WithEvents Label21 As Label
-    Friend WithEvents Label26 As Label
-    Friend WithEvents txtRecorderHttpsPort As TextBox
-    Friend WithEvents dgActionHeaders As DataGridView
-    Friend WithEvents clHeaderKey As DataGridViewTextBoxColumn
-    Friend WithEvents clHeaderVal As DataGridViewTextBoxColumn
-    Friend WithEvents Label27 As Label
-    Friend WithEvents txtActionContentType As TextBox
-    Friend WithEvents cmdRefreshTestPlan As Button
 End Class
