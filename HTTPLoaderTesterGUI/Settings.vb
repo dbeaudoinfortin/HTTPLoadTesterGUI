@@ -43,7 +43,7 @@ Public Class Settings
         If javaHomeEnv Is Nothing Then
             JavaHome = ""
         Else
-            JavaHome = javaHomeEnv
+            JavaHome = javaHomeEnv + "\bin"
         End If
 
         LoadTesterJar = Application.StartupPath & "\HTTPLoadTester.jar"
