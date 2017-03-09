@@ -137,7 +137,7 @@ Public Class frmMain
     End Sub
 
     Private Sub LoadTestPlan()
-        If (GlobalSettings.EditorTestPlanFile Is Nothing Or GlobalSettings.EditorTestPlanFile = "") Then
+        If GlobalSettings.EditorTestPlanFile Is Nothing OrElse GlobalSettings.EditorTestPlanFile = "" OrElse (Not IO.File.Exists(GlobalSettings.EditorTestPlanFile)) Then
             ClearTestPlanEditor()
             Return
         End If
@@ -712,6 +712,8 @@ Public Class frmMain
         SaveEditorTestPlan()
 
         tsTestPlanStatus.Text = "Test Plan Loaded - " + EditorTestPlan.Count.ToString + " Action(s)"
+
+        lbActions.SelectedIndex = insertIndex
     End Sub
 
     Private Sub cmdUpdateAction_Click(sender As Object, e As EventArgs) Handles cmdUpdateAction.Click

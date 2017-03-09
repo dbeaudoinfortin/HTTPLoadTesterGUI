@@ -42,6 +42,7 @@ Public Class HTTPAction
         sb.Append(" ")
         sb.Append(path)
         If (queryString IsNot Nothing And queryString <> "") Then
+            sb.Append("?")
             sb.Append(queryString)
         End If
         Return sb.ToString()
