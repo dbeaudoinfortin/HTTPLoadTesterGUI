@@ -95,9 +95,13 @@ Public Class frmMain
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lbActions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
-
-
         ReloadFromSettings()
+    End Sub
+
+    Private Sub ClearStats()
+        TimerStats.Enabled = False
+        crtThreads.Series(0).Points.Clear()
+        crtThreads.Series(0).Points.AddXY(DateTime.Now.ToOADate, 0)
     End Sub
 
     Private Sub ReloadFromSettings()
@@ -613,13 +617,23 @@ Public Class frmMain
         Task.Run(Sub()
                      Try
                          PlayerProcess.Start()
+
+                         'Launch timer by invoking event
+                         Me.Invoke(Sub()
+                                       clearStats()
+                                       TimerStats.Enabled = True
+                                       TimerStats.Start()
+                                   End Sub)
+
                          PlayerProcess.WaitForExit()
 
                          Me.Invoke(Sub()
                                        txtPlayerConsole.AppendText("Player process terminated." & vbCrLf & vbCrLf)
                                        tsPlayerStatus.Text = "Player Stopped"
                                        cmdPlayerLaunch.Enabled = True
+                                       TimerStats.Enabled = False
                                    End Sub)
+
                          PlayerProcess.Close()
                      Catch ex As Exception
                          MsgBox("Unable to start Player process." & vbCrLf & vbCrLf & ex.ToString, MsgBoxStyle.Critical, "Error")
@@ -840,11 +854,16 @@ Public Class frmMain
         UpdateActionEditor(lbActionSelection, True)
     End Sub
 
-    Private Sub frmMain_ResizeBegin(sender As Object, e As EventArgs) Handles Me.ResizeBegin
+    Private Sub TimerStats_Tick(sender As Object, e As EventArgs) Handles TimerStats.Tick
+        If Not StatsClient.IsRunning Then Return
+
+        'Update thread chart
+        Dim ThreadCount As Integer = StatsClient.GetPlayerThreadCount
+        crtThreads.Series(0).Points.AddXY(DateTime.Now.ToOADate, ThreadCount)
 
     End Sub
 
-    Private Sub frmMain_ResizeEnd(sender As Object, e As EventArgs) Handles Me.ResizeEnd
+    Private Sub StatsSplitContainer_Panel2_Paint(sender As Object, e As PaintEventArgs) Handles StatsSplitContainer.Panel2.Paint
 
     End Sub
 End Class
