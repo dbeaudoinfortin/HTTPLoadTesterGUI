@@ -23,21 +23,21 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea7 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim DataPoint13 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
-        Dim DataPoint14 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
-        Dim Title7 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
-        Dim ChartArea8 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series8 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim DataPoint15 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
-        Dim DataPoint16 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
-        Dim Title8 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
-        Dim ChartArea9 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series9 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim DataPoint17 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
-        Dim DataPoint18 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
-        Dim Title9 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
+        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint7 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
+        Dim DataPoint8 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
+        Dim Title4 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
+        Dim ChartArea5 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint9 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
+        Dim DataPoint10 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
+        Dim Title5 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
+        Dim ChartArea6 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint11 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
+        Dim DataPoint12 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
+        Dim Title6 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.tsRecorderStatus = New System.Windows.Forms.ToolStripStatusLabel()
@@ -109,9 +109,32 @@ Partial Class frmMain
         Me.crtThreads = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.StatsSubSplitContainer = New System.Windows.Forms.SplitContainer()
         Me.gbTestPlanStats = New System.Windows.Forms.GroupBox()
+        Me.lblTestPlanRollingAvg = New System.Windows.Forms.Label()
+        Me.lblTestPlanAvg = New System.Windows.Forms.Label()
+        Me.lblTestPlanMax = New System.Windows.Forms.Label()
+        Me.lblTestPlanMin = New System.Windows.Forms.Label()
+        Me.lblTestPlanTotal = New System.Windows.Forms.Label()
+        Me.lblTestPlanCount = New System.Windows.Forms.Label()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.crtTestPlan = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.gbActionStats = New System.Windows.Forms.GroupBox()
+        Me.lblActionRollingAvg = New System.Windows.Forms.Label()
+        Me.lblActionAvg = New System.Windows.Forms.Label()
+        Me.lblActionMax = New System.Windows.Forms.Label()
+        Me.lblActionMin = New System.Windows.Forms.Label()
+        Me.lblActionTotal = New System.Windows.Forms.Label()
+        Me.lblActionCount = New System.Windows.Forms.Label()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Label45 = New System.Windows.Forms.Label()
         Me.crtActions = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.EditorTab = New System.Windows.Forms.TabPage()
         Me.EditorSplitContainer = New System.Windows.Forms.SplitContainer()
@@ -150,29 +173,6 @@ Partial Class frmMain
         Me.ttGeneral = New System.Windows.Forms.ToolTip(Me.components)
         Me.TimerStats = New System.Windows.Forms.Timer(Me.components)
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.Label32 = New System.Windows.Forms.Label()
-        Me.Label33 = New System.Windows.Forms.Label()
-        Me.lblTestPlanCount = New System.Windows.Forms.Label()
-        Me.lblTestPlanTotal = New System.Windows.Forms.Label()
-        Me.lblTestPlanMin = New System.Windows.Forms.Label()
-        Me.lblTestPlanMax = New System.Windows.Forms.Label()
-        Me.lblTestPlanAvg = New System.Windows.Forms.Label()
-        Me.lblTestPlanRollingAvg = New System.Windows.Forms.Label()
-        Me.lblActionRollingAvg = New System.Windows.Forms.Label()
-        Me.lblActionAvg = New System.Windows.Forms.Label()
-        Me.lblActionMax = New System.Windows.Forms.Label()
-        Me.lblActionMin = New System.Windows.Forms.Label()
-        Me.lblActionTotal = New System.Windows.Forms.Label()
-        Me.lblActionCount = New System.Windows.Forms.Label()
-        Me.Label40 = New System.Windows.Forms.Label()
-        Me.Label41 = New System.Windows.Forms.Label()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.Label43 = New System.Windows.Forms.Label()
-        Me.Label44 = New System.Windows.Forms.Label()
-        Me.Label45 = New System.Windows.Forms.Label()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.tcMain.SuspendLayout()
@@ -406,7 +406,7 @@ Partial Class frmMain
         Me.txtRecorderBodySub.Location = New System.Drawing.Point(161, 338)
         Me.txtRecorderBodySub.Multiline = True
         Me.txtRecorderBodySub.Name = "txtRecorderBodySub"
-        Me.txtRecorderBodySub.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.txtRecorderBodySub.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtRecorderBodySub.Size = New System.Drawing.Size(570, 82)
         Me.txtRecorderBodySub.TabIndex = 10
         Me.ttGeneral.SetToolTip(Me.txtRecorderBodySub, "Text to match and substitute in the HTTP request body. JSON format.")
@@ -420,7 +420,7 @@ Partial Class frmMain
         Me.txtRecorderQuerySub.Location = New System.Drawing.Point(161, 250)
         Me.txtRecorderQuerySub.Multiline = True
         Me.txtRecorderQuerySub.Name = "txtRecorderQuerySub"
-        Me.txtRecorderQuerySub.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.txtRecorderQuerySub.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtRecorderQuerySub.Size = New System.Drawing.Size(570, 82)
         Me.txtRecorderQuerySub.TabIndex = 9
         Me.ttGeneral.SetToolTip(Me.txtRecorderQuerySub, "Text to match and substitute in the HTTP request query. JSON format.")
@@ -434,7 +434,7 @@ Partial Class frmMain
         Me.txtRecorderPathSub.Location = New System.Drawing.Point(161, 162)
         Me.txtRecorderPathSub.Multiline = True
         Me.txtRecorderPathSub.Name = "txtRecorderPathSub"
-        Me.txtRecorderPathSub.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.txtRecorderPathSub.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtRecorderPathSub.Size = New System.Drawing.Size(570, 82)
         Me.txtRecorderPathSub.TabIndex = 8
         Me.ttGeneral.SetToolTip(Me.txtRecorderPathSub, "Text to match and substitute in the HTTP request path. JSON format.")
@@ -961,36 +961,36 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.crtThreads.BorderlineColor = System.Drawing.Color.Black
         Me.crtThreads.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
-        ChartArea7.Area3DStyle.Inclination = 0
-        ChartArea7.Area3DStyle.IsRightAngleAxes = False
-        ChartArea7.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
-        ChartArea7.Area3DStyle.Rotation = 0
-        ChartArea7.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea7.AxisX.IsMarginVisible = False
-        ChartArea7.AxisX.IsStartedFromZero = False
-        ChartArea7.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea7.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea7.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea7.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea7.Name = "ChartArea"
-        Me.crtThreads.ChartAreas.Add(ChartArea7)
+        ChartArea4.Area3DStyle.Inclination = 0
+        ChartArea4.Area3DStyle.IsRightAngleAxes = False
+        ChartArea4.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
+        ChartArea4.Area3DStyle.Rotation = 0
+        ChartArea4.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea4.AxisX.IsMarginVisible = False
+        ChartArea4.AxisX.IsStartedFromZero = False
+        ChartArea4.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea4.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea4.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea4.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea4.Name = "ChartArea"
+        Me.crtThreads.ChartAreas.Add(ChartArea4)
         Me.crtThreads.Location = New System.Drawing.Point(3, 3)
         Me.crtThreads.Name = "crtThreads"
         Me.crtThreads.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
-        Series7.ChartArea = "ChartArea"
-        Series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
-        Series7.Name = "Series"
-        Series7.Points.Add(DataPoint13)
-        Series7.Points.Add(DataPoint14)
-        Series7.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
-        Series7.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
-        Me.crtThreads.Series.Add(Series7)
+        Series4.ChartArea = "ChartArea"
+        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
+        Series4.Name = "Series"
+        Series4.Points.Add(DataPoint7)
+        Series4.Points.Add(DataPoint8)
+        Series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
+        Me.crtThreads.Series.Add(Series4)
         Me.crtThreads.Size = New System.Drawing.Size(812, 194)
         Me.crtThreads.TabIndex = 0
-        Title7.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Title7.Name = "Title"
-        Title7.Text = "Running Thread Count"
-        Me.crtThreads.Titles.Add(Title7)
+        Title4.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Title4.Name = "Title"
+        Title4.Text = "Running Thread Count"
+        Me.crtThreads.Titles.Add(Title4)
         '
         'StatsSubSplitContainer
         '
@@ -1039,6 +1039,105 @@ Partial Class frmMain
         Me.gbTestPlanStats.TabStop = False
         Me.gbTestPlanStats.Text = "Test Plan Stats"
         '
+        'lblTestPlanRollingAvg
+        '
+        Me.lblTestPlanRollingAvg.AutoSize = True
+        Me.lblTestPlanRollingAvg.Location = New System.Drawing.Point(102, 111)
+        Me.lblTestPlanRollingAvg.Name = "lblTestPlanRollingAvg"
+        Me.lblTestPlanRollingAvg.Size = New System.Drawing.Size(13, 13)
+        Me.lblTestPlanRollingAvg.TabIndex = 11
+        Me.lblTestPlanRollingAvg.Text = "0"
+        '
+        'lblTestPlanAvg
+        '
+        Me.lblTestPlanAvg.AutoSize = True
+        Me.lblTestPlanAvg.Location = New System.Drawing.Point(102, 93)
+        Me.lblTestPlanAvg.Name = "lblTestPlanAvg"
+        Me.lblTestPlanAvg.Size = New System.Drawing.Size(13, 13)
+        Me.lblTestPlanAvg.TabIndex = 10
+        Me.lblTestPlanAvg.Text = "0"
+        '
+        'lblTestPlanMax
+        '
+        Me.lblTestPlanMax.AutoSize = True
+        Me.lblTestPlanMax.Location = New System.Drawing.Point(102, 75)
+        Me.lblTestPlanMax.Name = "lblTestPlanMax"
+        Me.lblTestPlanMax.Size = New System.Drawing.Size(27, 13)
+        Me.lblTestPlanMax.TabIndex = 9
+        Me.lblTestPlanMax.Text = "N/A"
+        '
+        'lblTestPlanMin
+        '
+        Me.lblTestPlanMin.AutoSize = True
+        Me.lblTestPlanMin.Location = New System.Drawing.Point(102, 57)
+        Me.lblTestPlanMin.Name = "lblTestPlanMin"
+        Me.lblTestPlanMin.Size = New System.Drawing.Size(27, 13)
+        Me.lblTestPlanMin.TabIndex = 8
+        Me.lblTestPlanMin.Text = "N/A"
+        '
+        'lblTestPlanTotal
+        '
+        Me.lblTestPlanTotal.AutoSize = True
+        Me.lblTestPlanTotal.Location = New System.Drawing.Point(102, 39)
+        Me.lblTestPlanTotal.Name = "lblTestPlanTotal"
+        Me.lblTestPlanTotal.Size = New System.Drawing.Size(13, 13)
+        Me.lblTestPlanTotal.TabIndex = 7
+        Me.lblTestPlanTotal.Text = "0"
+        '
+        'lblTestPlanCount
+        '
+        Me.lblTestPlanCount.AutoSize = True
+        Me.lblTestPlanCount.Location = New System.Drawing.Point(102, 21)
+        Me.lblTestPlanCount.Name = "lblTestPlanCount"
+        Me.lblTestPlanCount.Size = New System.Drawing.Size(13, 13)
+        Me.lblTestPlanCount.TabIndex = 6
+        Me.lblTestPlanCount.Text = "0"
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(6, 111)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(90, 13)
+        Me.Label33.TabIndex = 5
+        Me.Label33.Text = "Rolling Avg Time:"
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(41, 93)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(55, 13)
+        Me.Label32.TabIndex = 4
+        Me.Label32.Text = "Avg Time:"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(43, 57)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(53, 13)
+        Me.Label31.TabIndex = 3
+        Me.Label31.Text = "Min Time:"
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(40, 75)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(56, 13)
+        Me.Label30.TabIndex = 2
+        Me.Label30.Text = "Max Time:"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(36, 39)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(60, 13)
+        Me.Label29.TabIndex = 1
+        Me.Label29.Text = "Total Time:"
+        '
         'Label28
         '
         Me.Label28.AutoSize = True
@@ -1055,36 +1154,36 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.crtTestPlan.BorderlineColor = System.Drawing.Color.Black
         Me.crtTestPlan.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
-        ChartArea8.Area3DStyle.Inclination = 0
-        ChartArea8.Area3DStyle.IsRightAngleAxes = False
-        ChartArea8.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
-        ChartArea8.Area3DStyle.Rotation = 0
-        ChartArea8.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea8.AxisX.IsMarginVisible = False
-        ChartArea8.AxisX.IsStartedFromZero = False
-        ChartArea8.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea8.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea8.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea8.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea8.Name = "ChartArea"
-        Me.crtTestPlan.ChartAreas.Add(ChartArea8)
+        ChartArea5.Area3DStyle.Inclination = 0
+        ChartArea5.Area3DStyle.IsRightAngleAxes = False
+        ChartArea5.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
+        ChartArea5.Area3DStyle.Rotation = 0
+        ChartArea5.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea5.AxisX.IsMarginVisible = False
+        ChartArea5.AxisX.IsStartedFromZero = False
+        ChartArea5.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea5.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea5.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea5.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea5.Name = "ChartArea"
+        Me.crtTestPlan.ChartAreas.Add(ChartArea5)
         Me.crtTestPlan.Location = New System.Drawing.Point(3, 3)
         Me.crtTestPlan.Name = "crtTestPlan"
         Me.crtTestPlan.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
-        Series8.ChartArea = "ChartArea"
-        Series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
-        Series8.Name = "Series"
-        Series8.Points.Add(DataPoint15)
-        Series8.Points.Add(DataPoint16)
-        Series8.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
-        Series8.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
-        Me.crtTestPlan.Series.Add(Series8)
+        Series5.ChartArea = "ChartArea"
+        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
+        Series5.Name = "Series"
+        Series5.Points.Add(DataPoint9)
+        Series5.Points.Add(DataPoint10)
+        Series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
+        Me.crtTestPlan.Series.Add(Series5)
         Me.crtTestPlan.Size = New System.Drawing.Size(593, 214)
         Me.crtTestPlan.TabIndex = 1
-        Title8.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Title8.Name = "Title"
-        Title8.Text = "Test Plan - Rolling Average Duration"
-        Me.crtTestPlan.Titles.Add(Title8)
+        Title5.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Title5.Name = "Title"
+        Title5.Text = "Test Plan - Rolling Average Duration"
+        Me.crtTestPlan.Titles.Add(Title5)
         '
         'gbActionStats
         '
@@ -1109,6 +1208,114 @@ Partial Class frmMain
         Me.gbActionStats.TabStop = False
         Me.gbActionStats.Text = "Action Stats"
         '
+        'lblActionRollingAvg
+        '
+        Me.lblActionRollingAvg.AutoSize = True
+        Me.lblActionRollingAvg.Location = New System.Drawing.Point(102, 111)
+        Me.lblActionRollingAvg.Name = "lblActionRollingAvg"
+        Me.lblActionRollingAvg.Size = New System.Drawing.Size(13, 13)
+        Me.lblActionRollingAvg.TabIndex = 23
+        Me.lblActionRollingAvg.Text = "0"
+        '
+        'lblActionAvg
+        '
+        Me.lblActionAvg.AutoSize = True
+        Me.lblActionAvg.Location = New System.Drawing.Point(102, 93)
+        Me.lblActionAvg.Name = "lblActionAvg"
+        Me.lblActionAvg.Size = New System.Drawing.Size(13, 13)
+        Me.lblActionAvg.TabIndex = 22
+        Me.lblActionAvg.Text = "0"
+        '
+        'lblActionMax
+        '
+        Me.lblActionMax.AutoSize = True
+        Me.lblActionMax.Location = New System.Drawing.Point(102, 75)
+        Me.lblActionMax.Name = "lblActionMax"
+        Me.lblActionMax.Size = New System.Drawing.Size(27, 13)
+        Me.lblActionMax.TabIndex = 21
+        Me.lblActionMax.Text = "N/A"
+        '
+        'lblActionMin
+        '
+        Me.lblActionMin.AutoSize = True
+        Me.lblActionMin.Location = New System.Drawing.Point(102, 57)
+        Me.lblActionMin.Name = "lblActionMin"
+        Me.lblActionMin.Size = New System.Drawing.Size(27, 13)
+        Me.lblActionMin.TabIndex = 20
+        Me.lblActionMin.Text = "N/A"
+        '
+        'lblActionTotal
+        '
+        Me.lblActionTotal.AutoSize = True
+        Me.lblActionTotal.Location = New System.Drawing.Point(102, 39)
+        Me.lblActionTotal.Name = "lblActionTotal"
+        Me.lblActionTotal.Size = New System.Drawing.Size(13, 13)
+        Me.lblActionTotal.TabIndex = 19
+        Me.lblActionTotal.Text = "0"
+        '
+        'lblActionCount
+        '
+        Me.lblActionCount.AutoSize = True
+        Me.lblActionCount.Location = New System.Drawing.Point(102, 21)
+        Me.lblActionCount.Name = "lblActionCount"
+        Me.lblActionCount.Size = New System.Drawing.Size(13, 13)
+        Me.lblActionCount.TabIndex = 18
+        Me.lblActionCount.Text = "0"
+        '
+        'Label40
+        '
+        Me.Label40.AutoSize = True
+        Me.Label40.Location = New System.Drawing.Point(6, 111)
+        Me.Label40.Name = "Label40"
+        Me.Label40.Size = New System.Drawing.Size(90, 13)
+        Me.Label40.TabIndex = 17
+        Me.Label40.Text = "Rolling Avg Time:"
+        '
+        'Label41
+        '
+        Me.Label41.AutoSize = True
+        Me.Label41.Location = New System.Drawing.Point(41, 93)
+        Me.Label41.Name = "Label41"
+        Me.Label41.Size = New System.Drawing.Size(55, 13)
+        Me.Label41.TabIndex = 16
+        Me.Label41.Text = "Avg Time:"
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(43, 57)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(53, 13)
+        Me.Label42.TabIndex = 15
+        Me.Label42.Text = "Min Time:"
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Location = New System.Drawing.Point(40, 75)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(56, 13)
+        Me.Label43.TabIndex = 14
+        Me.Label43.Text = "Max Time:"
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Location = New System.Drawing.Point(36, 39)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(60, 13)
+        Me.Label44.TabIndex = 13
+        Me.Label44.Text = "Total Time:"
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.Location = New System.Drawing.Point(58, 21)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(38, 13)
+        Me.Label45.TabIndex = 12
+        Me.Label45.Text = "Count:"
+        '
         'crtActions
         '
         Me.crtActions.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -1116,36 +1323,36 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.crtActions.BorderlineColor = System.Drawing.Color.Black
         Me.crtActions.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
-        ChartArea9.Area3DStyle.Inclination = 0
-        ChartArea9.Area3DStyle.IsRightAngleAxes = False
-        ChartArea9.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
-        ChartArea9.Area3DStyle.Rotation = 0
-        ChartArea9.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea9.AxisX.IsMarginVisible = False
-        ChartArea9.AxisX.IsStartedFromZero = False
-        ChartArea9.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea9.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea9.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea9.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea9.Name = "ChartArea"
-        Me.crtActions.ChartAreas.Add(ChartArea9)
+        ChartArea6.Area3DStyle.Inclination = 0
+        ChartArea6.Area3DStyle.IsRightAngleAxes = False
+        ChartArea6.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
+        ChartArea6.Area3DStyle.Rotation = 0
+        ChartArea6.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea6.AxisX.IsMarginVisible = False
+        ChartArea6.AxisX.IsStartedFromZero = False
+        ChartArea6.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea6.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea6.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea6.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea6.Name = "ChartArea"
+        Me.crtActions.ChartAreas.Add(ChartArea6)
         Me.crtActions.Location = New System.Drawing.Point(3, 3)
         Me.crtActions.Name = "crtActions"
         Me.crtActions.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
-        Series9.ChartArea = "ChartArea"
-        Series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
-        Series9.Name = "Series"
-        Series9.Points.Add(DataPoint17)
-        Series9.Points.Add(DataPoint18)
-        Series9.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
-        Series9.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
-        Me.crtActions.Series.Add(Series9)
+        Series6.ChartArea = "ChartArea"
+        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
+        Series6.Name = "Series"
+        Series6.Points.Add(DataPoint11)
+        Series6.Points.Add(DataPoint12)
+        Series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
+        Me.crtActions.Series.Add(Series6)
         Me.crtActions.Size = New System.Drawing.Size(593, 213)
         Me.crtActions.TabIndex = 1
-        Title9.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Title9.Name = "Title"
-        Title9.Text = "Actions - Rolling Average Duration"
-        Me.crtActions.Titles.Add(Title9)
+        Title6.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Title6.Name = "Title"
+        Title6.Text = "Actions - Rolling Average Duration"
+        Me.crtActions.Titles.Add(Title6)
         '
         'EditorTab
         '
@@ -1521,213 +1728,6 @@ Partial Class frmMain
         Me.SplitContainer2.Size = New System.Drawing.Size(208, 100)
         Me.SplitContainer2.SplitterDistance = 69
         Me.SplitContainer2.TabIndex = 0
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(36, 39)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(60, 13)
-        Me.Label29.TabIndex = 1
-        Me.Label29.Text = "Total Time:"
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(40, 75)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(56, 13)
-        Me.Label30.TabIndex = 2
-        Me.Label30.Text = "Max Time:"
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(43, 57)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(53, 13)
-        Me.Label31.TabIndex = 3
-        Me.Label31.Text = "Min Time:"
-        '
-        'Label32
-        '
-        Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(41, 93)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(55, 13)
-        Me.Label32.TabIndex = 4
-        Me.Label32.Text = "Avg Time:"
-        '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(6, 111)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(90, 13)
-        Me.Label33.TabIndex = 5
-        Me.Label33.Text = "Rolling Avg Time:"
-        '
-        'lblTestPlanCount
-        '
-        Me.lblTestPlanCount.AutoSize = True
-        Me.lblTestPlanCount.Location = New System.Drawing.Point(102, 21)
-        Me.lblTestPlanCount.Name = "lblTestPlanCount"
-        Me.lblTestPlanCount.Size = New System.Drawing.Size(13, 13)
-        Me.lblTestPlanCount.TabIndex = 6
-        Me.lblTestPlanCount.Text = "0"
-        '
-        'lblTestPlanTotal
-        '
-        Me.lblTestPlanTotal.AutoSize = True
-        Me.lblTestPlanTotal.Location = New System.Drawing.Point(102, 39)
-        Me.lblTestPlanTotal.Name = "lblTestPlanTotal"
-        Me.lblTestPlanTotal.Size = New System.Drawing.Size(13, 13)
-        Me.lblTestPlanTotal.TabIndex = 7
-        Me.lblTestPlanTotal.Text = "0"
-        '
-        'lblTestPlanMin
-        '
-        Me.lblTestPlanMin.AutoSize = True
-        Me.lblTestPlanMin.Location = New System.Drawing.Point(102, 57)
-        Me.lblTestPlanMin.Name = "lblTestPlanMin"
-        Me.lblTestPlanMin.Size = New System.Drawing.Size(27, 13)
-        Me.lblTestPlanMin.TabIndex = 8
-        Me.lblTestPlanMin.Text = "N/A"
-        '
-        'lblTestPlanMax
-        '
-        Me.lblTestPlanMax.AutoSize = True
-        Me.lblTestPlanMax.Location = New System.Drawing.Point(102, 75)
-        Me.lblTestPlanMax.Name = "lblTestPlanMax"
-        Me.lblTestPlanMax.Size = New System.Drawing.Size(27, 13)
-        Me.lblTestPlanMax.TabIndex = 9
-        Me.lblTestPlanMax.Text = "N/A"
-        '
-        'lblTestPlanAvg
-        '
-        Me.lblTestPlanAvg.AutoSize = True
-        Me.lblTestPlanAvg.Location = New System.Drawing.Point(102, 93)
-        Me.lblTestPlanAvg.Name = "lblTestPlanAvg"
-        Me.lblTestPlanAvg.Size = New System.Drawing.Size(13, 13)
-        Me.lblTestPlanAvg.TabIndex = 10
-        Me.lblTestPlanAvg.Text = "0"
-        '
-        'lblTestPlanRollingAvg
-        '
-        Me.lblTestPlanRollingAvg.AutoSize = True
-        Me.lblTestPlanRollingAvg.Location = New System.Drawing.Point(102, 111)
-        Me.lblTestPlanRollingAvg.Name = "lblTestPlanRollingAvg"
-        Me.lblTestPlanRollingAvg.Size = New System.Drawing.Size(13, 13)
-        Me.lblTestPlanRollingAvg.TabIndex = 11
-        Me.lblTestPlanRollingAvg.Text = "0"
-        '
-        'lblActionRollingAvg
-        '
-        Me.lblActionRollingAvg.AutoSize = True
-        Me.lblActionRollingAvg.Location = New System.Drawing.Point(102, 111)
-        Me.lblActionRollingAvg.Name = "lblActionRollingAvg"
-        Me.lblActionRollingAvg.Size = New System.Drawing.Size(13, 13)
-        Me.lblActionRollingAvg.TabIndex = 23
-        Me.lblActionRollingAvg.Text = "0"
-        '
-        'lblActionAvg
-        '
-        Me.lblActionAvg.AutoSize = True
-        Me.lblActionAvg.Location = New System.Drawing.Point(102, 93)
-        Me.lblActionAvg.Name = "lblActionAvg"
-        Me.lblActionAvg.Size = New System.Drawing.Size(13, 13)
-        Me.lblActionAvg.TabIndex = 22
-        Me.lblActionAvg.Text = "0"
-        '
-        'lblActionMax
-        '
-        Me.lblActionMax.AutoSize = True
-        Me.lblActionMax.Location = New System.Drawing.Point(102, 75)
-        Me.lblActionMax.Name = "lblActionMax"
-        Me.lblActionMax.Size = New System.Drawing.Size(27, 13)
-        Me.lblActionMax.TabIndex = 21
-        Me.lblActionMax.Text = "N/A"
-        '
-        'lblActionMin
-        '
-        Me.lblActionMin.AutoSize = True
-        Me.lblActionMin.Location = New System.Drawing.Point(102, 57)
-        Me.lblActionMin.Name = "lblActionMin"
-        Me.lblActionMin.Size = New System.Drawing.Size(27, 13)
-        Me.lblActionMin.TabIndex = 20
-        Me.lblActionMin.Text = "N/A"
-        '
-        'lblActionTotal
-        '
-        Me.lblActionTotal.AutoSize = True
-        Me.lblActionTotal.Location = New System.Drawing.Point(102, 39)
-        Me.lblActionTotal.Name = "lblActionTotal"
-        Me.lblActionTotal.Size = New System.Drawing.Size(13, 13)
-        Me.lblActionTotal.TabIndex = 19
-        Me.lblActionTotal.Text = "0"
-        '
-        'lblActionCount
-        '
-        Me.lblActionCount.AutoSize = True
-        Me.lblActionCount.Location = New System.Drawing.Point(102, 21)
-        Me.lblActionCount.Name = "lblActionCount"
-        Me.lblActionCount.Size = New System.Drawing.Size(13, 13)
-        Me.lblActionCount.TabIndex = 18
-        Me.lblActionCount.Text = "0"
-        '
-        'Label40
-        '
-        Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(6, 111)
-        Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(90, 13)
-        Me.Label40.TabIndex = 17
-        Me.Label40.Text = "Rolling Avg Time:"
-        '
-        'Label41
-        '
-        Me.Label41.AutoSize = True
-        Me.Label41.Location = New System.Drawing.Point(41, 93)
-        Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(55, 13)
-        Me.Label41.TabIndex = 16
-        Me.Label41.Text = "Avg Time:"
-        '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(43, 57)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(53, 13)
-        Me.Label42.TabIndex = 15
-        Me.Label42.Text = "Min Time:"
-        '
-        'Label43
-        '
-        Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(40, 75)
-        Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(56, 13)
-        Me.Label43.TabIndex = 14
-        Me.Label43.Text = "Max Time:"
-        '
-        'Label44
-        '
-        Me.Label44.AutoSize = True
-        Me.Label44.Location = New System.Drawing.Point(36, 39)
-        Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(60, 13)
-        Me.Label44.TabIndex = 13
-        Me.Label44.Text = "Total Time:"
-        '
-        'Label45
-        '
-        Me.Label45.AutoSize = True
-        Me.Label45.Location = New System.Drawing.Point(58, 21)
-        Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(38, 13)
-        Me.Label45.TabIndex = 12
-        Me.Label45.Text = "Count:"
         '
         'frmMain
         '
