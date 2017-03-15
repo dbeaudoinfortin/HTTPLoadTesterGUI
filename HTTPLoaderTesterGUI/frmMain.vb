@@ -102,6 +102,8 @@ Public Class frmMain
         TimerStats.Enabled = False
         crtThreads.Series(0).Points.Clear()
         crtThreads.Series(0).Points.AddXY(DateTime.Now.ToOADate, 0)
+        crtActions.Series(0).Points.Clear()
+        crtTestPlan.Series(0).Points.Clear()
     End Sub
 
     Private Sub ReloadFromSettings()
@@ -558,6 +560,9 @@ Public Class frmMain
 
         javaCommand.Append(""" -threadCount ")
         javaCommand.Append(GlobalSettings.PlayerThreadCount)
+        javaCommand.Append(" -keepAlive ")
+        'javaCommand.Append(" -restPort ")
+        'javaCommand.Append(CInt(Math.Ceiling(Rnd() * 998)) + 5001)
         javaCommand.Append(" -staggerTime ")
         javaCommand.Append(GlobalSettings.PlayerStaggerTime)
 
@@ -602,8 +607,9 @@ Public Class frmMain
         PlayerProcess.StartInfo.CreateNoWindow = False
         PlayerProcess.StartInfo.RedirectStandardOutput = False
         PlayerProcess.StartInfo.RedirectStandardError = False
-        PlayerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Maximized
+        PlayerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal
         PlayerProcess.StartInfo.Arguments = JavaCommandString
+
         If Environment.OSVersion.Version.Major >= 6 Then
             PlayerProcess.StartInfo.Verb = "runas"
         End If
@@ -855,15 +861,66 @@ Public Class frmMain
     End Sub
 
     Private Sub TimerStats_Tick(sender As Object, e As EventArgs) Handles TimerStats.Tick
-        If Not StatsClient.IsRunning Then Return
+        Task.Run(Sub()
+                     Try
+                         If Not StatsClient.IsRunning Then Return
 
-        'Update thread chart
-        Dim ThreadCount As Integer = StatsClient.GetPlayerThreadCount
-        crtThreads.Series(0).Points.AddXY(DateTime.Now.ToOADate, ThreadCount)
+                         'Update Thread Stats
+                         Dim ThreadCount As Integer = StatsClient.GetPlayerThreadCount
 
-    End Sub
+                         Me.Invoke(Sub()
+                                       crtThreads.Series(0).Points.AddXY(Date.Now.ToOADate, ThreadCount)
+                                   End Sub)
 
-    Private Sub StatsSplitContainer_Panel2_Paint(sender As Object, e As PaintEventArgs) Handles StatsSplitContainer.Panel2.Paint
+                         'Update Action Stats
+                         Dim ActionTimeStats As TimeStats = StatsClient.GetActionStats
+
+                         Me.Invoke(Sub()
+                                       If ActionTimeStats.count > 0 Then
+                                           lblActionMin.Text = (ActionTimeStats.min / 1000).ToString
+                                           lblActionMax.Text = (ActionTimeStats.max / 1000).ToString
+                                           If ActionTimeStats.lastUpdated > StatsClient.ActionStatsLastUpdate Then
+                                               StatsClient.ActionStatsLastUpdate = ActionTimeStats.lastUpdated
+                                               crtActions.Series(0).Points.AddXY(ActionTimeStats.lastUpdated.ToOADate, ActionTimeStats.rollingAverage)
+                                           End If
+                                       Else
+                                           lblActionMin.Text = "N/A"
+                                           lblActionMax.Text = "N/A"
+                                       End If
+
+                                       lblActionTotal.Text = (ActionTimeStats.total / 1000).ToString
+                                       lblActionCount.Text = ActionTimeStats.count.ToString
+                                       lblActionAvg.Text = (ActionTimeStats.average / 1000).ToString
+                                       lblActionRollingAvg.Text = (ActionTimeStats.rollingAverage / 1000).ToString
+                                   End Sub)
+
+                         'Update Test Plan Stats
+                         Dim TestPlanTimeStats As TimeStats = StatsClient.GetTestPlanStats
+                         Me.Invoke(Sub()
+                                       If TestPlanTimeStats.count > 0 Then
+                                           lblTestPlanMin.Text = (TestPlanTimeStats.min / 1000).ToString
+                                           lblTestPlanMax.Text = (TestPlanTimeStats.max / 1000).ToString
+                                           If TestPlanTimeStats.lastUpdated > StatsClient.TestPlanStatsLastUpdate Then
+                                               StatsClient.TestPlanStatsLastUpdate = TestPlanTimeStats.lastUpdated
+                                               crtTestPlan.Series(0).Points.AddXY(TestPlanTimeStats.lastUpdated.ToOADate, TestPlanTimeStats.rollingAverage)
+                                           End If
+                                       Else
+                                           lblTestPlanMin.Text = "N/A"
+                                           lblTestPlanMax.Text = "N/A"
+                                       End If
+
+                                       lblTestPlanTotal.Text = (TestPlanTimeStats.total / 1000).ToString
+                                       lblTestPlanCount.Text = TestPlanTimeStats.count.ToString
+                                       lblTestPlanAvg.Text = (TestPlanTimeStats.average / 1000).ToString
+                                       lblTestPlanRollingAvg.Text = (TestPlanTimeStats.rollingAverage / 1000).ToString
+                                   End Sub)
+                     Catch ex As Exception
+                         'Do nothing in this case, its just monitoring
+                     End Try
+                 End Sub
+            )
+
+
 
     End Sub
 End Class

@@ -8,7 +8,6 @@ Module App
     Public GlobalSettings As Settings = Settings.Load(Settings.settingsPath)
     Public EditorTestPlan As List(Of HTTPAction)
 
-
     Public Sub SaveEditorTestPlan()
         Dim testPlan As New StringBuilder()
         For Each action As HTTPAction In EditorTestPlan
