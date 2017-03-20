@@ -36,6 +36,7 @@ Public Class Settings
     Public PlayerPauseOnStart As Boolean
     Public PlayerOverrideHTTPS As Boolean
     Public PlayerApplySubs As Boolean
+    Public PlayerCookieWhitelist As String
 
     Public EditorTestPlanFile As String
 

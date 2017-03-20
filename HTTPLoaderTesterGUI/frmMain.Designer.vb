@@ -55,6 +55,8 @@ Partial Class frmMain
         Me.ExportSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tcMain = New System.Windows.Forms.TabControl()
         Me.RecorderTab = New System.Windows.Forms.TabPage()
+        Me.cbOverrideHostHeader = New System.Windows.Forms.CheckBox()
+        Me.cbRewriteUrls = New System.Windows.Forms.CheckBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.txtRecorderHttpsPort = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -79,6 +81,8 @@ Partial Class frmMain
         Me.txtRecorderTestPlanDir = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PlayerTab = New System.Windows.Forms.TabPage()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.txtCookieWhiteList = New System.Windows.Forms.TextBox()
         Me.cbPlayerApplySubs = New System.Windows.Forms.CheckBox()
         Me.cbPlayerCalcActionDelay = New System.Windows.Forms.CheckBox()
         Me.cbPlayerOverrideHTTPS = New System.Windows.Forms.CheckBox()
@@ -173,8 +177,6 @@ Partial Class frmMain
         Me.ttGeneral = New System.Windows.Forms.ToolTip(Me.components)
         Me.TimerStats = New System.Windows.Forms.Timer(Me.components)
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.cbRewriteUrls = New System.Windows.Forms.CheckBox()
-        Me.cbOverrideHostHeader = New System.Windows.Forms.CheckBox()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.tcMain.SuspendLayout()
@@ -349,6 +351,29 @@ Partial Class frmMain
         Me.RecorderTab.TabIndex = 0
         Me.RecorderTab.Text = "Recorder"
         Me.RecorderTab.UseVisualStyleBackColor = True
+        '
+        'cbOverrideHostHeader
+        '
+        Me.cbOverrideHostHeader.AutoSize = True
+        Me.cbOverrideHostHeader.Location = New System.Drawing.Point(437, 426)
+        Me.cbOverrideHostHeader.Name = "cbOverrideHostHeader"
+        Me.cbOverrideHostHeader.Size = New System.Drawing.Size(133, 17)
+        Me.cbOverrideHostHeader.TabIndex = 39
+        Me.cbOverrideHostHeader.Text = "Override 'Host' Header"
+        Me.ttGeneral.SetToolTip(Me.cbOverrideHostHeader, "Overrides the 'Host' header on every request to match the forwarding host")
+        Me.cbOverrideHostHeader.UseVisualStyleBackColor = True
+        '
+        'cbRewriteUrls
+        '
+        Me.cbRewriteUrls.AutoSize = True
+        Me.cbRewriteUrls.Location = New System.Drawing.Point(339, 426)
+        Me.cbRewriteUrls.Name = "cbRewriteUrls"
+        Me.cbRewriteUrls.Size = New System.Drawing.Size(92, 17)
+        Me.cbRewriteUrls.TabIndex = 38
+        Me.cbRewriteUrls.Text = "Rewrite URLs"
+        Me.ttGeneral.SetToolTip(Me.cbRewriteUrls, "Inspects the response of every HTTP request and attempts to rewrite URLs to point" &
+        " back to the proxy.")
+        Me.cbRewriteUrls.UseVisualStyleBackColor = True
         '
         'Label26
         '
@@ -608,6 +633,8 @@ Partial Class frmMain
         '
         'PlayerTab
         '
+        Me.PlayerTab.Controls.Add(Me.Label34)
+        Me.PlayerTab.Controls.Add(Me.txtCookieWhiteList)
         Me.PlayerTab.Controls.Add(Me.cbPlayerApplySubs)
         Me.PlayerTab.Controls.Add(Me.cbPlayerCalcActionDelay)
         Me.PlayerTab.Controls.Add(Me.cbPlayerOverrideHTTPS)
@@ -640,10 +667,31 @@ Partial Class frmMain
         Me.PlayerTab.Text = "Player"
         Me.PlayerTab.UseVisualStyleBackColor = True
         '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(72, 217)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(83, 13)
+        Me.Label34.TabIndex = 38
+        Me.Label34.Text = "Cookie Whitelist"
+        Me.Label34.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtCookieWhiteList
+        '
+        Me.txtCookieWhiteList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtCookieWhiteList.Location = New System.Drawing.Point(161, 214)
+        Me.txtCookieWhiteList.Name = "txtCookieWhiteList"
+        Me.txtCookieWhiteList.Size = New System.Drawing.Size(649, 20)
+        Me.txtCookieWhiteList.TabIndex = 37
+        Me.ttGeneral.SetToolTip(Me.txtCookieWhiteList, "List of comma-seperated Cookie names that will used from the test plan. All other" &
+        " cookies will be discarded.")
+        '
         'cbPlayerApplySubs
         '
         Me.cbPlayerApplySubs.AutoSize = True
-        Me.cbPlayerApplySubs.Location = New System.Drawing.Point(441, 214)
+        Me.cbPlayerApplySubs.Location = New System.Drawing.Point(441, 242)
         Me.cbPlayerApplySubs.Name = "cbPlayerApplySubs"
         Me.cbPlayerApplySubs.Size = New System.Drawing.Size(115, 17)
         Me.cbPlayerApplySubs.TabIndex = 15
@@ -776,7 +824,7 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerHTTPPort.Location = New System.Drawing.Point(161, 110)
         Me.txtPlayerHTTPPort.Name = "txtPlayerHTTPPort"
-        Me.txtPlayerHTTPPort.Size = New System.Drawing.Size(570, 20)
+        Me.txtPlayerHTTPPort.Size = New System.Drawing.Size(649, 20)
         Me.txtPlayerHTTPPort.TabIndex = 6
         Me.txtPlayerHTTPPort.Text = "80"
         Me.ttGeneral.SetToolTip(Me.txtPlayerHTTPPort, "Port to use for HTTP requests.")
@@ -797,7 +845,7 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerHost.Location = New System.Drawing.Point(161, 84)
         Me.txtPlayerHost.Name = "txtPlayerHost"
-        Me.txtPlayerHost.Size = New System.Drawing.Size(570, 20)
+        Me.txtPlayerHost.Size = New System.Drawing.Size(649, 20)
         Me.txtPlayerHost.TabIndex = 5
         Me.txtPlayerHost.Text = "localhost"
         Me.ttGeneral.SetToolTip(Me.txtPlayerHost, "The target host.")
@@ -818,7 +866,7 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerStaggerTime.Location = New System.Drawing.Point(161, 58)
         Me.txtPlayerStaggerTime.Name = "txtPlayerStaggerTime"
-        Me.txtPlayerStaggerTime.Size = New System.Drawing.Size(570, 20)
+        Me.txtPlayerStaggerTime.Size = New System.Drawing.Size(649, 20)
         Me.txtPlayerStaggerTime.TabIndex = 4
         Me.txtPlayerStaggerTime.Text = "5000"
         Me.ttGeneral.SetToolTip(Me.txtPlayerStaggerTime, "The average time offset between the start of each subsequent thread (staggered st" &
@@ -840,7 +888,7 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerThreadCount.Location = New System.Drawing.Point(161, 32)
         Me.txtPlayerThreadCount.Name = "txtPlayerThreadCount"
-        Me.txtPlayerThreadCount.Size = New System.Drawing.Size(570, 20)
+        Me.txtPlayerThreadCount.Size = New System.Drawing.Size(649, 20)
         Me.txtPlayerThreadCount.TabIndex = 3
         Me.txtPlayerThreadCount.Text = "3"
         Me.ttGeneral.SetToolTip(Me.txtPlayerThreadCount, "The total number of threads to run. Each thread will repeat the test plan at leas" &
@@ -849,7 +897,7 @@ Partial Class frmMain
         'cbPlayerJConsoleStart
         '
         Me.cbPlayerJConsoleStart.AutoSize = True
-        Me.cbPlayerJConsoleStart.Location = New System.Drawing.Point(275, 214)
+        Me.cbPlayerJConsoleStart.Location = New System.Drawing.Point(275, 242)
         Me.cbPlayerJConsoleStart.Name = "cbPlayerJConsoleStart"
         Me.cbPlayerJConsoleStart.Size = New System.Drawing.Size(160, 17)
         Me.cbPlayerJConsoleStart.TabIndex = 14
@@ -860,7 +908,7 @@ Partial Class frmMain
         'cbPlayerPause
         '
         Me.cbPlayerPause.AutoSize = True
-        Me.cbPlayerPause.Location = New System.Drawing.Point(161, 214)
+        Me.cbPlayerPause.Location = New System.Drawing.Point(161, 242)
         Me.cbPlayerPause.Name = "cbPlayerPause"
         Me.cbPlayerPause.Size = New System.Drawing.Size(108, 17)
         Me.cbPlayerPause.TabIndex = 13
@@ -876,19 +924,19 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerConsole.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPlayerConsole.Location = New System.Drawing.Point(6, 272)
+        Me.txtPlayerConsole.Location = New System.Drawing.Point(6, 300)
         Me.txtPlayerConsole.Multiline = True
         Me.txtPlayerConsole.Name = "txtPlayerConsole"
         Me.txtPlayerConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txtPlayerConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtPlayerConsole.Size = New System.Drawing.Size(806, 371)
+        Me.txtPlayerConsole.Size = New System.Drawing.Size(806, 343)
         Me.txtPlayerConsole.TabIndex = 17
         '
         'cmdPlayerLaunch
         '
         Me.cmdPlayerLaunch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdPlayerLaunch.Location = New System.Drawing.Point(6, 237)
+        Me.cmdPlayerLaunch.Location = New System.Drawing.Point(6, 265)
         Me.cmdPlayerLaunch.Name = "cmdPlayerLaunch"
         Me.cmdPlayerLaunch.Size = New System.Drawing.Size(806, 29)
         Me.cmdPlayerLaunch.TabIndex = 16
@@ -1733,29 +1781,6 @@ Partial Class frmMain
         Me.SplitContainer2.SplitterDistance = 69
         Me.SplitContainer2.TabIndex = 0
         '
-        'cbRewriteUrls
-        '
-        Me.cbRewriteUrls.AutoSize = True
-        Me.cbRewriteUrls.Location = New System.Drawing.Point(339, 426)
-        Me.cbRewriteUrls.Name = "cbRewriteUrls"
-        Me.cbRewriteUrls.Size = New System.Drawing.Size(92, 17)
-        Me.cbRewriteUrls.TabIndex = 38
-        Me.cbRewriteUrls.Text = "Rewrite URLs"
-        Me.ttGeneral.SetToolTip(Me.cbRewriteUrls, "Inspects the response of every HTTP request and attempts to rewrite URLs to point" &
-        " back to the proxy.")
-        Me.cbRewriteUrls.UseVisualStyleBackColor = True
-        '
-        'cbOverrideHostHeader
-        '
-        Me.cbOverrideHostHeader.AutoSize = True
-        Me.cbOverrideHostHeader.Location = New System.Drawing.Point(437, 426)
-        Me.cbOverrideHostHeader.Name = "cbOverrideHostHeader"
-        Me.cbOverrideHostHeader.Size = New System.Drawing.Size(133, 17)
-        Me.cbOverrideHostHeader.TabIndex = 39
-        Me.cbOverrideHostHeader.Text = "Override 'Host' Header"
-        Me.ttGeneral.SetToolTip(Me.cbOverrideHostHeader, "Overrides the 'Host' header on every request to match the forwarding host")
-        Me.cbOverrideHostHeader.UseVisualStyleBackColor = True
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1945,4 +1970,6 @@ Partial Class frmMain
     Friend WithEvents Label45 As Label
     Friend WithEvents cbOverrideHostHeader As CheckBox
     Friend WithEvents cbRewriteUrls As CheckBox
+    Friend WithEvents Label34 As Label
+    Friend WithEvents txtCookieWhiteList As TextBox
 End Class

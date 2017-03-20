@@ -132,6 +132,7 @@ Public Class frmMain
         txtPlayerHost.Text = GlobalSettings.PlayerHost
         txtPlayerHTTPPort.Text = GlobalSettings.PlayerHTTPPort
         txtPlayerHTTPSPort.Text = GlobalSettings.PlayerHTTPSPort
+        txtCookieWhiteList.Text = GlobalSettings.PlayerCookieWhitelist
         cbPlayerPause.Checked = GlobalSettings.PlayerPauseOnStart
         cbPlayerOverrideHTTPS.Checked = GlobalSettings.PlayerOverrideHTTPS
         cbPlayerApplySubs.Checked = GlobalSettings.PlayerApplySubs
@@ -570,8 +571,7 @@ Public Class frmMain
 
         javaCommand.Append(""" -threadCount ")
         javaCommand.Append(GlobalSettings.PlayerThreadCount)
-        javaCommand.Append(" -keepAlive")
-        javaCommand.Append(" -staggerTime")
+        javaCommand.Append(" -staggerTime ")
         javaCommand.Append(GlobalSettings.PlayerStaggerTime)
 
         If (Not GlobalSettings.PlayerCalcMinRunTime) Then
@@ -591,6 +591,11 @@ Public Class frmMain
         javaCommand.Append(" -httpsPort ")
         javaCommand.Append(GlobalSettings.PlayerHTTPSPort)
 
+        If GlobalSettings.PlayerCookieWhitelist IsNot Nothing AndAlso GlobalSettings.PlayerCookieWhitelist <> "" Then
+            javaCommand.Append(" -cookieWhiteList ")
+            javaCommand.Append(GlobalSettings.PlayerCookieWhitelist)
+        End If
+
         If GlobalSettings.PlayerPauseOnStart Then
             javaCommand.Append(" -pause")
         End If
@@ -602,6 +607,8 @@ Public Class frmMain
         If GlobalSettings.PlayerApplySubs Then
             javaCommand.Append(" -applySubs")
         End If
+
+        javaCommand.Append(" -keepAlive")
 
         javaCommand.Append("""")
         Return javaCommand.ToString
@@ -940,5 +947,13 @@ Public Class frmMain
     Private Sub cbOverrideHostHeader_CheckedChanged(sender As Object, e As EventArgs)
         GlobalSettings.RecorderOverrideHostHeader = cbOverrideHostHeader.Checked
         GlobalSettings.Save()
+    End Sub
+
+
+    Private Sub txtCookieWhiteList_LostFocus(sender As Object, e As EventArgs) Handles txtCookieWhiteList.LostFocus
+        If GlobalSettings.PlayerCookieWhitelist <> txtCookieWhiteList.Text Then
+            GlobalSettings.PlayerCookieWhitelist = txtCookieWhiteList.Text
+            GlobalSettings.Save()
+        End If
     End Sub
 End Class
