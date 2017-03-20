@@ -115,6 +115,8 @@ Public Class frmMain
         txtRecorderTestPlanDir.Text = GlobalSettings.RecorderTestDirectory
         cbRecorderStart.Checked = GlobalSettings.RecorderStartImmediately
         cbRecorderJConsoleStart.Checked = GlobalSettings.RecorderStartJConsole
+        cbOverrideHostHeader.Checked = GlobalSettings.RecorderOverrideHostHeader
+        cbRewriteUrls.Checked = GlobalSettings.RecorderRewriteUrls
         txtRecorderPathSub.Text = GlobalSettings.RecorderPathSubstitutions
         txtRecorderQuerySub.Text = GlobalSettings.RecorderQuerySubstitutions
         txtRecorderBodySub.Text = GlobalSettings.RecorderBodySubstitutions
@@ -284,7 +286,15 @@ Public Class frmMain
         javaCommand.Append(GlobalSettings.RecorderForwardingHTTPsPort)
 
         If GlobalSettings.RecorderStartImmediately Then
-            javaCommand.Append(" -start ")
+            javaCommand.Append(" -start")
+        End If
+
+        If GlobalSettings.RecorderOverrideHostHeader Then
+            javaCommand.Append(" -overrideHostHeader")
+        End If
+
+        If GlobalSettings.RecorderRewriteUrls Then
+            javaCommand.Append(" -rewriteUrls")
         End If
 
         If GlobalSettings.RecorderPathSubstitutions IsNot Nothing And GlobalSettings.RecorderPathSubstitutions <> "" Then
@@ -560,10 +570,8 @@ Public Class frmMain
 
         javaCommand.Append(""" -threadCount ")
         javaCommand.Append(GlobalSettings.PlayerThreadCount)
-        javaCommand.Append(" -keepAlive ")
-        'javaCommand.Append(" -restPort ")
-        'javaCommand.Append(CInt(Math.Ceiling(Rnd() * 998)) + 5001)
-        javaCommand.Append(" -staggerTime ")
+        javaCommand.Append(" -keepAlive")
+        javaCommand.Append(" -staggerTime")
         javaCommand.Append(GlobalSettings.PlayerStaggerTime)
 
         If (Not GlobalSettings.PlayerCalcMinRunTime) Then
@@ -584,15 +592,15 @@ Public Class frmMain
         javaCommand.Append(GlobalSettings.PlayerHTTPSPort)
 
         If GlobalSettings.PlayerPauseOnStart Then
-            javaCommand.Append(" -pause ")
+            javaCommand.Append(" -pause")
         End If
 
         If GlobalSettings.PlayerOverrideHTTPS Then
-            javaCommand.Append(" -overrideHttps ")
+            javaCommand.Append(" -overrideHttps")
         End If
 
         If GlobalSettings.PlayerApplySubs Then
-            javaCommand.Append(" -applySubs ")
+            javaCommand.Append(" -applySubs")
         End If
 
         javaCommand.Append("""")
@@ -922,5 +930,15 @@ Public Class frmMain
 
 
 
+    End Sub
+
+    Private Sub cbRewriteUrls_CheckedChanged(sender As Object, e As EventArgs)
+        GlobalSettings.RecorderRewriteUrls = cbRewriteUrls.Checked
+        GlobalSettings.Save()
+    End Sub
+
+    Private Sub cbOverrideHostHeader_CheckedChanged(sender As Object, e As EventArgs)
+        GlobalSettings.RecorderOverrideHostHeader = cbOverrideHostHeader.Checked
+        GlobalSettings.Save()
     End Sub
 End Class

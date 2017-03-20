@@ -18,6 +18,8 @@ Public Class Settings
     Public RecorderPathSubstitutions As String
     Public RecorderQuerySubstitutions As String
     Public RecorderBodySubstitutions As String
+    Public RecorderRewriteUrls As Boolean
+    Public RecorderOverrideHostHeader As Boolean
 
     Public PlayerMaxHeap As String
     Public PlayerStartJConsole As Boolean
@@ -60,6 +62,9 @@ Public Class Settings
 
         RecorderStartImmediately = False
         RecorderStartJConsole = True
+        RecorderOverrideHostHeader = False
+        RecorderRewriteUrls = False
+
         PlayerStartJConsole = True
 
         PlayerTestPlanFile = "C:\"

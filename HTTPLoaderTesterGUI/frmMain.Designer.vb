@@ -23,21 +23,21 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim DataPoint7 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
-        Dim DataPoint8 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
-        Dim Title4 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
-        Dim ChartArea5 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim DataPoint9 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
-        Dim DataPoint10 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
-        Dim Title5 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
-        Dim ChartArea6 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim DataPoint11 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
-        Dim DataPoint12 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
-        Dim Title6 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint1 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
+        Dim DataPoint2 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
+        Dim Title1 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint3 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
+        Dim DataPoint4 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
+        Dim Title2 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
+        Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint5 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
+        Dim DataPoint6 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
+        Dim Title3 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.tsRecorderStatus = New System.Windows.Forms.ToolStripStatusLabel()
@@ -173,6 +173,8 @@ Partial Class frmMain
         Me.ttGeneral = New System.Windows.Forms.ToolTip(Me.components)
         Me.TimerStats = New System.Windows.Forms.Timer(Me.components)
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.cbRewriteUrls = New System.Windows.Forms.CheckBox()
+        Me.cbOverrideHostHeader = New System.Windows.Forms.CheckBox()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.tcMain.SuspendLayout()
@@ -315,6 +317,8 @@ Partial Class frmMain
         '
         'RecorderTab
         '
+        Me.RecorderTab.Controls.Add(Me.cbOverrideHostHeader)
+        Me.RecorderTab.Controls.Add(Me.cbRewriteUrls)
         Me.RecorderTab.Controls.Add(Me.Label26)
         Me.RecorderTab.Controls.Add(Me.txtRecorderHttpsPort)
         Me.RecorderTab.Controls.Add(Me.Label10)
@@ -961,36 +965,36 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.crtThreads.BorderlineColor = System.Drawing.Color.Black
         Me.crtThreads.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
-        ChartArea4.Area3DStyle.Inclination = 0
-        ChartArea4.Area3DStyle.IsRightAngleAxes = False
-        ChartArea4.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
-        ChartArea4.Area3DStyle.Rotation = 0
-        ChartArea4.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea4.AxisX.IsMarginVisible = False
-        ChartArea4.AxisX.IsStartedFromZero = False
-        ChartArea4.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea4.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea4.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea4.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea4.Name = "ChartArea"
-        Me.crtThreads.ChartAreas.Add(ChartArea4)
+        ChartArea1.Area3DStyle.Inclination = 0
+        ChartArea1.Area3DStyle.IsRightAngleAxes = False
+        ChartArea1.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
+        ChartArea1.Area3DStyle.Rotation = 0
+        ChartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea1.AxisX.IsMarginVisible = False
+        ChartArea1.AxisX.IsStartedFromZero = False
+        ChartArea1.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea1.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea1.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea1.Name = "ChartArea"
+        Me.crtThreads.ChartAreas.Add(ChartArea1)
         Me.crtThreads.Location = New System.Drawing.Point(3, 3)
         Me.crtThreads.Name = "crtThreads"
         Me.crtThreads.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
-        Series4.ChartArea = "ChartArea"
-        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
-        Series4.Name = "Series"
-        Series4.Points.Add(DataPoint7)
-        Series4.Points.Add(DataPoint8)
-        Series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
-        Series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
-        Me.crtThreads.Series.Add(Series4)
+        Series1.ChartArea = "ChartArea"
+        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
+        Series1.Name = "Series"
+        Series1.Points.Add(DataPoint1)
+        Series1.Points.Add(DataPoint2)
+        Series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
+        Me.crtThreads.Series.Add(Series1)
         Me.crtThreads.Size = New System.Drawing.Size(812, 194)
         Me.crtThreads.TabIndex = 0
-        Title4.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Title4.Name = "Title"
-        Title4.Text = "Running Thread Count"
-        Me.crtThreads.Titles.Add(Title4)
+        Title1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Title1.Name = "Title"
+        Title1.Text = "Running Thread Count"
+        Me.crtThreads.Titles.Add(Title1)
         '
         'StatsSubSplitContainer
         '
@@ -1154,36 +1158,36 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.crtTestPlan.BorderlineColor = System.Drawing.Color.Black
         Me.crtTestPlan.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
-        ChartArea5.Area3DStyle.Inclination = 0
-        ChartArea5.Area3DStyle.IsRightAngleAxes = False
-        ChartArea5.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
-        ChartArea5.Area3DStyle.Rotation = 0
-        ChartArea5.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea5.AxisX.IsMarginVisible = False
-        ChartArea5.AxisX.IsStartedFromZero = False
-        ChartArea5.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea5.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea5.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea5.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea5.Name = "ChartArea"
-        Me.crtTestPlan.ChartAreas.Add(ChartArea5)
+        ChartArea2.Area3DStyle.Inclination = 0
+        ChartArea2.Area3DStyle.IsRightAngleAxes = False
+        ChartArea2.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
+        ChartArea2.Area3DStyle.Rotation = 0
+        ChartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea2.AxisX.IsMarginVisible = False
+        ChartArea2.AxisX.IsStartedFromZero = False
+        ChartArea2.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea2.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea2.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea2.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea2.Name = "ChartArea"
+        Me.crtTestPlan.ChartAreas.Add(ChartArea2)
         Me.crtTestPlan.Location = New System.Drawing.Point(3, 3)
         Me.crtTestPlan.Name = "crtTestPlan"
         Me.crtTestPlan.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
-        Series5.ChartArea = "ChartArea"
-        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
-        Series5.Name = "Series"
-        Series5.Points.Add(DataPoint9)
-        Series5.Points.Add(DataPoint10)
-        Series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
-        Series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
-        Me.crtTestPlan.Series.Add(Series5)
+        Series2.ChartArea = "ChartArea"
+        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
+        Series2.Name = "Series"
+        Series2.Points.Add(DataPoint3)
+        Series2.Points.Add(DataPoint4)
+        Series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
+        Me.crtTestPlan.Series.Add(Series2)
         Me.crtTestPlan.Size = New System.Drawing.Size(593, 214)
         Me.crtTestPlan.TabIndex = 1
-        Title5.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Title5.Name = "Title"
-        Title5.Text = "Test Plan - Rolling Average Duration"
-        Me.crtTestPlan.Titles.Add(Title5)
+        Title2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Title2.Name = "Title"
+        Title2.Text = "Test Plan - Rolling Average Duration"
+        Me.crtTestPlan.Titles.Add(Title2)
         '
         'gbActionStats
         '
@@ -1323,36 +1327,36 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.crtActions.BorderlineColor = System.Drawing.Color.Black
         Me.crtActions.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
-        ChartArea6.Area3DStyle.Inclination = 0
-        ChartArea6.Area3DStyle.IsRightAngleAxes = False
-        ChartArea6.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
-        ChartArea6.Area3DStyle.Rotation = 0
-        ChartArea6.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea6.AxisX.IsMarginVisible = False
-        ChartArea6.AxisX.IsStartedFromZero = False
-        ChartArea6.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea6.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea6.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea6.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
-        ChartArea6.Name = "ChartArea"
-        Me.crtActions.ChartAreas.Add(ChartArea6)
+        ChartArea3.Area3DStyle.Inclination = 0
+        ChartArea3.Area3DStyle.IsRightAngleAxes = False
+        ChartArea3.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
+        ChartArea3.Area3DStyle.Rotation = 0
+        ChartArea3.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea3.AxisX.IsMarginVisible = False
+        ChartArea3.AxisX.IsStartedFromZero = False
+        ChartArea3.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea3.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea3.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ChartArea3.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea3.Name = "ChartArea"
+        Me.crtActions.ChartAreas.Add(ChartArea3)
         Me.crtActions.Location = New System.Drawing.Point(3, 3)
         Me.crtActions.Name = "crtActions"
         Me.crtActions.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
-        Series6.ChartArea = "ChartArea"
-        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
-        Series6.Name = "Series"
-        Series6.Points.Add(DataPoint11)
-        Series6.Points.Add(DataPoint12)
-        Series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
-        Series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
-        Me.crtActions.Series.Add(Series6)
+        Series3.ChartArea = "ChartArea"
+        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
+        Series3.Name = "Series"
+        Series3.Points.Add(DataPoint5)
+        Series3.Points.Add(DataPoint6)
+        Series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
+        Me.crtActions.Series.Add(Series3)
         Me.crtActions.Size = New System.Drawing.Size(593, 213)
         Me.crtActions.TabIndex = 1
-        Title6.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Title6.Name = "Title"
-        Title6.Text = "Actions - Rolling Average Duration"
-        Me.crtActions.Titles.Add(Title6)
+        Title3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Title3.Name = "Title"
+        Title3.Text = "Actions - Rolling Average Duration"
+        Me.crtActions.Titles.Add(Title3)
         '
         'EditorTab
         '
@@ -1729,6 +1733,29 @@ Partial Class frmMain
         Me.SplitContainer2.SplitterDistance = 69
         Me.SplitContainer2.TabIndex = 0
         '
+        'cbRewriteUrls
+        '
+        Me.cbRewriteUrls.AutoSize = True
+        Me.cbRewriteUrls.Location = New System.Drawing.Point(339, 426)
+        Me.cbRewriteUrls.Name = "cbRewriteUrls"
+        Me.cbRewriteUrls.Size = New System.Drawing.Size(92, 17)
+        Me.cbRewriteUrls.TabIndex = 38
+        Me.cbRewriteUrls.Text = "Rewrite URLs"
+        Me.ttGeneral.SetToolTip(Me.cbRewriteUrls, "Inspects the response of every HTTP request and attempts to rewrite URLs to point" &
+        " back to the proxy.")
+        Me.cbRewriteUrls.UseVisualStyleBackColor = True
+        '
+        'cbOverrideHostHeader
+        '
+        Me.cbOverrideHostHeader.AutoSize = True
+        Me.cbOverrideHostHeader.Location = New System.Drawing.Point(437, 426)
+        Me.cbOverrideHostHeader.Name = "cbOverrideHostHeader"
+        Me.cbOverrideHostHeader.Size = New System.Drawing.Size(133, 17)
+        Me.cbOverrideHostHeader.TabIndex = 39
+        Me.cbOverrideHostHeader.Text = "Override 'Host' Header"
+        Me.ttGeneral.SetToolTip(Me.cbOverrideHostHeader, "Overrides the 'Host' header on every request to match the forwarding host")
+        Me.cbOverrideHostHeader.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1916,4 +1943,6 @@ Partial Class frmMain
     Friend WithEvents Label43 As Label
     Friend WithEvents Label44 As Label
     Friend WithEvents Label45 As Label
+    Friend WithEvents cbOverrideHostHeader As CheckBox
+    Friend WithEvents cbRewriteUrls As CheckBox
 End Class
