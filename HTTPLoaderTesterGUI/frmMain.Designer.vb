@@ -59,12 +59,8 @@ Partial Class frmMain
         Me.cbRewriteUrls = New System.Windows.Forms.CheckBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.txtRecorderHttpsPort = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtRecorderBodySub = New System.Windows.Forms.TextBox()
-        Me.txtRecorderQuerySub = New System.Windows.Forms.TextBox()
-        Me.txtRecorderPathSub = New System.Windows.Forms.TextBox()
+        Me.txtRecorderFixedSub = New System.Windows.Forms.TextBox()
         Me.cbRecorderJConsoleStart = New System.Windows.Forms.CheckBox()
         Me.cbRecorderStart = New System.Windows.Forms.CheckBox()
         Me.txtRecorderConsole = New System.Windows.Forms.TextBox()
@@ -81,8 +77,11 @@ Partial Class frmMain
         Me.txtRecorderTestPlanDir = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PlayerTab = New System.Windows.Forms.TabPage()
+        Me.cbPlayerShareConnections = New System.Windows.Forms.CheckBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtPlayerVariableSubs = New System.Windows.Forms.TextBox()
         Me.Label34 = New System.Windows.Forms.Label()
-        Me.txtCookieWhiteList = New System.Windows.Forms.TextBox()
+        Me.txtPlayerCookieWhiteList = New System.Windows.Forms.TextBox()
         Me.cbPlayerApplySubs = New System.Windows.Forms.CheckBox()
         Me.cbPlayerCalcActionDelay = New System.Windows.Forms.CheckBox()
         Me.cbPlayerOverrideHTTPS = New System.Windows.Forms.CheckBox()
@@ -112,20 +111,7 @@ Partial Class frmMain
         Me.StatsSplitContainer = New System.Windows.Forms.SplitContainer()
         Me.crtThreads = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.StatsSubSplitContainer = New System.Windows.Forms.SplitContainer()
-        Me.gbTestPlanStats = New System.Windows.Forms.GroupBox()
-        Me.lblTestPlanRollingAvg = New System.Windows.Forms.Label()
-        Me.lblTestPlanAvg = New System.Windows.Forms.Label()
-        Me.lblTestPlanMax = New System.Windows.Forms.Label()
-        Me.lblTestPlanMin = New System.Windows.Forms.Label()
-        Me.lblTestPlanTotal = New System.Windows.Forms.Label()
-        Me.lblTestPlanCount = New System.Windows.Forms.Label()
-        Me.Label33 = New System.Windows.Forms.Label()
-        Me.Label32 = New System.Windows.Forms.Label()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label28 = New System.Windows.Forms.Label()
-        Me.crtTestPlan = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.crtActions = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.gbActionStats = New System.Windows.Forms.GroupBox()
         Me.lblActionRollingAvg = New System.Windows.Forms.Label()
         Me.lblActionAvg = New System.Windows.Forms.Label()
@@ -139,12 +125,26 @@ Partial Class frmMain
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Label45 = New System.Windows.Forms.Label()
-        Me.crtActions = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.crtTestPlan = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.gbTestPlanStats = New System.Windows.Forms.GroupBox()
+        Me.lblTestPlanRollingAvg = New System.Windows.Forms.Label()
+        Me.lblTestPlanAvg = New System.Windows.Forms.Label()
+        Me.lblTestPlanMax = New System.Windows.Forms.Label()
+        Me.lblTestPlanMin = New System.Windows.Forms.Label()
+        Me.lblTestPlanTotal = New System.Windows.Forms.Label()
+        Me.lblTestPlanCount = New System.Windows.Forms.Label()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
         Me.EditorTab = New System.Windows.Forms.TabPage()
         Me.EditorSplitContainer = New System.Windows.Forms.SplitContainer()
         Me.cmdDeleteActions = New System.Windows.Forms.Button()
         Me.lbActions = New System.Windows.Forms.CheckedListBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cbActionSubstitutions = New System.Windows.Forms.CheckBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.txtActionContentType = New System.Windows.Forms.TextBox()
         Me.dgActionHeaders = New System.Windows.Forms.DataGridView()
@@ -192,10 +192,10 @@ Partial Class frmMain
         Me.StatsSubSplitContainer.Panel1.SuspendLayout()
         Me.StatsSubSplitContainer.Panel2.SuspendLayout()
         Me.StatsSubSplitContainer.SuspendLayout()
-        Me.gbTestPlanStats.SuspendLayout()
-        CType(Me.crtTestPlan, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.gbActionStats.SuspendLayout()
         CType(Me.crtActions, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbActionStats.SuspendLayout()
+        CType(Me.crtTestPlan, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.gbTestPlanStats.SuspendLayout()
         Me.EditorTab.SuspendLayout()
         CType(Me.EditorSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.EditorSplitContainer.Panel1.SuspendLayout()
@@ -323,12 +323,8 @@ Partial Class frmMain
         Me.RecorderTab.Controls.Add(Me.cbRewriteUrls)
         Me.RecorderTab.Controls.Add(Me.Label26)
         Me.RecorderTab.Controls.Add(Me.txtRecorderHttpsPort)
-        Me.RecorderTab.Controls.Add(Me.Label10)
-        Me.RecorderTab.Controls.Add(Me.Label9)
         Me.RecorderTab.Controls.Add(Me.Label8)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderBodySub)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderQuerySub)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderPathSub)
+        Me.RecorderTab.Controls.Add(Me.txtRecorderFixedSub)
         Me.RecorderTab.Controls.Add(Me.cbRecorderJConsoleStart)
         Me.RecorderTab.Controls.Add(Me.cbRecorderStart)
         Me.RecorderTab.Controls.Add(Me.txtRecorderConsole)
@@ -355,7 +351,7 @@ Partial Class frmMain
         'cbOverrideHostHeader
         '
         Me.cbOverrideHostHeader.AutoSize = True
-        Me.cbOverrideHostHeader.Location = New System.Drawing.Point(437, 426)
+        Me.cbOverrideHostHeader.Location = New System.Drawing.Point(437, 288)
         Me.cbOverrideHostHeader.Name = "cbOverrideHostHeader"
         Me.cbOverrideHostHeader.Size = New System.Drawing.Size(133, 17)
         Me.cbOverrideHostHeader.TabIndex = 39
@@ -366,7 +362,7 @@ Partial Class frmMain
         'cbRewriteUrls
         '
         Me.cbRewriteUrls.AutoSize = True
-        Me.cbRewriteUrls.Location = New System.Drawing.Point(339, 426)
+        Me.cbRewriteUrls.Location = New System.Drawing.Point(339, 288)
         Me.cbRewriteUrls.Name = "cbRewriteUrls"
         Me.cbRewriteUrls.Size = New System.Drawing.Size(92, 17)
         Me.cbRewriteUrls.TabIndex = 38
@@ -396,82 +392,35 @@ Partial Class frmMain
         Me.txtRecorderHttpsPort.Text = "443"
         Me.ttGeneral.SetToolTip(Me.txtRecorderHttpsPort, "HTTP port for listening to requests.")
         '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(18, 341)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(137, 13)
-        Me.Label10.TabIndex = 22
-        Me.Label10.Text = "Request Body Substitutions"
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(57, 253)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(98, 13)
-        Me.Label9.TabIndex = 21
-        Me.Label9.Text = "Query Substitutions"
-        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(63, 165)
+        Me.Label8.Location = New System.Drawing.Point(60, 162)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(92, 13)
+        Me.Label8.Size = New System.Drawing.Size(95, 13)
         Me.Label8.TabIndex = 20
-        Me.Label8.Text = "Path Substitutions"
+        Me.Label8.Text = "Fixed Substitutions"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'txtRecorderBodySub
+        'txtRecorderFixedSub
         '
-        Me.txtRecorderBodySub.AcceptsReturn = True
-        Me.txtRecorderBodySub.AcceptsTab = True
-        Me.txtRecorderBodySub.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.txtRecorderFixedSub.AcceptsReturn = True
+        Me.txtRecorderFixedSub.AcceptsTab = True
+        Me.txtRecorderFixedSub.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtRecorderBodySub.Location = New System.Drawing.Point(161, 338)
-        Me.txtRecorderBodySub.Multiline = True
-        Me.txtRecorderBodySub.Name = "txtRecorderBodySub"
-        Me.txtRecorderBodySub.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtRecorderBodySub.Size = New System.Drawing.Size(570, 82)
-        Me.txtRecorderBodySub.TabIndex = 10
-        Me.ttGeneral.SetToolTip(Me.txtRecorderBodySub, "Text to match and substitute in the HTTP request body. JSON format.")
-        '
-        'txtRecorderQuerySub
-        '
-        Me.txtRecorderQuerySub.AcceptsReturn = True
-        Me.txtRecorderQuerySub.AcceptsTab = True
-        Me.txtRecorderQuerySub.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtRecorderQuerySub.Location = New System.Drawing.Point(161, 250)
-        Me.txtRecorderQuerySub.Multiline = True
-        Me.txtRecorderQuerySub.Name = "txtRecorderQuerySub"
-        Me.txtRecorderQuerySub.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtRecorderQuerySub.Size = New System.Drawing.Size(570, 82)
-        Me.txtRecorderQuerySub.TabIndex = 9
-        Me.ttGeneral.SetToolTip(Me.txtRecorderQuerySub, "Text to match and substitute in the HTTP request query. JSON format.")
-        '
-        'txtRecorderPathSub
-        '
-        Me.txtRecorderPathSub.AcceptsReturn = True
-        Me.txtRecorderPathSub.AcceptsTab = True
-        Me.txtRecorderPathSub.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtRecorderPathSub.Location = New System.Drawing.Point(161, 162)
-        Me.txtRecorderPathSub.Multiline = True
-        Me.txtRecorderPathSub.Name = "txtRecorderPathSub"
-        Me.txtRecorderPathSub.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtRecorderPathSub.Size = New System.Drawing.Size(570, 82)
-        Me.txtRecorderPathSub.TabIndex = 8
-        Me.ttGeneral.SetToolTip(Me.txtRecorderPathSub, "Text to match and substitute in the HTTP request path. JSON format.")
+        Me.txtRecorderFixedSub.Location = New System.Drawing.Point(161, 162)
+        Me.txtRecorderFixedSub.Multiline = True
+        Me.txtRecorderFixedSub.Name = "txtRecorderFixedSub"
+        Me.txtRecorderFixedSub.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.txtRecorderFixedSub.Size = New System.Drawing.Size(570, 120)
+        Me.txtRecorderFixedSub.TabIndex = 8
+        Me.ttGeneral.SetToolTip(Me.txtRecorderFixedSub, "Text to match and substitute in the HTTP request path, body or query. JSON format" &
+        ".")
         '
         'cbRecorderJConsoleStart
         '
         Me.cbRecorderJConsoleStart.AutoSize = True
-        Me.cbRecorderJConsoleStart.Location = New System.Drawing.Point(173, 426)
+        Me.cbRecorderJConsoleStart.Location = New System.Drawing.Point(173, 288)
         Me.cbRecorderJConsoleStart.Name = "cbRecorderJConsoleStart"
         Me.cbRecorderJConsoleStart.Size = New System.Drawing.Size(160, 17)
         Me.cbRecorderJConsoleStart.TabIndex = 12
@@ -482,7 +431,7 @@ Partial Class frmMain
         'cbRecorderStart
         '
         Me.cbRecorderStart.AutoSize = True
-        Me.cbRecorderStart.Location = New System.Drawing.Point(9, 426)
+        Me.cbRecorderStart.Location = New System.Drawing.Point(9, 288)
         Me.cbRecorderStart.Name = "cbRecorderStart"
         Me.cbRecorderStart.Size = New System.Drawing.Size(158, 17)
         Me.cbRecorderStart.TabIndex = 11
@@ -497,23 +446,25 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderConsole.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtRecorderConsole.Location = New System.Drawing.Point(6, 483)
+        Me.txtRecorderConsole.Location = New System.Drawing.Point(6, 345)
         Me.txtRecorderConsole.Multiline = True
         Me.txtRecorderConsole.Name = "txtRecorderConsole"
         Me.txtRecorderConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txtRecorderConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtRecorderConsole.Size = New System.Drawing.Size(806, 157)
+        Me.txtRecorderConsole.Size = New System.Drawing.Size(806, 295)
         Me.txtRecorderConsole.TabIndex = 14
+        Me.ttGeneral.SetToolTip(Me.txtRecorderConsole, "Recorder log")
         '
         'cmdRecorderLaunch
         '
         Me.cmdRecorderLaunch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdRecorderLaunch.Location = New System.Drawing.Point(6, 448)
+        Me.cmdRecorderLaunch.Location = New System.Drawing.Point(6, 310)
         Me.cmdRecorderLaunch.Name = "cmdRecorderLaunch"
         Me.cmdRecorderLaunch.Size = New System.Drawing.Size(806, 29)
         Me.cmdRecorderLaunch.TabIndex = 13
         Me.cmdRecorderLaunch.Text = "Launch!"
+        Me.ttGeneral.SetToolTip(Me.cmdRecorderLaunch, "Launch the recorder!")
         Me.cmdRecorderLaunch.UseVisualStyleBackColor = True
         '
         'Label5
@@ -633,8 +584,11 @@ Partial Class frmMain
         '
         'PlayerTab
         '
+        Me.PlayerTab.Controls.Add(Me.cbPlayerShareConnections)
+        Me.PlayerTab.Controls.Add(Me.Label9)
+        Me.PlayerTab.Controls.Add(Me.txtPlayerVariableSubs)
         Me.PlayerTab.Controls.Add(Me.Label34)
-        Me.PlayerTab.Controls.Add(Me.txtCookieWhiteList)
+        Me.PlayerTab.Controls.Add(Me.txtPlayerCookieWhiteList)
         Me.PlayerTab.Controls.Add(Me.cbPlayerApplySubs)
         Me.PlayerTab.Controls.Add(Me.cbPlayerCalcActionDelay)
         Me.PlayerTab.Controls.Add(Me.cbPlayerOverrideHTTPS)
@@ -667,6 +621,44 @@ Partial Class frmMain
         Me.PlayerTab.Text = "Player"
         Me.PlayerTab.UseVisualStyleBackColor = True
         '
+        'cbPlayerShareConnections
+        '
+        Me.cbPlayerShareConnections.AutoSize = True
+        Me.cbPlayerShareConnections.Location = New System.Drawing.Point(590, 366)
+        Me.cbPlayerShareConnections.Name = "cbPlayerShareConnections"
+        Me.cbPlayerShareConnections.Size = New System.Drawing.Size(116, 17)
+        Me.cbPlayerShareConnections.TabIndex = 41
+        Me.cbPlayerShareConnections.Text = "Share Connections"
+        Me.ttGeneral.SetToolTip(Me.cbPlayerShareConnections, "Share connections (sockets) accross threads for improved efficiency. Not recommen" &
+        "ded for sticky-session load balancers.")
+        Me.cbPlayerShareConnections.UseVisualStyleBackColor = True
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(47, 243)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(108, 13)
+        Me.Label9.TabIndex = 40
+        Me.Label9.Text = "Variable Substitutions"
+        Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtPlayerVariableSubs
+        '
+        Me.txtPlayerVariableSubs.AcceptsReturn = True
+        Me.txtPlayerVariableSubs.AcceptsTab = True
+        Me.txtPlayerVariableSubs.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtPlayerVariableSubs.Location = New System.Drawing.Point(161, 240)
+        Me.txtPlayerVariableSubs.Multiline = True
+        Me.txtPlayerVariableSubs.Name = "txtPlayerVariableSubs"
+        Me.txtPlayerVariableSubs.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.txtPlayerVariableSubs.Size = New System.Drawing.Size(649, 120)
+        Me.txtPlayerVariableSubs.TabIndex = 39
+        Me.ttGeneral.SetToolTip(Me.txtPlayerVariableSubs, "Variable(s) to extract from HTTP response(s) and insert (substitute) into subsequ" &
+        "ent HTTP request(s) in JSON format. Applies only to request and response bodies." &
+        "")
+        '
         'Label34
         '
         Me.Label34.AutoSize = True
@@ -677,25 +669,25 @@ Partial Class frmMain
         Me.Label34.Text = "Cookie Whitelist"
         Me.Label34.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'txtCookieWhiteList
+        'txtPlayerCookieWhiteList
         '
-        Me.txtCookieWhiteList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.txtPlayerCookieWhiteList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtCookieWhiteList.Location = New System.Drawing.Point(161, 214)
-        Me.txtCookieWhiteList.Name = "txtCookieWhiteList"
-        Me.txtCookieWhiteList.Size = New System.Drawing.Size(649, 20)
-        Me.txtCookieWhiteList.TabIndex = 37
-        Me.ttGeneral.SetToolTip(Me.txtCookieWhiteList, "List of comma-seperated Cookie names that will used from the test plan. All other" &
+        Me.txtPlayerCookieWhiteList.Location = New System.Drawing.Point(161, 214)
+        Me.txtPlayerCookieWhiteList.Name = "txtPlayerCookieWhiteList"
+        Me.txtPlayerCookieWhiteList.Size = New System.Drawing.Size(649, 20)
+        Me.txtPlayerCookieWhiteList.TabIndex = 37
+        Me.ttGeneral.SetToolTip(Me.txtPlayerCookieWhiteList, "List of comma-seperated Cookie names that will used from the test plan. All other" &
         " cookies will be discarded.")
         '
         'cbPlayerApplySubs
         '
         Me.cbPlayerApplySubs.AutoSize = True
-        Me.cbPlayerApplySubs.Location = New System.Drawing.Point(441, 242)
+        Me.cbPlayerApplySubs.Location = New System.Drawing.Point(441, 366)
         Me.cbPlayerApplySubs.Name = "cbPlayerApplySubs"
-        Me.cbPlayerApplySubs.Size = New System.Drawing.Size(115, 17)
+        Me.cbPlayerApplySubs.Size = New System.Drawing.Size(143, 17)
         Me.cbPlayerApplySubs.TabIndex = 15
-        Me.cbPlayerApplySubs.Text = "Apply Substitutions"
+        Me.cbPlayerApplySubs.Text = "Apply Fixed Substitutions"
         Me.ttGeneral.SetToolTip(Me.cbPlayerApplySubs, "Apply variable substitutions, such as <THREAD_ID>, in the test plan.")
         Me.cbPlayerApplySubs.UseVisualStyleBackColor = True
         '
@@ -897,7 +889,7 @@ Partial Class frmMain
         'cbPlayerJConsoleStart
         '
         Me.cbPlayerJConsoleStart.AutoSize = True
-        Me.cbPlayerJConsoleStart.Location = New System.Drawing.Point(275, 242)
+        Me.cbPlayerJConsoleStart.Location = New System.Drawing.Point(275, 366)
         Me.cbPlayerJConsoleStart.Name = "cbPlayerJConsoleStart"
         Me.cbPlayerJConsoleStart.Size = New System.Drawing.Size(160, 17)
         Me.cbPlayerJConsoleStart.TabIndex = 14
@@ -908,7 +900,7 @@ Partial Class frmMain
         'cbPlayerPause
         '
         Me.cbPlayerPause.AutoSize = True
-        Me.cbPlayerPause.Location = New System.Drawing.Point(161, 242)
+        Me.cbPlayerPause.Location = New System.Drawing.Point(161, 366)
         Me.cbPlayerPause.Name = "cbPlayerPause"
         Me.cbPlayerPause.Size = New System.Drawing.Size(108, 17)
         Me.cbPlayerPause.TabIndex = 13
@@ -924,23 +916,25 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerConsole.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPlayerConsole.Location = New System.Drawing.Point(6, 300)
+        Me.txtPlayerConsole.Location = New System.Drawing.Point(6, 424)
         Me.txtPlayerConsole.Multiline = True
         Me.txtPlayerConsole.Name = "txtPlayerConsole"
         Me.txtPlayerConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txtPlayerConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtPlayerConsole.Size = New System.Drawing.Size(806, 343)
+        Me.txtPlayerConsole.Size = New System.Drawing.Size(806, 219)
         Me.txtPlayerConsole.TabIndex = 17
+        Me.ttGeneral.SetToolTip(Me.txtPlayerConsole, "Load tester log")
         '
         'cmdPlayerLaunch
         '
         Me.cmdPlayerLaunch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdPlayerLaunch.Location = New System.Drawing.Point(6, 265)
+        Me.cmdPlayerLaunch.Location = New System.Drawing.Point(6, 389)
         Me.cmdPlayerLaunch.Name = "cmdPlayerLaunch"
         Me.cmdPlayerLaunch.Size = New System.Drawing.Size(806, 29)
         Me.cmdPlayerLaunch.TabIndex = 16
         Me.cmdPlayerLaunch.Text = "Launch!"
+        Me.ttGeneral.SetToolTip(Me.cmdPlayerLaunch, "Launch the load tester!")
         Me.cmdPlayerLaunch.UseVisualStyleBackColor = True
         '
         'cmdPlayerBrowse
@@ -1043,6 +1037,7 @@ Partial Class frmMain
         Title1.Name = "Title"
         Title1.Text = "Running Thread Count"
         Me.crtThreads.Titles.Add(Title1)
+        Me.ttGeneral.SetToolTip(Me.crtThreads, "Number of active (running) threads of the load tester.")
         '
         'StatsSubSplitContainer
         '
@@ -1055,157 +1050,26 @@ Partial Class frmMain
         '
         'StatsSubSplitContainer.Panel1
         '
-        Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.gbTestPlanStats)
-        Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.crtTestPlan)
+        Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.crtActions)
+        Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.gbActionStats)
         Me.StatsSubSplitContainer.Panel1MinSize = 180
         '
         'StatsSubSplitContainer.Panel2
         '
-        Me.StatsSubSplitContainer.Panel2.Controls.Add(Me.gbActionStats)
-        Me.StatsSubSplitContainer.Panel2.Controls.Add(Me.crtActions)
+        Me.StatsSubSplitContainer.Panel2.Controls.Add(Me.crtTestPlan)
+        Me.StatsSubSplitContainer.Panel2.Controls.Add(Me.gbTestPlanStats)
         Me.StatsSubSplitContainer.Panel2MinSize = 180
         Me.StatsSubSplitContainer.Size = New System.Drawing.Size(818, 443)
         Me.StatsSubSplitContainer.SplitterDistance = 220
         Me.StatsSubSplitContainer.TabIndex = 0
         '
-        'gbTestPlanStats
+        'crtActions
         '
-        Me.gbTestPlanStats.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanRollingAvg)
-        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanAvg)
-        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanMax)
-        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanMin)
-        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanTotal)
-        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanCount)
-        Me.gbTestPlanStats.Controls.Add(Me.Label33)
-        Me.gbTestPlanStats.Controls.Add(Me.Label32)
-        Me.gbTestPlanStats.Controls.Add(Me.Label31)
-        Me.gbTestPlanStats.Controls.Add(Me.Label30)
-        Me.gbTestPlanStats.Controls.Add(Me.Label29)
-        Me.gbTestPlanStats.Controls.Add(Me.Label28)
-        Me.gbTestPlanStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.gbTestPlanStats.Location = New System.Drawing.Point(602, 4)
-        Me.gbTestPlanStats.Name = "gbTestPlanStats"
-        Me.gbTestPlanStats.Size = New System.Drawing.Size(213, 133)
-        Me.gbTestPlanStats.TabIndex = 2
-        Me.gbTestPlanStats.TabStop = False
-        Me.gbTestPlanStats.Text = "Test Plan Stats"
-        '
-        'lblTestPlanRollingAvg
-        '
-        Me.lblTestPlanRollingAvg.AutoSize = True
-        Me.lblTestPlanRollingAvg.Location = New System.Drawing.Point(102, 111)
-        Me.lblTestPlanRollingAvg.Name = "lblTestPlanRollingAvg"
-        Me.lblTestPlanRollingAvg.Size = New System.Drawing.Size(13, 13)
-        Me.lblTestPlanRollingAvg.TabIndex = 11
-        Me.lblTestPlanRollingAvg.Text = "0"
-        '
-        'lblTestPlanAvg
-        '
-        Me.lblTestPlanAvg.AutoSize = True
-        Me.lblTestPlanAvg.Location = New System.Drawing.Point(102, 93)
-        Me.lblTestPlanAvg.Name = "lblTestPlanAvg"
-        Me.lblTestPlanAvg.Size = New System.Drawing.Size(13, 13)
-        Me.lblTestPlanAvg.TabIndex = 10
-        Me.lblTestPlanAvg.Text = "0"
-        '
-        'lblTestPlanMax
-        '
-        Me.lblTestPlanMax.AutoSize = True
-        Me.lblTestPlanMax.Location = New System.Drawing.Point(102, 75)
-        Me.lblTestPlanMax.Name = "lblTestPlanMax"
-        Me.lblTestPlanMax.Size = New System.Drawing.Size(27, 13)
-        Me.lblTestPlanMax.TabIndex = 9
-        Me.lblTestPlanMax.Text = "N/A"
-        '
-        'lblTestPlanMin
-        '
-        Me.lblTestPlanMin.AutoSize = True
-        Me.lblTestPlanMin.Location = New System.Drawing.Point(102, 57)
-        Me.lblTestPlanMin.Name = "lblTestPlanMin"
-        Me.lblTestPlanMin.Size = New System.Drawing.Size(27, 13)
-        Me.lblTestPlanMin.TabIndex = 8
-        Me.lblTestPlanMin.Text = "N/A"
-        '
-        'lblTestPlanTotal
-        '
-        Me.lblTestPlanTotal.AutoSize = True
-        Me.lblTestPlanTotal.Location = New System.Drawing.Point(102, 39)
-        Me.lblTestPlanTotal.Name = "lblTestPlanTotal"
-        Me.lblTestPlanTotal.Size = New System.Drawing.Size(13, 13)
-        Me.lblTestPlanTotal.TabIndex = 7
-        Me.lblTestPlanTotal.Text = "0"
-        '
-        'lblTestPlanCount
-        '
-        Me.lblTestPlanCount.AutoSize = True
-        Me.lblTestPlanCount.Location = New System.Drawing.Point(102, 21)
-        Me.lblTestPlanCount.Name = "lblTestPlanCount"
-        Me.lblTestPlanCount.Size = New System.Drawing.Size(13, 13)
-        Me.lblTestPlanCount.TabIndex = 6
-        Me.lblTestPlanCount.Text = "0"
-        '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(6, 111)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(90, 13)
-        Me.Label33.TabIndex = 5
-        Me.Label33.Text = "Rolling Avg Time:"
-        '
-        'Label32
-        '
-        Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(41, 93)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(55, 13)
-        Me.Label32.TabIndex = 4
-        Me.Label32.Text = "Avg Time:"
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(43, 57)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(53, 13)
-        Me.Label31.TabIndex = 3
-        Me.Label31.Text = "Min Time:"
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(40, 75)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(56, 13)
-        Me.Label30.TabIndex = 2
-        Me.Label30.Text = "Max Time:"
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(36, 39)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(60, 13)
-        Me.Label29.TabIndex = 1
-        Me.Label29.Text = "Total Time:"
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(58, 21)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(38, 13)
-        Me.Label28.TabIndex = 0
-        Me.Label28.Text = "Count:"
-        '
-        'crtTestPlan
-        '
-        Me.crtTestPlan.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.crtActions.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.crtTestPlan.BorderlineColor = System.Drawing.Color.Black
-        Me.crtTestPlan.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
+        Me.crtActions.BorderlineColor = System.Drawing.Color.Black
+        Me.crtActions.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
         ChartArea2.Area3DStyle.Inclination = 0
         ChartArea2.Area3DStyle.IsRightAngleAxes = False
         ChartArea2.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
@@ -1218,10 +1082,10 @@ Partial Class frmMain
         ChartArea2.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         ChartArea2.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
         ChartArea2.Name = "ChartArea"
-        Me.crtTestPlan.ChartAreas.Add(ChartArea2)
-        Me.crtTestPlan.Location = New System.Drawing.Point(3, 3)
-        Me.crtTestPlan.Name = "crtTestPlan"
-        Me.crtTestPlan.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
+        Me.crtActions.ChartAreas.Add(ChartArea2)
+        Me.crtActions.Location = New System.Drawing.Point(3, 4)
+        Me.crtActions.Name = "crtActions"
+        Me.crtActions.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
         Series2.ChartArea = "ChartArea"
         Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
         Series2.Name = "Series"
@@ -1229,13 +1093,14 @@ Partial Class frmMain
         Series2.Points.Add(DataPoint4)
         Series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
         Series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
-        Me.crtTestPlan.Series.Add(Series2)
-        Me.crtTestPlan.Size = New System.Drawing.Size(593, 214)
-        Me.crtTestPlan.TabIndex = 1
+        Me.crtActions.Series.Add(Series2)
+        Me.crtActions.Size = New System.Drawing.Size(593, 213)
+        Me.crtActions.TabIndex = 1
         Title2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Title2.Name = "Title"
-        Title2.Text = "Test Plan - Rolling Average Duration"
-        Me.crtTestPlan.Titles.Add(Title2)
+        Title2.Text = "Actions - Rolling Average Duration"
+        Me.crtActions.Titles.Add(Title2)
+        Me.ttGeneral.SetToolTip(Me.crtActions, "The average duration of the last 10 completed HTTP actions.")
         '
         'gbActionStats
         '
@@ -1253,7 +1118,7 @@ Partial Class frmMain
         Me.gbActionStats.Controls.Add(Me.Label44)
         Me.gbActionStats.Controls.Add(Me.Label45)
         Me.gbActionStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.gbActionStats.Location = New System.Drawing.Point(602, 3)
+        Me.gbActionStats.Location = New System.Drawing.Point(602, 0)
         Me.gbActionStats.Name = "gbActionStats"
         Me.gbActionStats.Size = New System.Drawing.Size(213, 131)
         Me.gbActionStats.TabIndex = 3
@@ -1368,13 +1233,13 @@ Partial Class frmMain
         Me.Label45.TabIndex = 12
         Me.Label45.Text = "Count:"
         '
-        'crtActions
+        'crtTestPlan
         '
-        Me.crtActions.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.crtTestPlan.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.crtActions.BorderlineColor = System.Drawing.Color.Black
-        Me.crtActions.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
+        Me.crtTestPlan.BorderlineColor = System.Drawing.Color.Black
+        Me.crtTestPlan.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
         ChartArea3.Area3DStyle.Inclination = 0
         ChartArea3.Area3DStyle.IsRightAngleAxes = False
         ChartArea3.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
@@ -1387,10 +1252,10 @@ Partial Class frmMain
         ChartArea3.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         ChartArea3.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
         ChartArea3.Name = "ChartArea"
-        Me.crtActions.ChartAreas.Add(ChartArea3)
-        Me.crtActions.Location = New System.Drawing.Point(3, 3)
-        Me.crtActions.Name = "crtActions"
-        Me.crtActions.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
+        Me.crtTestPlan.ChartAreas.Add(ChartArea3)
+        Me.crtTestPlan.Location = New System.Drawing.Point(3, 6)
+        Me.crtTestPlan.Name = "crtTestPlan"
+        Me.crtTestPlan.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
         Series3.ChartArea = "ChartArea"
         Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
         Series3.Name = "Series"
@@ -1398,13 +1263,145 @@ Partial Class frmMain
         Series3.Points.Add(DataPoint6)
         Series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
         Series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
-        Me.crtActions.Series.Add(Series3)
-        Me.crtActions.Size = New System.Drawing.Size(593, 213)
-        Me.crtActions.TabIndex = 1
+        Me.crtTestPlan.Series.Add(Series3)
+        Me.crtTestPlan.Size = New System.Drawing.Size(593, 210)
+        Me.crtTestPlan.TabIndex = 1
         Title3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Title3.Name = "Title"
-        Title3.Text = "Actions - Rolling Average Duration"
-        Me.crtActions.Titles.Add(Title3)
+        Title3.Text = "Test Plan - Rolling Average Duration"
+        Me.crtTestPlan.Titles.Add(Title3)
+        Me.ttGeneral.SetToolTip(Me.crtTestPlan, "The average duration of the last 10 completed test plans.")
+        '
+        'gbTestPlanStats
+        '
+        Me.gbTestPlanStats.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanRollingAvg)
+        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanAvg)
+        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanMax)
+        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanMin)
+        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanTotal)
+        Me.gbTestPlanStats.Controls.Add(Me.lblTestPlanCount)
+        Me.gbTestPlanStats.Controls.Add(Me.Label33)
+        Me.gbTestPlanStats.Controls.Add(Me.Label32)
+        Me.gbTestPlanStats.Controls.Add(Me.Label31)
+        Me.gbTestPlanStats.Controls.Add(Me.Label30)
+        Me.gbTestPlanStats.Controls.Add(Me.Label29)
+        Me.gbTestPlanStats.Controls.Add(Me.Label28)
+        Me.gbTestPlanStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.gbTestPlanStats.Location = New System.Drawing.Point(602, 3)
+        Me.gbTestPlanStats.Name = "gbTestPlanStats"
+        Me.gbTestPlanStats.Size = New System.Drawing.Size(213, 133)
+        Me.gbTestPlanStats.TabIndex = 2
+        Me.gbTestPlanStats.TabStop = False
+        Me.gbTestPlanStats.Text = "Test Plan Stats"
+        '
+        'lblTestPlanRollingAvg
+        '
+        Me.lblTestPlanRollingAvg.AutoSize = True
+        Me.lblTestPlanRollingAvg.Location = New System.Drawing.Point(102, 111)
+        Me.lblTestPlanRollingAvg.Name = "lblTestPlanRollingAvg"
+        Me.lblTestPlanRollingAvg.Size = New System.Drawing.Size(13, 13)
+        Me.lblTestPlanRollingAvg.TabIndex = 11
+        Me.lblTestPlanRollingAvg.Text = "0"
+        '
+        'lblTestPlanAvg
+        '
+        Me.lblTestPlanAvg.AutoSize = True
+        Me.lblTestPlanAvg.Location = New System.Drawing.Point(102, 93)
+        Me.lblTestPlanAvg.Name = "lblTestPlanAvg"
+        Me.lblTestPlanAvg.Size = New System.Drawing.Size(13, 13)
+        Me.lblTestPlanAvg.TabIndex = 10
+        Me.lblTestPlanAvg.Text = "0"
+        '
+        'lblTestPlanMax
+        '
+        Me.lblTestPlanMax.AutoSize = True
+        Me.lblTestPlanMax.Location = New System.Drawing.Point(102, 75)
+        Me.lblTestPlanMax.Name = "lblTestPlanMax"
+        Me.lblTestPlanMax.Size = New System.Drawing.Size(27, 13)
+        Me.lblTestPlanMax.TabIndex = 9
+        Me.lblTestPlanMax.Text = "N/A"
+        '
+        'lblTestPlanMin
+        '
+        Me.lblTestPlanMin.AutoSize = True
+        Me.lblTestPlanMin.Location = New System.Drawing.Point(102, 57)
+        Me.lblTestPlanMin.Name = "lblTestPlanMin"
+        Me.lblTestPlanMin.Size = New System.Drawing.Size(27, 13)
+        Me.lblTestPlanMin.TabIndex = 8
+        Me.lblTestPlanMin.Text = "N/A"
+        '
+        'lblTestPlanTotal
+        '
+        Me.lblTestPlanTotal.AutoSize = True
+        Me.lblTestPlanTotal.Location = New System.Drawing.Point(102, 39)
+        Me.lblTestPlanTotal.Name = "lblTestPlanTotal"
+        Me.lblTestPlanTotal.Size = New System.Drawing.Size(13, 13)
+        Me.lblTestPlanTotal.TabIndex = 7
+        Me.lblTestPlanTotal.Text = "0"
+        '
+        'lblTestPlanCount
+        '
+        Me.lblTestPlanCount.AutoSize = True
+        Me.lblTestPlanCount.Location = New System.Drawing.Point(102, 21)
+        Me.lblTestPlanCount.Name = "lblTestPlanCount"
+        Me.lblTestPlanCount.Size = New System.Drawing.Size(13, 13)
+        Me.lblTestPlanCount.TabIndex = 6
+        Me.lblTestPlanCount.Text = "0"
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(6, 111)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(90, 13)
+        Me.Label33.TabIndex = 5
+        Me.Label33.Text = "Rolling Avg Time:"
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(41, 93)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(55, 13)
+        Me.Label32.TabIndex = 4
+        Me.Label32.Text = "Avg Time:"
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(43, 57)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(53, 13)
+        Me.Label31.TabIndex = 3
+        Me.Label31.Text = "Min Time:"
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(40, 75)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(56, 13)
+        Me.Label30.TabIndex = 2
+        Me.Label30.Text = "Max Time:"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(36, 39)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(60, 13)
+        Me.Label29.TabIndex = 1
+        Me.Label29.Text = "Total Time:"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(58, 21)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(38, 13)
+        Me.Label28.TabIndex = 0
+        Me.Label28.Text = "Count:"
         '
         'EditorTab
         '
@@ -1466,12 +1463,14 @@ Partial Class frmMain
         Me.lbActions.Name = "lbActions"
         Me.lbActions.Size = New System.Drawing.Size(366, 570)
         Me.lbActions.TabIndex = 0
+        Me.ttGeneral.SetToolTip(Me.lbActions, "List of all the actions in the test plan.")
         '
         'GroupBox1
         '
         Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.cbActionSubstitutions)
         Me.GroupBox1.Controls.Add(Me.Label27)
         Me.GroupBox1.Controls.Add(Me.txtActionContentType)
         Me.GroupBox1.Controls.Add(Me.dgActionHeaders)
@@ -1499,6 +1498,20 @@ Partial Class frmMain
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Edit Action"
         '
+        'cbActionSubstitutions
+        '
+        Me.cbActionSubstitutions.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbActionSubstitutions.AutoSize = True
+        Me.cbActionSubstitutions.Location = New System.Drawing.Point(108, 203)
+        Me.cbActionSubstitutions.Name = "cbActionSubstitutions"
+        Me.cbActionSubstitutions.Size = New System.Drawing.Size(108, 17)
+        Me.cbActionSubstitutions.TabIndex = 30
+        Me.cbActionSubstitutions.Text = "Has Substitutions"
+        Me.ttGeneral.SetToolTip(Me.cbActionSubstitutions, "This action makes use of fixed substitutions that will need to be applied at runt" &
+        "ime.")
+        Me.cbActionSubstitutions.UseVisualStyleBackColor = True
+        '
         'Label27
         '
         Me.Label27.Location = New System.Drawing.Point(-3, 176)
@@ -1516,6 +1529,7 @@ Partial Class frmMain
         Me.txtActionContentType.Name = "txtActionContentType"
         Me.txtActionContentType.Size = New System.Drawing.Size(322, 20)
         Me.txtActionContentType.TabIndex = 8
+        Me.ttGeneral.SetToolTip(Me.txtActionContentType, "Content Type of the HTTP Request. Does not apply to all HTTP methods.")
         '
         'dgActionHeaders
         '
@@ -1525,10 +1539,10 @@ Partial Class frmMain
         Me.dgActionHeaders.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgActionHeaders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgActionHeaders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clHeaderKey, Me.clHeaderVal})
-        Me.dgActionHeaders.Location = New System.Drawing.Point(108, 203)
+        Me.dgActionHeaders.Location = New System.Drawing.Point(108, 226)
         Me.dgActionHeaders.Name = "dgActionHeaders"
         Me.dgActionHeaders.RowHeadersVisible = False
-        Me.dgActionHeaders.Size = New System.Drawing.Size(322, 165)
+        Me.dgActionHeaders.Size = New System.Drawing.Size(322, 142)
         Me.dgActionHeaders.TabIndex = 9
         Me.ttGeneral.SetToolTip(Me.dgActionHeaders, "HTTP Request Headers")
         '
@@ -1553,6 +1567,7 @@ Partial Class frmMain
         Me.cbActionMethod.Name = "cbActionMethod"
         Me.cbActionMethod.Size = New System.Drawing.Size(322, 21)
         Me.cbActionMethod.TabIndex = 4
+        Me.ttGeneral.SetToolTip(Me.cbActionMethod, "HTTP Request Method (GET, POST, PUT, etc.)")
         '
         'txtActionDelay
         '
@@ -1576,6 +1591,7 @@ Partial Class frmMain
         Me.cbActionScheme.Name = "cbActionScheme"
         Me.cbActionScheme.Size = New System.Drawing.Size(322, 21)
         Me.cbActionScheme.TabIndex = 3
+        Me.ttGeneral.SetToolTip(Me.cbActionScheme, "HTTP Request Scheme (HTTP or HTTPS)")
         '
         'cmdAddAction
         '
@@ -1619,7 +1635,7 @@ Partial Class frmMain
         '
         'Label23
         '
-        Me.Label23.Location = New System.Drawing.Point(42, 203)
+        Me.Label23.Location = New System.Drawing.Point(42, 226)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(60, 16)
         Me.Label23.TabIndex = 18
@@ -1668,6 +1684,7 @@ Partial Class frmMain
         Me.txtActionPath.Name = "txtActionPath"
         Me.txtActionPath.Size = New System.Drawing.Size(322, 20)
         Me.txtActionPath.TabIndex = 5
+        Me.ttGeneral.SetToolTip(Me.txtActionPath, "HTTP Request Path.")
         '
         'Label22
         '
@@ -1686,6 +1703,7 @@ Partial Class frmMain
         Me.txtActionEncoding.Name = "txtActionEncoding"
         Me.txtActionEncoding.Size = New System.Drawing.Size(322, 20)
         Me.txtActionEncoding.TabIndex = 7
+        Me.ttGeneral.SetToolTip(Me.txtActionEncoding, "Character encoding of the HTTP Request.")
         '
         'Label13
         '
@@ -1704,6 +1722,7 @@ Partial Class frmMain
         Me.txtActionQuery.Name = "txtActionQuery"
         Me.txtActionQuery.Size = New System.Drawing.Size(322, 20)
         Me.txtActionQuery.TabIndex = 6
+        Me.ttGeneral.SetToolTip(Me.txtActionQuery, "The HTTP Request Query String without the question mark ('?')")
         '
         'Label21
         '
@@ -1744,6 +1763,7 @@ Partial Class frmMain
         Me.txtEditorTestPlanFile.ReadOnly = True
         Me.txtEditorTestPlanFile.Size = New System.Drawing.Size(606, 20)
         Me.txtEditorTestPlanFile.TabIndex = 13
+        Me.ttGeneral.SetToolTip(Me.txtEditorTestPlanFile, "The absolute path to the Json test plan file.")
         '
         'Label25
         '
@@ -1812,12 +1832,12 @@ Partial Class frmMain
         Me.StatsSubSplitContainer.Panel2.ResumeLayout(False)
         CType(Me.StatsSubSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatsSubSplitContainer.ResumeLayout(False)
-        Me.gbTestPlanStats.ResumeLayout(False)
-        Me.gbTestPlanStats.PerformLayout()
-        CType(Me.crtTestPlan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.crtActions, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbActionStats.ResumeLayout(False)
         Me.gbActionStats.PerformLayout()
-        CType(Me.crtActions, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.crtTestPlan, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.gbTestPlanStats.ResumeLayout(False)
+        Me.gbTestPlanStats.PerformLayout()
         Me.EditorTab.ResumeLayout(False)
         Me.EditorTab.PerformLayout()
         Me.EditorSplitContainer.Panel1.ResumeLayout(False)
@@ -1868,12 +1888,8 @@ Partial Class frmMain
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ImportSettingsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportSettingsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents txtRecorderBodySub As TextBox
-    Friend WithEvents txtRecorderQuerySub As TextBox
-    Friend WithEvents txtRecorderPathSub As TextBox
+    Friend WithEvents txtRecorderFixedSub As TextBox
     Friend WithEvents OpenFileDialog As OpenFileDialog
     Friend WithEvents SaveFileDialog As SaveFileDialog
     Friend WithEvents cmdPlayerBrowse As Button
@@ -1971,5 +1987,9 @@ Partial Class frmMain
     Friend WithEvents cbOverrideHostHeader As CheckBox
     Friend WithEvents cbRewriteUrls As CheckBox
     Friend WithEvents Label34 As Label
-    Friend WithEvents txtCookieWhiteList As TextBox
+    Friend WithEvents txtPlayerCookieWhiteList As TextBox
+    Friend WithEvents cbActionSubstitutions As CheckBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtPlayerVariableSubs As TextBox
+    Friend WithEvents cbPlayerShareConnections As CheckBox
 End Class

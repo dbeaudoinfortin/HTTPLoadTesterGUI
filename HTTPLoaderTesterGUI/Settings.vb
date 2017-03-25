@@ -6,20 +6,18 @@ Public Class Settings
     Public JavaHome As String
     Public LoadTesterJar As String
 
+    Public RecorderMaxHeap As String
+    Public RecorderStartJConsole As Boolean
     Public RecorderTestDirectory As String
     Public RecorderListenerHTTPPort As String
     Public RecorderListenerHTTPSPort As String
     Public RecorderForwardingHost As String
     Public RecorderForwardingHTTPPort As String
     Public RecorderForwardingHTTPsPort As String
-    Public RecorderMaxHeap As String
     Public RecorderStartImmediately As Boolean
-    Public RecorderStartJConsole As Boolean
-    Public RecorderPathSubstitutions As String
-    Public RecorderQuerySubstitutions As String
-    Public RecorderBodySubstitutions As String
-    Public RecorderRewriteUrls As Boolean
+    Public RecorderFixedSubstitutions As String
     Public RecorderOverrideHostHeader As Boolean
+    Public RecorderRewriteUrls As Boolean
 
     Public PlayerMaxHeap As String
     Public PlayerStartJConsole As Boolean
@@ -35,8 +33,10 @@ Public Class Settings
     Public PlayerHTTPSPort As String
     Public PlayerPauseOnStart As Boolean
     Public PlayerOverrideHTTPS As Boolean
-    Public PlayerApplySubs As Boolean
+    Public PlayerApplyFixedSubs As Boolean
     Public PlayerCookieWhitelist As String
+    Public PlayerVariableSubstitutions As String
+    Public PlayerShareConnections As Boolean
 
     Public EditorTestPlanFile As String
 
@@ -80,7 +80,8 @@ Public Class Settings
         PlayerHTTPSPort = "443"
         PlayerPauseOnStart = True
         PlayerOverrideHTTPS = True
-        PlayerApplySubs = False
+        PlayerApplyFixedSubs = False
+        PlayerShareConnections = False
     End Sub
 
     Public Shared Function Load(ByRef path As String) As Settings

@@ -7,10 +7,10 @@ Public Class HTTPAction
     Public method As String
     Public characterEncoding As String
     Public content As String
-    Public contentLength As Integer
     Public contentType As String
     Public scheme As String
     Public queryString As String
+    Public hasSubstitutions As Boolean
     Public headers As Dictionary(Of String, String)
 
     <JsonIgnore>
@@ -26,7 +26,7 @@ Public Class HTTPAction
         timePassed = 0
         path = ""
         method = "POST"
-        contentLength = 0
+        hasSubstitutions = False
         contentType = "text/html"
         scheme = "HTTP"
         headers = New Dictionary(Of String, String)

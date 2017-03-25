@@ -18,6 +18,7 @@ Public Class frmMain
         LaunchRecorderThread(BuildRecorderJavaCommand())
         If GlobalSettings.RecorderStartJConsole Then LaunchJConsole(BuildJConsoleCommand("9011"))
     End Sub
+
     Private Sub LaunchJConsole(ByRef CommandString As String)
 
         Dim JConsoleProcess As New Process()
@@ -117,9 +118,7 @@ Public Class frmMain
         cbRecorderJConsoleStart.Checked = GlobalSettings.RecorderStartJConsole
         cbOverrideHostHeader.Checked = GlobalSettings.RecorderOverrideHostHeader
         cbRewriteUrls.Checked = GlobalSettings.RecorderRewriteUrls
-        txtRecorderPathSub.Text = GlobalSettings.RecorderPathSubstitutions
-        txtRecorderQuerySub.Text = GlobalSettings.RecorderQuerySubstitutions
-        txtRecorderBodySub.Text = GlobalSettings.RecorderBodySubstitutions
+        txtRecorderFixedSub.Text = GlobalSettings.RecorderFixedSubstitutions
 
         cbPlayerJConsoleStart.Checked = GlobalSettings.PlayerStartJConsole
         txtPlayerTestPlanFile.Text = GlobalSettings.PlayerTestPlanFile
@@ -132,11 +131,13 @@ Public Class frmMain
         txtPlayerHost.Text = GlobalSettings.PlayerHost
         txtPlayerHTTPPort.Text = GlobalSettings.PlayerHTTPPort
         txtPlayerHTTPSPort.Text = GlobalSettings.PlayerHTTPSPort
-        txtCookieWhiteList.Text = GlobalSettings.PlayerCookieWhitelist
+        txtPlayerCookieWhiteList.Text = GlobalSettings.PlayerCookieWhitelist
         cbPlayerPause.Checked = GlobalSettings.PlayerPauseOnStart
         cbPlayerOverrideHTTPS.Checked = GlobalSettings.PlayerOverrideHTTPS
-        cbPlayerApplySubs.Checked = GlobalSettings.PlayerApplySubs
+        cbPlayerApplySubs.Checked = GlobalSettings.PlayerApplyFixedSubs
         txtEditorTestPlanFile.Text = GlobalSettings.EditorTestPlanFile
+        txtPlayerVariableSubs.Text = GlobalSettings.PlayerVariableSubstitutions
+        cbPlayerShareConnections.Checked = GlobalSettings.PlayerShareConnections
 
         txtPlayerMinRunTime.Enabled = Not GlobalSettings.PlayerCalcMinRunTime
         txtPlayerActionDelay.Enabled = Not GlobalSettings.PlayerCalcActionDelay
@@ -162,6 +163,7 @@ Public Class frmMain
         End Try
 
     End Sub
+
     Private Sub UpdateTestPlanEditor()
         lbActions.Items.Clear()
         lbActions.Enabled = True
@@ -198,6 +200,7 @@ Public Class frmMain
             txtActionEncoding.Text = action.characterEncoding
             txtActionContentType.Text = action.contentType
             txtActionBody.Text = action.content
+            cbActionSubstitutions.Checked = action.hasSubstitutions
             UpdateActionHeaders(action.headers)
 
             hasBody = action.method = "POST" Or action.method = "PUT"
@@ -209,6 +212,7 @@ Public Class frmMain
             txtActionPath.Text = ""
             txtActionQuery.Text = ""
             txtActionEncoding.Text = ""
+            cbActionSubstitutions.Checked = False
             UpdateActionHeaders(Nothing)
             txtActionBody.Text = ""
         End If
@@ -216,6 +220,7 @@ Public Class frmMain
         txtActionDelay.Enabled = TestPlanEnabled
         cbActionScheme.Enabled = TestPlanEnabled
         cbActionMethod.Enabled = TestPlanEnabled
+        cbActionSubstitutions.Enabled = TestPlanEnabled
         txtActionPath.Enabled = TestPlanEnabled
         txtActionQuery.Enabled = TestPlanEnabled
         txtActionEncoding.Enabled = TestPlanEnabled
@@ -298,19 +303,9 @@ Public Class frmMain
             javaCommand.Append(" -rewriteUrls")
         End If
 
-        If GlobalSettings.RecorderPathSubstitutions IsNot Nothing And GlobalSettings.RecorderPathSubstitutions <> "" Then
-            javaCommand.Append(" -pathSubs ")
-            javaCommand.Append(Convert.ToBase64String(Encoding.UTF8.GetBytes(GlobalSettings.RecorderPathSubstitutions)))
-        End If
-
-        If GlobalSettings.RecorderQuerySubstitutions IsNot Nothing And GlobalSettings.RecorderQuerySubstitutions <> "" Then
-            javaCommand.Append(" -querySubs ")
-            javaCommand.Append(Convert.ToBase64String(Encoding.UTF8.GetBytes(GlobalSettings.RecorderQuerySubstitutions)))
-        End If
-
-        If GlobalSettings.RecorderBodySubstitutions IsNot Nothing And GlobalSettings.RecorderBodySubstitutions <> "" Then
-            javaCommand.Append(" -bodySubs ")
-            javaCommand.Append(Convert.ToBase64String(Encoding.UTF8.GetBytes(GlobalSettings.RecorderBodySubstitutions)))
+        If GlobalSettings.RecorderFixedSubstitutions IsNot Nothing And GlobalSettings.RecorderFixedSubstitutions <> "" Then
+            javaCommand.Append(" -fixedSubs ")
+            javaCommand.Append(Convert.ToBase64String(Encoding.UTF8.GetBytes(GlobalSettings.RecorderFixedSubstitutions)))
         End If
 
         javaCommand.Append("""")
@@ -370,23 +365,9 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub txtRecorderPathSub_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderPathSub.LostFocus
-        If GlobalSettings.RecorderPathSubstitutions <> txtRecorderPathSub.Text Then
-            GlobalSettings.RecorderPathSubstitutions = txtRecorderPathSub.Text
-            GlobalSettings.Save()
-        End If
-    End Sub
-
-    Private Sub txtRecorderQuerySub_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderQuerySub.LostFocus
-        If GlobalSettings.RecorderQuerySubstitutions <> txtRecorderQuerySub.Text Then
-            GlobalSettings.RecorderQuerySubstitutions = txtRecorderQuerySub.Text
-            GlobalSettings.Save()
-        End If
-    End Sub
-
-    Private Sub txtRecorderBodySub_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderBodySub.LostFocus
-        If GlobalSettings.RecorderBodySubstitutions <> txtRecorderBodySub.Text Then
-            GlobalSettings.RecorderBodySubstitutions = txtRecorderBodySub.Text
+    Private Sub txtRecorderFixedSub_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderFixedSub.LostFocus
+        If GlobalSettings.RecorderFixedSubstitutions <> txtRecorderFixedSub.Text Then
+            GlobalSettings.RecorderFixedSubstitutions = txtRecorderFixedSub.Text
             GlobalSettings.Save()
         End If
     End Sub
@@ -527,7 +508,7 @@ Public Class frmMain
     End Sub
 
     Private Sub cbPlayerApplySubs_CheckedChanged(sender As Object, e As EventArgs) Handles cbPlayerApplySubs.CheckedChanged
-        GlobalSettings.PlayerApplySubs = cbPlayerApplySubs.Checked
+        GlobalSettings.PlayerApplyFixedSubs = cbPlayerApplySubs.Checked
         GlobalSettings.Save()
     End Sub
 
@@ -596,6 +577,11 @@ Public Class frmMain
             javaCommand.Append(GlobalSettings.PlayerCookieWhitelist)
         End If
 
+        If GlobalSettings.PlayerVariableSubstitutions IsNot Nothing And GlobalSettings.PlayerVariableSubstitutions <> "" Then
+            javaCommand.Append(" -variableSubs ")
+            javaCommand.Append(Convert.ToBase64String(Encoding.UTF8.GetBytes(GlobalSettings.PlayerVariableSubstitutions)))
+        End If
+
         If GlobalSettings.PlayerPauseOnStart Then
             javaCommand.Append(" -pause")
         End If
@@ -604,8 +590,12 @@ Public Class frmMain
             javaCommand.Append(" -overrideHttps")
         End If
 
-        If GlobalSettings.PlayerApplySubs Then
-            javaCommand.Append(" -applySubs")
+        If GlobalSettings.PlayerApplyFixedSubs Then
+            javaCommand.Append(" -applyFixedSubs")
+        End If
+
+        If GlobalSettings.PlayerShareConnections Then
+            javaCommand.Append(" -shareConnections")
         End If
 
         javaCommand.Append(" -keepAlive")
@@ -641,7 +631,7 @@ Public Class frmMain
 
                          'Launch timer by invoking event
                          Me.Invoke(Sub()
-                                       clearStats()
+                                       ClearStats()
                                        TimerStats.Enabled = True
                                        TimerStats.Start()
                                    End Sub)
@@ -724,12 +714,12 @@ Public Class frmMain
         action.contentType = txtActionContentType.Text
 
         action.content = txtActionBody.Text
-        action.contentLength = action.content.Length
+        action.hasSubstitutions = cbActionSubstitutions.Checked
 
         Return action
     End Function
     Private Sub cmdAddAction_Click(sender As Object, e As EventArgs) Handles cmdAddAction.Click
-        Dim action As HTTPAction = validateAndCreateAction(DirectCast(lbActions.SelectedItem, HTTPAction))
+        Dim action As HTTPAction = ValidateAndCreateAction(DirectCast(lbActions.SelectedItem, HTTPAction))
         If (action Is Nothing) Then Return
 
         Dim insertIndex As Integer = lbActions.SelectedIndex
@@ -949,11 +939,22 @@ Public Class frmMain
         GlobalSettings.Save()
     End Sub
 
-
-    Private Sub txtCookieWhiteList_LostFocus(sender As Object, e As EventArgs) Handles txtCookieWhiteList.LostFocus
-        If GlobalSettings.PlayerCookieWhitelist <> txtCookieWhiteList.Text Then
-            GlobalSettings.PlayerCookieWhitelist = txtCookieWhiteList.Text
+    Private Sub txtCookieWhiteList_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerCookieWhiteList.LostFocus
+        If GlobalSettings.PlayerCookieWhitelist <> txtPlayerCookieWhiteList.Text Then
+            GlobalSettings.PlayerCookieWhitelist = txtPlayerCookieWhiteList.Text
             GlobalSettings.Save()
         End If
+    End Sub
+
+    Private Sub txtPlayerVariableSubs_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerVariableSubs.LostFocus
+        If GlobalSettings.PlayerVariableSubstitutions <> txtPlayerVariableSubs.Text Then
+            GlobalSettings.PlayerVariableSubstitutions = txtPlayerVariableSubs.Text
+            GlobalSettings.Save()
+        End If
+    End Sub
+
+    Private Sub cbPlayerShareConnections_CheckedChanged(sender As Object, e As EventArgs) Handles cbPlayerShareConnections.CheckedChanged
+        GlobalSettings.PlayerShareConnections = cbPlayerShareConnections.Checked
+        GlobalSettings.Save()
     End Sub
 End Class
