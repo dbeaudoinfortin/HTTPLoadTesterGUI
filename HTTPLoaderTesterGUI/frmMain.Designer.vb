@@ -55,6 +55,7 @@ Partial Class frmMain
         Me.ExportSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tcMain = New System.Windows.Forms.TabControl()
         Me.RecorderTab = New System.Windows.Forms.TabPage()
+        Me.RecorderSplit = New System.Windows.Forms.SplitContainer()
         Me.cbOverrideHostHeader = New System.Windows.Forms.CheckBox()
         Me.cbRewriteUrls = New System.Windows.Forms.CheckBox()
         Me.Label26 = New System.Windows.Forms.Label()
@@ -63,8 +64,6 @@ Partial Class frmMain
         Me.txtRecorderFixedSub = New System.Windows.Forms.TextBox()
         Me.cbRecorderJConsoleStart = New System.Windows.Forms.CheckBox()
         Me.cbRecorderStart = New System.Windows.Forms.CheckBox()
-        Me.txtRecorderConsole = New System.Windows.Forms.TextBox()
-        Me.cmdRecorderLaunch = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtRecorderFHttpsPort = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -76,7 +75,10 @@ Partial Class frmMain
         Me.cmdBrowseTestPlanDirectory = New System.Windows.Forms.Button()
         Me.txtRecorderTestPlanDir = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtRecorderConsole = New System.Windows.Forms.TextBox()
+        Me.cmdRecorderLaunch = New System.Windows.Forms.Button()
         Me.PlayerTab = New System.Windows.Forms.TabPage()
+        Me.PlayerSplit = New System.Windows.Forms.SplitContainer()
         Me.cbPlayerShareConnections = New System.Windows.Forms.CheckBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtPlayerVariableSubs = New System.Windows.Forms.TextBox()
@@ -102,11 +104,11 @@ Partial Class frmMain
         Me.txtPlayerThreadCount = New System.Windows.Forms.TextBox()
         Me.cbPlayerJConsoleStart = New System.Windows.Forms.CheckBox()
         Me.cbPlayerPause = New System.Windows.Forms.CheckBox()
-        Me.txtPlayerConsole = New System.Windows.Forms.TextBox()
-        Me.cmdPlayerLaunch = New System.Windows.Forms.Button()
         Me.cmdPlayerBrowse = New System.Windows.Forms.Button()
         Me.txtPlayerTestPlanFile = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
+        Me.txtPlayerConsole = New System.Windows.Forms.TextBox()
+        Me.cmdPlayerLaunch = New System.Windows.Forms.Button()
         Me.StatsTab = New System.Windows.Forms.TabPage()
         Me.StatsSplitContainer = New System.Windows.Forms.SplitContainer()
         Me.crtThreads = New System.Windows.Forms.DataVisualization.Charting.Chart()
@@ -181,7 +183,15 @@ Partial Class frmMain
         Me.MenuStrip1.SuspendLayout()
         Me.tcMain.SuspendLayout()
         Me.RecorderTab.SuspendLayout()
+        CType(Me.RecorderSplit, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.RecorderSplit.Panel1.SuspendLayout()
+        Me.RecorderSplit.Panel2.SuspendLayout()
+        Me.RecorderSplit.SuspendLayout()
         Me.PlayerTab.SuspendLayout()
+        CType(Me.PlayerSplit, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PlayerSplit.Panel1.SuspendLayout()
+        Me.PlayerSplit.Panel2.SuspendLayout()
+        Me.PlayerSplit.SuspendLayout()
         Me.StatsTab.SuspendLayout()
         CType(Me.StatsSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatsSplitContainer.Panel1.SuspendLayout()
@@ -319,27 +329,7 @@ Partial Class frmMain
         '
         'RecorderTab
         '
-        Me.RecorderTab.Controls.Add(Me.cbOverrideHostHeader)
-        Me.RecorderTab.Controls.Add(Me.cbRewriteUrls)
-        Me.RecorderTab.Controls.Add(Me.Label26)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderHttpsPort)
-        Me.RecorderTab.Controls.Add(Me.Label8)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderFixedSub)
-        Me.RecorderTab.Controls.Add(Me.cbRecorderJConsoleStart)
-        Me.RecorderTab.Controls.Add(Me.cbRecorderStart)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderConsole)
-        Me.RecorderTab.Controls.Add(Me.cmdRecorderLaunch)
-        Me.RecorderTab.Controls.Add(Me.Label5)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderFHttpsPort)
-        Me.RecorderTab.Controls.Add(Me.Label4)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderFHttpPort)
-        Me.RecorderTab.Controls.Add(Me.Label3)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderHost)
-        Me.RecorderTab.Controls.Add(Me.Label2)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderHttpPort)
-        Me.RecorderTab.Controls.Add(Me.cmdBrowseTestPlanDirectory)
-        Me.RecorderTab.Controls.Add(Me.txtRecorderTestPlanDir)
-        Me.RecorderTab.Controls.Add(Me.Label1)
+        Me.RecorderTab.Controls.Add(Me.RecorderSplit)
         Me.RecorderTab.Location = New System.Drawing.Point(4, 22)
         Me.RecorderTab.Name = "RecorderTab"
         Me.RecorderTab.Padding = New System.Windows.Forms.Padding(3)
@@ -348,24 +338,67 @@ Partial Class frmMain
         Me.RecorderTab.Text = "Recorder"
         Me.RecorderTab.UseVisualStyleBackColor = True
         '
+        'RecorderSplit
+        '
+        Me.RecorderSplit.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RecorderSplit.Location = New System.Drawing.Point(0, 0)
+        Me.RecorderSplit.Name = "RecorderSplit"
+        Me.RecorderSplit.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'RecorderSplit.Panel1
+        '
+        Me.RecorderSplit.Panel1.Controls.Add(Me.cbOverrideHostHeader)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.cbRewriteUrls)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.Label26)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.txtRecorderHttpsPort)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.Label8)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.txtRecorderFixedSub)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.cbRecorderJConsoleStart)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.cbRecorderStart)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.Label5)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.txtRecorderFHttpsPort)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.Label4)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.txtRecorderFHttpPort)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.Label3)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.txtRecorderHost)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.Label2)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.txtRecorderHttpPort)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.cmdBrowseTestPlanDirectory)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.txtRecorderTestPlanDir)
+        Me.RecorderSplit.Panel1.Controls.Add(Me.Label1)
+        Me.RecorderSplit.Panel1MinSize = 270
+        '
+        'RecorderSplit.Panel2
+        '
+        Me.RecorderSplit.Panel2.Controls.Add(Me.txtRecorderConsole)
+        Me.RecorderSplit.Panel2.Controls.Add(Me.cmdRecorderLaunch)
+        Me.RecorderSplit.Panel2MinSize = 150
+        Me.RecorderSplit.Size = New System.Drawing.Size(818, 646)
+        Me.RecorderSplit.SplitterDistance = 308
+        Me.RecorderSplit.TabIndex = 40
+        '
         'cbOverrideHostHeader
         '
+        Me.cbOverrideHostHeader.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cbOverrideHostHeader.AutoSize = True
         Me.cbOverrideHostHeader.Location = New System.Drawing.Point(437, 288)
         Me.cbOverrideHostHeader.Name = "cbOverrideHostHeader"
         Me.cbOverrideHostHeader.Size = New System.Drawing.Size(133, 17)
-        Me.cbOverrideHostHeader.TabIndex = 39
+        Me.cbOverrideHostHeader.TabIndex = 58
         Me.cbOverrideHostHeader.Text = "Override 'Host' Header"
         Me.ttGeneral.SetToolTip(Me.cbOverrideHostHeader, "Overrides the 'Host' header on every request to match the forwarding host")
         Me.cbOverrideHostHeader.UseVisualStyleBackColor = True
         '
         'cbRewriteUrls
         '
+        Me.cbRewriteUrls.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cbRewriteUrls.AutoSize = True
         Me.cbRewriteUrls.Location = New System.Drawing.Point(339, 288)
         Me.cbRewriteUrls.Name = "cbRewriteUrls"
         Me.cbRewriteUrls.Size = New System.Drawing.Size(92, 17)
-        Me.cbRewriteUrls.TabIndex = 38
+        Me.cbRewriteUrls.TabIndex = 57
         Me.cbRewriteUrls.Text = "Rewrite URLs"
         Me.ttGeneral.SetToolTip(Me.cbRewriteUrls, "Inspects the response of every HTTP request and attempts to rewrite URLs to point" &
         " back to the proxy.")
@@ -377,7 +410,7 @@ Partial Class frmMain
         Me.Label26.Location = New System.Drawing.Point(50, 61)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(105, 13)
-        Me.Label26.TabIndex = 24
+        Me.Label26.TabIndex = 56
         Me.Label26.Text = "Listener HTTPS Port"
         Me.Label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -388,7 +421,7 @@ Partial Class frmMain
         Me.txtRecorderHttpsPort.Location = New System.Drawing.Point(161, 58)
         Me.txtRecorderHttpsPort.Name = "txtRecorderHttpsPort"
         Me.txtRecorderHttpsPort.Size = New System.Drawing.Size(570, 20)
-        Me.txtRecorderHttpsPort.TabIndex = 4
+        Me.txtRecorderHttpsPort.TabIndex = 44
         Me.txtRecorderHttpsPort.Text = "443"
         Me.ttGeneral.SetToolTip(Me.txtRecorderHttpsPort, "HTTP port for listening to requests.")
         '
@@ -398,7 +431,7 @@ Partial Class frmMain
         Me.Label8.Location = New System.Drawing.Point(60, 162)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(95, 13)
-        Me.Label8.TabIndex = 20
+        Me.Label8.TabIndex = 55
         Me.Label8.Text = "Fixed Substitutions"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -406,66 +439,40 @@ Partial Class frmMain
         '
         Me.txtRecorderFixedSub.AcceptsReturn = True
         Me.txtRecorderFixedSub.AcceptsTab = True
-        Me.txtRecorderFixedSub.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.txtRecorderFixedSub.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtRecorderFixedSub.Location = New System.Drawing.Point(161, 162)
         Me.txtRecorderFixedSub.Multiline = True
         Me.txtRecorderFixedSub.Name = "txtRecorderFixedSub"
         Me.txtRecorderFixedSub.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtRecorderFixedSub.Size = New System.Drawing.Size(570, 120)
-        Me.txtRecorderFixedSub.TabIndex = 8
+        Me.txtRecorderFixedSub.TabIndex = 51
         Me.ttGeneral.SetToolTip(Me.txtRecorderFixedSub, "Text to match and substitute in the HTTP request path, body or query. JSON format" &
         ".")
         '
         'cbRecorderJConsoleStart
         '
+        Me.cbRecorderJConsoleStart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cbRecorderJConsoleStart.AutoSize = True
         Me.cbRecorderJConsoleStart.Location = New System.Drawing.Point(173, 288)
         Me.cbRecorderJConsoleStart.Name = "cbRecorderJConsoleStart"
         Me.cbRecorderJConsoleStart.Size = New System.Drawing.Size(160, 17)
-        Me.cbRecorderJConsoleStart.TabIndex = 12
+        Me.cbRecorderJConsoleStart.TabIndex = 54
         Me.cbRecorderJConsoleStart.Text = "Launch JConsole on Startup"
         Me.ttGeneral.SetToolTip(Me.cbRecorderJConsoleStart, "Automatically start JConsole when the Load Tester Recorder launches.")
         Me.cbRecorderJConsoleStart.UseVisualStyleBackColor = True
         '
         'cbRecorderStart
         '
+        Me.cbRecorderStart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cbRecorderStart.AutoSize = True
         Me.cbRecorderStart.Location = New System.Drawing.Point(9, 288)
         Me.cbRecorderStart.Name = "cbRecorderStart"
         Me.cbRecorderStart.Size = New System.Drawing.Size(158, 17)
-        Me.cbRecorderStart.TabIndex = 11
+        Me.cbRecorderStart.TabIndex = 53
         Me.cbRecorderStart.Text = "Start Recording Immediately"
         Me.cbRecorderStart.UseVisualStyleBackColor = True
-        '
-        'txtRecorderConsole
-        '
-        Me.txtRecorderConsole.AcceptsReturn = True
-        Me.txtRecorderConsole.AcceptsTab = True
-        Me.txtRecorderConsole.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtRecorderConsole.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtRecorderConsole.Location = New System.Drawing.Point(6, 345)
-        Me.txtRecorderConsole.Multiline = True
-        Me.txtRecorderConsole.Name = "txtRecorderConsole"
-        Me.txtRecorderConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtRecorderConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtRecorderConsole.Size = New System.Drawing.Size(806, 295)
-        Me.txtRecorderConsole.TabIndex = 14
-        Me.ttGeneral.SetToolTip(Me.txtRecorderConsole, "Recorder log")
-        '
-        'cmdRecorderLaunch
-        '
-        Me.cmdRecorderLaunch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdRecorderLaunch.Location = New System.Drawing.Point(6, 310)
-        Me.cmdRecorderLaunch.Name = "cmdRecorderLaunch"
-        Me.cmdRecorderLaunch.Size = New System.Drawing.Size(806, 29)
-        Me.cmdRecorderLaunch.TabIndex = 13
-        Me.cmdRecorderLaunch.Text = "Launch!"
-        Me.ttGeneral.SetToolTip(Me.cmdRecorderLaunch, "Launch the recorder!")
-        Me.cmdRecorderLaunch.UseVisualStyleBackColor = True
         '
         'Label5
         '
@@ -473,7 +480,7 @@ Partial Class frmMain
         Me.Label5.Location = New System.Drawing.Point(6, 139)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(149, 13)
-        Me.Label5.TabIndex = 10
+        Me.Label5.TabIndex = 52
         Me.Label5.Text = "Proxy Forwarding HTTPS Port"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -484,7 +491,7 @@ Partial Class frmMain
         Me.txtRecorderFHttpsPort.Location = New System.Drawing.Point(161, 136)
         Me.txtRecorderFHttpsPort.Name = "txtRecorderFHttpsPort"
         Me.txtRecorderFHttpsPort.Size = New System.Drawing.Size(570, 20)
-        Me.txtRecorderFHttpsPort.TabIndex = 7
+        Me.txtRecorderFHttpsPort.TabIndex = 49
         Me.txtRecorderFHttpsPort.Text = "443"
         Me.ttGeneral.SetToolTip(Me.txtRecorderFHttpsPort, "The port used for forwarding HTTPS requests. ")
         '
@@ -494,7 +501,7 @@ Partial Class frmMain
         Me.Label4.Location = New System.Drawing.Point(13, 113)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(142, 13)
-        Me.Label4.TabIndex = 8
+        Me.Label4.TabIndex = 50
         Me.Label4.Text = "Proxy Forwarding HTTP Port"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -505,7 +512,7 @@ Partial Class frmMain
         Me.txtRecorderFHttpPort.Location = New System.Drawing.Point(161, 110)
         Me.txtRecorderFHttpPort.Name = "txtRecorderFHttpPort"
         Me.txtRecorderFHttpPort.Size = New System.Drawing.Size(570, 20)
-        Me.txtRecorderFHttpPort.TabIndex = 6
+        Me.txtRecorderFHttpPort.TabIndex = 48
         Me.txtRecorderFHttpPort.Text = "80"
         Me.ttGeneral.SetToolTip(Me.txtRecorderFHttpPort, "The port used for forwarding HTTP requests. ")
         '
@@ -515,7 +522,7 @@ Partial Class frmMain
         Me.Label3.Location = New System.Drawing.Point(42, 87)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(113, 13)
-        Me.Label3.TabIndex = 6
+        Me.Label3.TabIndex = 47
         Me.Label3.Text = "Proxy Forwarding Host"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -526,7 +533,7 @@ Partial Class frmMain
         Me.txtRecorderHost.Location = New System.Drawing.Point(161, 84)
         Me.txtRecorderHost.Name = "txtRecorderHost"
         Me.txtRecorderHost.Size = New System.Drawing.Size(570, 20)
-        Me.txtRecorderHost.TabIndex = 5
+        Me.txtRecorderHost.TabIndex = 46
         Me.txtRecorderHost.Text = "localhost"
         Me.ttGeneral.SetToolTip(Me.txtRecorderHost, "The host to forward request to.")
         '
@@ -536,7 +543,7 @@ Partial Class frmMain
         Me.Label2.Location = New System.Drawing.Point(57, 35)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(98, 13)
-        Me.Label2.TabIndex = 4
+        Me.Label2.TabIndex = 45
         Me.Label2.Text = "Listener HTTP Port"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -547,17 +554,17 @@ Partial Class frmMain
         Me.txtRecorderHttpPort.Location = New System.Drawing.Point(161, 32)
         Me.txtRecorderHttpPort.Name = "txtRecorderHttpPort"
         Me.txtRecorderHttpPort.Size = New System.Drawing.Size(570, 20)
-        Me.txtRecorderHttpPort.TabIndex = 3
+        Me.txtRecorderHttpPort.TabIndex = 43
         Me.txtRecorderHttpPort.Text = "80"
         Me.ttGeneral.SetToolTip(Me.txtRecorderHttpPort, "HTTP port for listening to requests.")
         '
         'cmdBrowseTestPlanDirectory
         '
         Me.cmdBrowseTestPlanDirectory.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdBrowseTestPlanDirectory.Location = New System.Drawing.Point(737, 4)
+        Me.cmdBrowseTestPlanDirectory.Location = New System.Drawing.Point(737, 6)
         Me.cmdBrowseTestPlanDirectory.Name = "cmdBrowseTestPlanDirectory"
         Me.cmdBrowseTestPlanDirectory.Size = New System.Drawing.Size(75, 23)
-        Me.cmdBrowseTestPlanDirectory.TabIndex = 2
+        Me.cmdBrowseTestPlanDirectory.TabIndex = 42
         Me.cmdBrowseTestPlanDirectory.Text = "Browse..."
         Me.cmdBrowseTestPlanDirectory.UseVisualStyleBackColor = True
         '
@@ -568,7 +575,7 @@ Partial Class frmMain
         Me.txtRecorderTestPlanDir.Location = New System.Drawing.Point(161, 6)
         Me.txtRecorderTestPlanDir.Name = "txtRecorderTestPlanDir"
         Me.txtRecorderTestPlanDir.Size = New System.Drawing.Size(570, 20)
-        Me.txtRecorderTestPlanDir.TabIndex = 1
+        Me.txtRecorderTestPlanDir.TabIndex = 41
         Me.txtRecorderTestPlanDir.Text = "C:\temp\"
         Me.ttGeneral.SetToolTip(Me.txtRecorderTestPlanDir, "The test plan directory. Recorded test plans will be saved in this directory.")
         '
@@ -578,42 +585,42 @@ Partial Class frmMain
         Me.Label1.Location = New System.Drawing.Point(61, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(94, 13)
-        Me.Label1.TabIndex = 0
+        Me.Label1.TabIndex = 40
         Me.Label1.Text = "TestPlan Directory"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'txtRecorderConsole
+        '
+        Me.txtRecorderConsole.AcceptsReturn = True
+        Me.txtRecorderConsole.AcceptsTab = True
+        Me.txtRecorderConsole.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtRecorderConsole.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtRecorderConsole.Location = New System.Drawing.Point(3, 38)
+        Me.txtRecorderConsole.Multiline = True
+        Me.txtRecorderConsole.Name = "txtRecorderConsole"
+        Me.txtRecorderConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.txtRecorderConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtRecorderConsole.Size = New System.Drawing.Size(812, 293)
+        Me.txtRecorderConsole.TabIndex = 16
+        Me.ttGeneral.SetToolTip(Me.txtRecorderConsole, "Recorder log")
+        '
+        'cmdRecorderLaunch
+        '
+        Me.cmdRecorderLaunch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdRecorderLaunch.Location = New System.Drawing.Point(3, 3)
+        Me.cmdRecorderLaunch.Name = "cmdRecorderLaunch"
+        Me.cmdRecorderLaunch.Size = New System.Drawing.Size(812, 29)
+        Me.cmdRecorderLaunch.TabIndex = 15
+        Me.cmdRecorderLaunch.Text = "Launch!"
+        Me.ttGeneral.SetToolTip(Me.cmdRecorderLaunch, "Launch the recorder!")
+        Me.cmdRecorderLaunch.UseVisualStyleBackColor = True
+        '
         'PlayerTab
         '
-        Me.PlayerTab.Controls.Add(Me.cbPlayerShareConnections)
-        Me.PlayerTab.Controls.Add(Me.Label9)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerVariableSubs)
-        Me.PlayerTab.Controls.Add(Me.Label34)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerCookieWhiteList)
-        Me.PlayerTab.Controls.Add(Me.cbPlayerApplySubs)
-        Me.PlayerTab.Controls.Add(Me.cbPlayerCalcActionDelay)
-        Me.PlayerTab.Controls.Add(Me.cbPlayerOverrideHTTPS)
-        Me.PlayerTab.Controls.Add(Me.cbPlayerCalcMinRunTime)
-        Me.PlayerTab.Controls.Add(Me.Label20)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerActionDelay)
-        Me.PlayerTab.Controls.Add(Me.Label19)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerMinRunTime)
-        Me.PlayerTab.Controls.Add(Me.Label18)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerHTTPSPort)
-        Me.PlayerTab.Controls.Add(Me.Label17)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerHTTPPort)
-        Me.PlayerTab.Controls.Add(Me.Label16)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerHost)
-        Me.PlayerTab.Controls.Add(Me.Label15)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerStaggerTime)
-        Me.PlayerTab.Controls.Add(Me.Label14)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerThreadCount)
-        Me.PlayerTab.Controls.Add(Me.cbPlayerJConsoleStart)
-        Me.PlayerTab.Controls.Add(Me.cbPlayerPause)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerConsole)
-        Me.PlayerTab.Controls.Add(Me.cmdPlayerLaunch)
-        Me.PlayerTab.Controls.Add(Me.cmdPlayerBrowse)
-        Me.PlayerTab.Controls.Add(Me.txtPlayerTestPlanFile)
-        Me.PlayerTab.Controls.Add(Me.Label11)
+        Me.PlayerTab.Controls.Add(Me.PlayerSplit)
         Me.PlayerTab.Location = New System.Drawing.Point(4, 22)
         Me.PlayerTab.Name = "PlayerTab"
         Me.PlayerTab.Size = New System.Drawing.Size(818, 646)
@@ -621,13 +628,64 @@ Partial Class frmMain
         Me.PlayerTab.Text = "Player"
         Me.PlayerTab.UseVisualStyleBackColor = True
         '
+        'PlayerSplit
+        '
+        Me.PlayerSplit.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PlayerSplit.Location = New System.Drawing.Point(0, 0)
+        Me.PlayerSplit.Name = "PlayerSplit"
+        Me.PlayerSplit.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'PlayerSplit.Panel1
+        '
+        Me.PlayerSplit.Panel1.Controls.Add(Me.cbPlayerShareConnections)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.Label9)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerVariableSubs)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.Label34)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerCookieWhiteList)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.cbPlayerApplySubs)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.cbPlayerCalcActionDelay)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.cbPlayerOverrideHTTPS)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.cbPlayerCalcMinRunTime)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.Label20)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerActionDelay)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.Label19)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerMinRunTime)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.Label18)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerHTTPSPort)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.Label17)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerHTTPPort)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.Label16)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerHost)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.Label15)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerStaggerTime)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.Label14)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerThreadCount)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.cbPlayerJConsoleStart)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.cbPlayerPause)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.cmdPlayerBrowse)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerTestPlanFile)
+        Me.PlayerSplit.Panel1.Controls.Add(Me.Label11)
+        Me.PlayerSplit.Panel1MinSize = 320
+        '
+        'PlayerSplit.Panel2
+        '
+        Me.PlayerSplit.Panel2.Controls.Add(Me.txtPlayerConsole)
+        Me.PlayerSplit.Panel2.Controls.Add(Me.cmdPlayerLaunch)
+        Me.PlayerSplit.Panel2MinSize = 180
+        Me.PlayerSplit.Size = New System.Drawing.Size(818, 646)
+        Me.PlayerSplit.SplitterDistance = 384
+        Me.PlayerSplit.TabIndex = 18
+        '
         'cbPlayerShareConnections
         '
+        Me.cbPlayerShareConnections.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cbPlayerShareConnections.AutoSize = True
-        Me.cbPlayerShareConnections.Location = New System.Drawing.Point(590, 366)
+        Me.cbPlayerShareConnections.Location = New System.Drawing.Point(433, 364)
         Me.cbPlayerShareConnections.Name = "cbPlayerShareConnections"
         Me.cbPlayerShareConnections.Size = New System.Drawing.Size(116, 17)
-        Me.cbPlayerShareConnections.TabIndex = 41
+        Me.cbPlayerShareConnections.TabIndex = 69
         Me.cbPlayerShareConnections.Text = "Share Connections"
         Me.ttGeneral.SetToolTip(Me.cbPlayerShareConnections, "Share connections (sockets) accross threads for improved efficiency. Not recommen" &
         "ded for sticky-session load balancers.")
@@ -636,10 +694,10 @@ Partial Class frmMain
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(47, 243)
+        Me.Label9.Location = New System.Drawing.Point(45, 242)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(108, 13)
-        Me.Label9.TabIndex = 40
+        Me.Label9.TabIndex = 68
         Me.Label9.Text = "Variable Substitutions"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -647,14 +705,15 @@ Partial Class frmMain
         '
         Me.txtPlayerVariableSubs.AcceptsReturn = True
         Me.txtPlayerVariableSubs.AcceptsTab = True
-        Me.txtPlayerVariableSubs.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.txtPlayerVariableSubs.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPlayerVariableSubs.Location = New System.Drawing.Point(161, 240)
+        Me.txtPlayerVariableSubs.Location = New System.Drawing.Point(159, 239)
         Me.txtPlayerVariableSubs.Multiline = True
         Me.txtPlayerVariableSubs.Name = "txtPlayerVariableSubs"
         Me.txtPlayerVariableSubs.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtPlayerVariableSubs.Size = New System.Drawing.Size(649, 120)
-        Me.txtPlayerVariableSubs.TabIndex = 39
+        Me.txtPlayerVariableSubs.Size = New System.Drawing.Size(651, 120)
+        Me.txtPlayerVariableSubs.TabIndex = 67
         Me.ttGeneral.SetToolTip(Me.txtPlayerVariableSubs, "Variable(s) to extract from HTTP response(s) and insert (substitute) into subsequ" &
         "ent HTTP request(s) in JSON format. Applies only to request and response bodies." &
         "")
@@ -662,10 +721,10 @@ Partial Class frmMain
         'Label34
         '
         Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(72, 217)
+        Me.Label34.Location = New System.Drawing.Point(70, 216)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(83, 13)
-        Me.Label34.TabIndex = 38
+        Me.Label34.TabIndex = 66
         Me.Label34.Text = "Cookie Whitelist"
         Me.Label34.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -673,20 +732,21 @@ Partial Class frmMain
         '
         Me.txtPlayerCookieWhiteList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPlayerCookieWhiteList.Location = New System.Drawing.Point(161, 214)
+        Me.txtPlayerCookieWhiteList.Location = New System.Drawing.Point(159, 213)
         Me.txtPlayerCookieWhiteList.Name = "txtPlayerCookieWhiteList"
-        Me.txtPlayerCookieWhiteList.Size = New System.Drawing.Size(649, 20)
-        Me.txtPlayerCookieWhiteList.TabIndex = 37
+        Me.txtPlayerCookieWhiteList.Size = New System.Drawing.Size(651, 20)
+        Me.txtPlayerCookieWhiteList.TabIndex = 65
         Me.ttGeneral.SetToolTip(Me.txtPlayerCookieWhiteList, "List of comma-seperated Cookie names that will used from the test plan. All other" &
         " cookies will be discarded.")
         '
         'cbPlayerApplySubs
         '
+        Me.cbPlayerApplySubs.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cbPlayerApplySubs.AutoSize = True
-        Me.cbPlayerApplySubs.Location = New System.Drawing.Point(441, 366)
+        Me.cbPlayerApplySubs.Location = New System.Drawing.Point(284, 364)
         Me.cbPlayerApplySubs.Name = "cbPlayerApplySubs"
         Me.cbPlayerApplySubs.Size = New System.Drawing.Size(143, 17)
-        Me.cbPlayerApplySubs.TabIndex = 15
+        Me.cbPlayerApplySubs.TabIndex = 57
         Me.cbPlayerApplySubs.Text = "Apply Fixed Substitutions"
         Me.ttGeneral.SetToolTip(Me.cbPlayerApplySubs, "Apply variable substitutions, such as <THREAD_ID>, in the test plan.")
         Me.cbPlayerApplySubs.UseVisualStyleBackColor = True
@@ -697,10 +757,10 @@ Partial Class frmMain
         Me.cbPlayerCalcActionDelay.AutoSize = True
         Me.cbPlayerCalcActionDelay.Checked = True
         Me.cbPlayerCalcActionDelay.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cbPlayerCalcActionDelay.Location = New System.Drawing.Point(653, 191)
+        Me.cbPlayerCalcActionDelay.Location = New System.Drawing.Point(651, 190)
         Me.cbPlayerCalcActionDelay.Name = "cbPlayerCalcActionDelay"
         Me.cbPlayerCalcActionDelay.Size = New System.Drawing.Size(132, 17)
-        Me.cbPlayerCalcActionDelay.TabIndex = 12
+        Me.cbPlayerCalcActionDelay.TabIndex = 54
         Me.cbPlayerCalcActionDelay.Text = "Use Test Plan Timings"
         Me.ttGeneral.SetToolTip(Me.cbPlayerCalcActionDelay, "Use test plan timings to determine action delay.")
         Me.cbPlayerCalcActionDelay.UseVisualStyleBackColor = True
@@ -709,10 +769,10 @@ Partial Class frmMain
         '
         Me.cbPlayerOverrideHTTPS.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbPlayerOverrideHTTPS.AutoSize = True
-        Me.cbPlayerOverrideHTTPS.Location = New System.Drawing.Point(653, 138)
+        Me.cbPlayerOverrideHTTPS.Location = New System.Drawing.Point(651, 137)
         Me.cbPlayerOverrideHTTPS.Name = "cbPlayerOverrideHTTPS"
         Me.cbPlayerOverrideHTTPS.Size = New System.Drawing.Size(159, 17)
-        Me.cbPlayerOverrideHTTPS.TabIndex = 8
+        Me.cbPlayerOverrideHTTPS.TabIndex = 50
         Me.cbPlayerOverrideHTTPS.Text = "Override HTTPS with HTTP"
         Me.ttGeneral.SetToolTip(Me.cbPlayerOverrideHTTPS, "Replace all HTTPS request with HTTP requests. Useful if the target host does not " &
         "support HTTPS.")
@@ -724,10 +784,10 @@ Partial Class frmMain
         Me.cbPlayerCalcMinRunTime.AutoSize = True
         Me.cbPlayerCalcMinRunTime.Checked = True
         Me.cbPlayerCalcMinRunTime.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cbPlayerCalcMinRunTime.Location = New System.Drawing.Point(653, 164)
+        Me.cbPlayerCalcMinRunTime.Location = New System.Drawing.Point(651, 163)
         Me.cbPlayerCalcMinRunTime.Name = "cbPlayerCalcMinRunTime"
         Me.cbPlayerCalcMinRunTime.Size = New System.Drawing.Size(148, 17)
-        Me.cbPlayerCalcMinRunTime.TabIndex = 10
+        Me.cbPlayerCalcMinRunTime.TabIndex = 52
         Me.cbPlayerCalcMinRunTime.Text = "Calculate Using Test Plan"
         Me.ttGeneral.SetToolTip(Me.cbPlayerCalcMinRunTime, "Will automatically calculate minimum run time using the timings in the test plan." &
         "")
@@ -736,10 +796,10 @@ Partial Class frmMain
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(66, 191)
+        Me.Label20.Location = New System.Drawing.Point(64, 190)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(89, 13)
-        Me.Label20.TabIndex = 36
+        Me.Label20.TabIndex = 64
         Me.Label20.Text = "Action Delay (ms)"
         Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -748,10 +808,10 @@ Partial Class frmMain
         Me.txtPlayerActionDelay.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerActionDelay.Enabled = False
-        Me.txtPlayerActionDelay.Location = New System.Drawing.Point(161, 188)
+        Me.txtPlayerActionDelay.Location = New System.Drawing.Point(159, 187)
         Me.txtPlayerActionDelay.Name = "txtPlayerActionDelay"
         Me.txtPlayerActionDelay.Size = New System.Drawing.Size(486, 20)
-        Me.txtPlayerActionDelay.TabIndex = 11
+        Me.txtPlayerActionDelay.TabIndex = 53
         Me.txtPlayerActionDelay.Text = "10"
         Me.ttGeneral.SetToolTip(Me.txtPlayerActionDelay, "The time to pause between each action of the test plan. Set to zero for no delay." &
         "")
@@ -759,10 +819,10 @@ Partial Class frmMain
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(44, 165)
+        Me.Label19.Location = New System.Drawing.Point(42, 164)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(111, 13)
-        Me.Label19.TabIndex = 34
+        Me.Label19.TabIndex = 63
         Me.Label19.Text = "Minimum Run Time (s)"
         Me.Label19.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -771,10 +831,10 @@ Partial Class frmMain
         Me.txtPlayerMinRunTime.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerMinRunTime.Enabled = False
-        Me.txtPlayerMinRunTime.Location = New System.Drawing.Point(161, 162)
+        Me.txtPlayerMinRunTime.Location = New System.Drawing.Point(159, 161)
         Me.txtPlayerMinRunTime.Name = "txtPlayerMinRunTime"
         Me.txtPlayerMinRunTime.Size = New System.Drawing.Size(486, 20)
-        Me.txtPlayerMinRunTime.TabIndex = 9
+        Me.txtPlayerMinRunTime.TabIndex = 51
         Me.txtPlayerMinRunTime.Text = "120"
         Me.ttGeneral.SetToolTip(Me.txtPlayerMinRunTime, "Minimum runtime ensures that no thread will terminate before the last thread fini" &
         "shed at least 1 run.")
@@ -782,10 +842,10 @@ Partial Class frmMain
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(90, 139)
+        Me.Label18.Location = New System.Drawing.Point(88, 138)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(65, 13)
-        Me.Label18.TabIndex = 32
+        Me.Label18.TabIndex = 62
         Me.Label18.Text = "HTTPS Port"
         Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -793,20 +853,20 @@ Partial Class frmMain
         '
         Me.txtPlayerHTTPSPort.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPlayerHTTPSPort.Location = New System.Drawing.Point(161, 136)
+        Me.txtPlayerHTTPSPort.Location = New System.Drawing.Point(159, 135)
         Me.txtPlayerHTTPSPort.Name = "txtPlayerHTTPSPort"
         Me.txtPlayerHTTPSPort.Size = New System.Drawing.Size(486, 20)
-        Me.txtPlayerHTTPSPort.TabIndex = 7
+        Me.txtPlayerHTTPSPort.TabIndex = 49
         Me.txtPlayerHTTPSPort.Text = "443"
         Me.ttGeneral.SetToolTip(Me.txtPlayerHTTPSPort, "Port to use for HTTPs requests.")
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(97, 113)
+        Me.Label17.Location = New System.Drawing.Point(95, 112)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(58, 13)
-        Me.Label17.TabIndex = 30
+        Me.Label17.TabIndex = 61
         Me.Label17.Text = "HTTP Port"
         Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -814,20 +874,20 @@ Partial Class frmMain
         '
         Me.txtPlayerHTTPPort.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPlayerHTTPPort.Location = New System.Drawing.Point(161, 110)
+        Me.txtPlayerHTTPPort.Location = New System.Drawing.Point(159, 109)
         Me.txtPlayerHTTPPort.Name = "txtPlayerHTTPPort"
-        Me.txtPlayerHTTPPort.Size = New System.Drawing.Size(649, 20)
-        Me.txtPlayerHTTPPort.TabIndex = 6
+        Me.txtPlayerHTTPPort.Size = New System.Drawing.Size(651, 20)
+        Me.txtPlayerHTTPPort.TabIndex = 48
         Me.txtPlayerHTTPPort.Text = "80"
         Me.ttGeneral.SetToolTip(Me.txtPlayerHTTPPort, "Port to use for HTTP requests.")
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(126, 87)
+        Me.Label16.Location = New System.Drawing.Point(124, 86)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(29, 13)
-        Me.Label16.TabIndex = 28
+        Me.Label16.TabIndex = 60
         Me.Label16.Text = "Host"
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -835,20 +895,20 @@ Partial Class frmMain
         '
         Me.txtPlayerHost.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPlayerHost.Location = New System.Drawing.Point(161, 84)
+        Me.txtPlayerHost.Location = New System.Drawing.Point(159, 83)
         Me.txtPlayerHost.Name = "txtPlayerHost"
-        Me.txtPlayerHost.Size = New System.Drawing.Size(649, 20)
-        Me.txtPlayerHost.TabIndex = 5
+        Me.txtPlayerHost.Size = New System.Drawing.Size(651, 20)
+        Me.txtPlayerHost.TabIndex = 47
         Me.txtPlayerHost.Text = "localhost"
         Me.ttGeneral.SetToolTip(Me.txtPlayerHost, "The target host.")
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(26, 61)
+        Me.Label15.Location = New System.Drawing.Point(24, 60)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(129, 13)
-        Me.Label15.TabIndex = 26
+        Me.Label15.TabIndex = 59
         Me.Label15.Text = "Thread Stagger Time (ms)"
         Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -856,10 +916,10 @@ Partial Class frmMain
         '
         Me.txtPlayerStaggerTime.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPlayerStaggerTime.Location = New System.Drawing.Point(161, 58)
+        Me.txtPlayerStaggerTime.Location = New System.Drawing.Point(159, 57)
         Me.txtPlayerStaggerTime.Name = "txtPlayerStaggerTime"
-        Me.txtPlayerStaggerTime.Size = New System.Drawing.Size(649, 20)
-        Me.txtPlayerStaggerTime.TabIndex = 4
+        Me.txtPlayerStaggerTime.Size = New System.Drawing.Size(651, 20)
+        Me.txtPlayerStaggerTime.TabIndex = 46
         Me.txtPlayerStaggerTime.Text = "5000"
         Me.ttGeneral.SetToolTip(Me.txtPlayerStaggerTime, "The average time offset between the start of each subsequent thread (staggered st" &
         "art).")
@@ -867,10 +927,10 @@ Partial Class frmMain
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(83, 35)
+        Me.Label14.Location = New System.Drawing.Point(81, 34)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(72, 13)
-        Me.Label14.TabIndex = 24
+        Me.Label14.TabIndex = 58
         Me.Label14.Text = "Thread Count"
         Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -878,35 +938,68 @@ Partial Class frmMain
         '
         Me.txtPlayerThreadCount.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPlayerThreadCount.Location = New System.Drawing.Point(161, 32)
+        Me.txtPlayerThreadCount.Location = New System.Drawing.Point(159, 31)
         Me.txtPlayerThreadCount.Name = "txtPlayerThreadCount"
-        Me.txtPlayerThreadCount.Size = New System.Drawing.Size(649, 20)
-        Me.txtPlayerThreadCount.TabIndex = 3
+        Me.txtPlayerThreadCount.Size = New System.Drawing.Size(651, 20)
+        Me.txtPlayerThreadCount.TabIndex = 45
         Me.txtPlayerThreadCount.Text = "3"
         Me.ttGeneral.SetToolTip(Me.txtPlayerThreadCount, "The total number of threads to run. Each thread will repeat the test plan at leas" &
         "t once and until the minimum runtime is reached.")
         '
         'cbPlayerJConsoleStart
         '
+        Me.cbPlayerJConsoleStart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cbPlayerJConsoleStart.AutoSize = True
-        Me.cbPlayerJConsoleStart.Location = New System.Drawing.Point(275, 366)
+        Me.cbPlayerJConsoleStart.Location = New System.Drawing.Point(118, 364)
         Me.cbPlayerJConsoleStart.Name = "cbPlayerJConsoleStart"
         Me.cbPlayerJConsoleStart.Size = New System.Drawing.Size(160, 17)
-        Me.cbPlayerJConsoleStart.TabIndex = 14
+        Me.cbPlayerJConsoleStart.TabIndex = 56
         Me.cbPlayerJConsoleStart.Text = "Launch JConsole on Startup"
         Me.ttGeneral.SetToolTip(Me.cbPlayerJConsoleStart, "Automatically start JConsole when the Load Tester Player launches.")
         Me.cbPlayerJConsoleStart.UseVisualStyleBackColor = True
         '
         'cbPlayerPause
         '
+        Me.cbPlayerPause.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cbPlayerPause.AutoSize = True
-        Me.cbPlayerPause.Location = New System.Drawing.Point(161, 366)
+        Me.cbPlayerPause.Location = New System.Drawing.Point(4, 364)
         Me.cbPlayerPause.Name = "cbPlayerPause"
         Me.cbPlayerPause.Size = New System.Drawing.Size(108, 17)
-        Me.cbPlayerPause.TabIndex = 13
+        Me.cbPlayerPause.TabIndex = 55
         Me.cbPlayerPause.Text = "Pause on Startup"
         Me.ttGeneral.SetToolTip(Me.cbPlayerPause, "Pause and wait for JMX invocation before starting the test plan.")
         Me.cbPlayerPause.UseVisualStyleBackColor = True
+        '
+        'cmdPlayerBrowse
+        '
+        Me.cmdPlayerBrowse.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdPlayerBrowse.Location = New System.Drawing.Point(735, 3)
+        Me.cmdPlayerBrowse.Name = "cmdPlayerBrowse"
+        Me.cmdPlayerBrowse.Size = New System.Drawing.Size(75, 23)
+        Me.cmdPlayerBrowse.TabIndex = 43
+        Me.cmdPlayerBrowse.Text = "Browse..."
+        Me.cmdPlayerBrowse.UseVisualStyleBackColor = True
+        '
+        'txtPlayerTestPlanFile
+        '
+        Me.txtPlayerTestPlanFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtPlayerTestPlanFile.Location = New System.Drawing.Point(159, 5)
+        Me.txtPlayerTestPlanFile.Name = "txtPlayerTestPlanFile"
+        Me.txtPlayerTestPlanFile.Size = New System.Drawing.Size(570, 20)
+        Me.txtPlayerTestPlanFile.TabIndex = 42
+        Me.txtPlayerTestPlanFile.Text = "C:\"
+        Me.ttGeneral.SetToolTip(Me.txtPlayerTestPlanFile, "The absolute path to the Json test plan file.")
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(85, 8)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(68, 13)
+        Me.Label11.TabIndex = 44
+        Me.Label11.Text = "TestPlan File"
+        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'txtPlayerConsole
         '
@@ -916,57 +1009,26 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtPlayerConsole.Font = New System.Drawing.Font("Lucida Console", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPlayerConsole.Location = New System.Drawing.Point(6, 424)
+        Me.txtPlayerConsole.Location = New System.Drawing.Point(4, 35)
         Me.txtPlayerConsole.Multiline = True
         Me.txtPlayerConsole.Name = "txtPlayerConsole"
         Me.txtPlayerConsole.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txtPlayerConsole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtPlayerConsole.Size = New System.Drawing.Size(806, 219)
-        Me.txtPlayerConsole.TabIndex = 17
+        Me.txtPlayerConsole.TabIndex = 19
         Me.ttGeneral.SetToolTip(Me.txtPlayerConsole, "Load tester log")
         '
         'cmdPlayerLaunch
         '
         Me.cmdPlayerLaunch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdPlayerLaunch.Location = New System.Drawing.Point(6, 389)
+        Me.cmdPlayerLaunch.Location = New System.Drawing.Point(4, 0)
         Me.cmdPlayerLaunch.Name = "cmdPlayerLaunch"
         Me.cmdPlayerLaunch.Size = New System.Drawing.Size(806, 29)
-        Me.cmdPlayerLaunch.TabIndex = 16
+        Me.cmdPlayerLaunch.TabIndex = 18
         Me.cmdPlayerLaunch.Text = "Launch!"
         Me.ttGeneral.SetToolTip(Me.cmdPlayerLaunch, "Launch the load tester!")
         Me.cmdPlayerLaunch.UseVisualStyleBackColor = True
-        '
-        'cmdPlayerBrowse
-        '
-        Me.cmdPlayerBrowse.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdPlayerBrowse.Location = New System.Drawing.Point(737, 4)
-        Me.cmdPlayerBrowse.Name = "cmdPlayerBrowse"
-        Me.cmdPlayerBrowse.Size = New System.Drawing.Size(75, 23)
-        Me.cmdPlayerBrowse.TabIndex = 2
-        Me.cmdPlayerBrowse.Text = "Browse..."
-        Me.cmdPlayerBrowse.UseVisualStyleBackColor = True
-        '
-        'txtPlayerTestPlanFile
-        '
-        Me.txtPlayerTestPlanFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtPlayerTestPlanFile.Location = New System.Drawing.Point(161, 6)
-        Me.txtPlayerTestPlanFile.Name = "txtPlayerTestPlanFile"
-        Me.txtPlayerTestPlanFile.Size = New System.Drawing.Size(570, 20)
-        Me.txtPlayerTestPlanFile.TabIndex = 1
-        Me.txtPlayerTestPlanFile.Text = "C:\"
-        Me.ttGeneral.SetToolTip(Me.txtPlayerTestPlanFile, "The absolute path to the Json test plan file.")
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(87, 9)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(68, 13)
-        Me.Label11.TabIndex = 3
-        Me.Label11.Text = "TestPlan File"
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'StatsTab
         '
@@ -1819,9 +1881,19 @@ Partial Class frmMain
         Me.MenuStrip1.PerformLayout()
         Me.tcMain.ResumeLayout(False)
         Me.RecorderTab.ResumeLayout(False)
-        Me.RecorderTab.PerformLayout()
+        Me.RecorderSplit.Panel1.ResumeLayout(False)
+        Me.RecorderSplit.Panel1.PerformLayout()
+        Me.RecorderSplit.Panel2.ResumeLayout(False)
+        Me.RecorderSplit.Panel2.PerformLayout()
+        CType(Me.RecorderSplit, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.RecorderSplit.ResumeLayout(False)
         Me.PlayerTab.ResumeLayout(False)
-        Me.PlayerTab.PerformLayout()
+        Me.PlayerSplit.Panel1.ResumeLayout(False)
+        Me.PlayerSplit.Panel1.PerformLayout()
+        Me.PlayerSplit.Panel2.ResumeLayout(False)
+        Me.PlayerSplit.Panel2.PerformLayout()
+        CType(Me.PlayerSplit, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PlayerSplit.ResumeLayout(False)
         Me.StatsTab.ResumeLayout(False)
         Me.StatsSplitContainer.Panel1.ResumeLayout(False)
         Me.StatsSplitContainer.Panel2.ResumeLayout(False)
@@ -1860,69 +1932,25 @@ Partial Class frmMain
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents tcMain As TabControl
     Friend WithEvents RecorderTab As TabPage
-    Friend WithEvents Label1 As Label
     Friend WithEvents EditorTab As TabPage
     Friend WithEvents PlayerTab As TabPage
-    Friend WithEvents cmdBrowseTestPlanDirectory As Button
-    Friend WithEvents txtRecorderTestPlanDir As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents txtRecorderHttpPort As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents txtRecorderFHttpsPort As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents txtRecorderFHttpPort As TextBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents txtRecorderHost As TextBox
     Friend WithEvents tsRecorderStatus As ToolStripStatusLabel
-    Friend WithEvents cmdRecorderLaunch As Button
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents tsTestPlanStatus As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
     Friend WithEvents tsPlayerStatus As ToolStripStatusLabel
-    Friend WithEvents txtRecorderConsole As TextBox
     Friend WithEvents DirDialog As FolderBrowserDialog
     Friend WithEvents SettingsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConfigurePathsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents cbRecorderJConsoleStart As CheckBox
-    Friend WithEvents cbRecorderStart As CheckBox
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents ImportSettingsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExportSettingsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Label8 As Label
-    Friend WithEvents txtRecorderFixedSub As TextBox
     Friend WithEvents OpenFileDialog As OpenFileDialog
     Friend WithEvents SaveFileDialog As SaveFileDialog
-    Friend WithEvents cmdPlayerBrowse As Button
-    Friend WithEvents txtPlayerTestPlanFile As TextBox
-    Friend WithEvents Label11 As Label
-    Friend WithEvents cbPlayerJConsoleStart As CheckBox
-    Friend WithEvents cbPlayerPause As CheckBox
-    Friend WithEvents txtPlayerConsole As TextBox
-    Friend WithEvents cmdPlayerLaunch As Button
-    Friend WithEvents Label14 As Label
-    Friend WithEvents txtPlayerThreadCount As TextBox
-    Friend WithEvents Label20 As Label
-    Friend WithEvents txtPlayerActionDelay As TextBox
-    Friend WithEvents Label19 As Label
-    Friend WithEvents txtPlayerMinRunTime As TextBox
-    Friend WithEvents Label18 As Label
-    Friend WithEvents txtPlayerHTTPSPort As TextBox
-    Friend WithEvents Label17 As Label
-    Friend WithEvents txtPlayerHTTPPort As TextBox
-    Friend WithEvents Label16 As Label
-    Friend WithEvents txtPlayerHost As TextBox
-    Friend WithEvents Label15 As Label
-    Friend WithEvents txtPlayerStaggerTime As TextBox
     Friend WithEvents ttGeneral As ToolTip
-    Friend WithEvents cbPlayerCalcMinRunTime As CheckBox
-    Friend WithEvents cbPlayerOverrideHTTPS As CheckBox
-    Friend WithEvents cbPlayerCalcActionDelay As CheckBox
-    Friend WithEvents cbPlayerApplySubs As CheckBox
     Friend WithEvents cmdLoadTestPlan As Button
     Friend WithEvents txtEditorTestPlanFile As TextBox
     Friend WithEvents Label25 As Label
-    Friend WithEvents Label26 As Label
-    Friend WithEvents txtRecorderHttpsPort As TextBox
     Friend WithEvents cmdRefreshTestPlan As Button
     Friend WithEvents EditorSplitContainer As SplitContainer
     Friend WithEvents cmdDeleteActions As Button
@@ -1984,12 +2012,58 @@ Partial Class frmMain
     Friend WithEvents Label43 As Label
     Friend WithEvents Label44 As Label
     Friend WithEvents Label45 As Label
+    Friend WithEvents cbActionSubstitutions As CheckBox
+    Friend WithEvents RecorderSplit As SplitContainer
     Friend WithEvents cbOverrideHostHeader As CheckBox
     Friend WithEvents cbRewriteUrls As CheckBox
-    Friend WithEvents Label34 As Label
-    Friend WithEvents txtPlayerCookieWhiteList As TextBox
-    Friend WithEvents cbActionSubstitutions As CheckBox
+    Friend WithEvents Label26 As Label
+    Friend WithEvents txtRecorderHttpsPort As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents txtRecorderFixedSub As TextBox
+    Friend WithEvents cbRecorderJConsoleStart As CheckBox
+    Friend WithEvents cbRecorderStart As CheckBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents txtRecorderFHttpsPort As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txtRecorderFHttpPort As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents txtRecorderHost As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents txtRecorderHttpPort As TextBox
+    Friend WithEvents cmdBrowseTestPlanDirectory As Button
+    Friend WithEvents txtRecorderTestPlanDir As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents txtRecorderConsole As TextBox
+    Friend WithEvents cmdRecorderLaunch As Button
+    Friend WithEvents PlayerSplit As SplitContainer
+    Friend WithEvents cbPlayerShareConnections As CheckBox
     Friend WithEvents Label9 As Label
     Friend WithEvents txtPlayerVariableSubs As TextBox
-    Friend WithEvents cbPlayerShareConnections As CheckBox
+    Friend WithEvents Label34 As Label
+    Friend WithEvents txtPlayerCookieWhiteList As TextBox
+    Friend WithEvents cbPlayerApplySubs As CheckBox
+    Friend WithEvents cbPlayerCalcActionDelay As CheckBox
+    Friend WithEvents cbPlayerOverrideHTTPS As CheckBox
+    Friend WithEvents cbPlayerCalcMinRunTime As CheckBox
+    Friend WithEvents Label20 As Label
+    Friend WithEvents txtPlayerActionDelay As TextBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents txtPlayerMinRunTime As TextBox
+    Friend WithEvents Label18 As Label
+    Friend WithEvents txtPlayerHTTPSPort As TextBox
+    Friend WithEvents Label17 As Label
+    Friend WithEvents txtPlayerHTTPPort As TextBox
+    Friend WithEvents Label16 As Label
+    Friend WithEvents txtPlayerHost As TextBox
+    Friend WithEvents Label15 As Label
+    Friend WithEvents txtPlayerStaggerTime As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents txtPlayerThreadCount As TextBox
+    Friend WithEvents cbPlayerJConsoleStart As CheckBox
+    Friend WithEvents cbPlayerPause As CheckBox
+    Friend WithEvents cmdPlayerBrowse As Button
+    Friend WithEvents txtPlayerTestPlanFile As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents txtPlayerConsole As TextBox
+    Friend WithEvents cmdPlayerLaunch As Button
 End Class

@@ -19,14 +19,19 @@ Module App
     Public Sub LoadTestPlanFromFile()
         Dim NewTestPlan As List(Of HTTPAction) = New List(Of HTTPAction)
 
-        Using objReader As New System.IO.StreamReader(GlobalSettings.EditorTestPlanFile)
-
-            Dim actionString As String
-            Do While objReader.Peek() >= 0
-                actionString = objReader.ReadLine
-                NewTestPlan.Add(Json.JsonConvert.DeserializeObject(Of HTTPAction)(actionString))
-            Loop
-        End Using
+        Dim lineNumber As Integer = 0
+        Dim actionString As String = ""
+        Try
+            Using objReader As New System.IO.StreamReader(GlobalSettings.EditorTestPlanFile)
+                Do While objReader.Peek() >= 0
+                    lineNumber += 1
+                    actionString = objReader.ReadLine
+                    NewTestPlan.Add(Json.JsonConvert.DeserializeObject(Of HTTPAction)(actionString))
+                Loop
+            End Using
+        Catch ex As Exception
+            Throw New Exception("Failed to read line number " & lineNumber & ": '" & actionString & "'.", ex)
+        End Try
 
         'Only set the test plan if no exceptions occured 
         EditorTestPlan = NewTestPlan

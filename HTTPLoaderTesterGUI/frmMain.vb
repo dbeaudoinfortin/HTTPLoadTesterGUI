@@ -111,8 +111,8 @@ Public Class frmMain
         txtRecorderHost.Text = GlobalSettings.RecorderForwardingHost
         txtRecorderFHttpPort.Text = GlobalSettings.RecorderForwardingHTTPPort
         txtRecorderFHttpsPort.Text = GlobalSettings.RecorderForwardingHTTPsPort
-        txtRecorderHttpPort.Text = GlobalSettings.RecorderListenerHttpPort
-        txtRecorderHttpsPort.Text = GlobalSettings.RecorderListenerHttpsPort
+        txtRecorderHttpPort.Text = GlobalSettings.RecorderListenerHTTPPort
+        txtRecorderHttpsPort.Text = GlobalSettings.RecorderListenerHTTPSPort
         txtRecorderTestPlanDir.Text = GlobalSettings.RecorderTestDirectory
         cbRecorderStart.Checked = GlobalSettings.RecorderStartImmediately
         cbRecorderJConsoleStart.Checked = GlobalSettings.RecorderStartJConsole
@@ -231,6 +231,7 @@ Public Class frmMain
         cmdAddAction.Enabled = TestPlanEnabled
         cmdUpdateAction.Enabled = TestPlanEnabled And hasAction
     End Sub
+
     Private Sub UpdateTestPlanButtons(ByRef TestPlanEnabled As Boolean)
         cmdDeleteActions.Enabled = TestPlanEnabled And ActionCheckCount > 0
     End Sub
@@ -242,6 +243,7 @@ Public Class frmMain
         UpdateTestPlanButtons(False)
         tsTestPlanStatus.Text = "No Test Plan Loaded"
     End Sub
+
     Private Sub cmdBrowseTestPlanDirectory_Click(sender As Object, e As EventArgs) Handles cmdBrowseTestPlanDirectory.Click
         If (txtRecorderTestPlanDir.Text IsNot Nothing And Not txtRecorderTestPlanDir.Text = "") Then
             DirDialog.SelectedPath = txtRecorderTestPlanDir.Text
@@ -337,7 +339,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub txtTestPlanDir_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderTestPlanDir.LostFocus
+    Private Sub txtRecorderTestPlanDir_LostFocus(sender As Object, e As EventArgs) Handles txtRecorderTestPlanDir.LostFocus
         If GlobalSettings.RecorderTestDirectory <> txtRecorderTestPlanDir.Text Then
             GlobalSettings.RecorderTestDirectory = txtRecorderTestPlanDir.Text
             GlobalSettings.Save()
@@ -372,12 +374,12 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub chRecorderStart_CheckedChanged(sender As Object, e As EventArgs) Handles cbRecorderStart.CheckedChanged
+    Private Sub cbRecorderStart_CheckedChanged(sender As Object, e As EventArgs) Handles cbRecorderStart.CheckedChanged
         GlobalSettings.RecorderStartImmediately = cbRecorderStart.Checked
         GlobalSettings.Save()
     End Sub
 
-    Private Sub chJConsoleStart_CheckedChanged(sender As Object, e As EventArgs) Handles cbRecorderJConsoleStart.CheckedChanged
+    Private Sub cbRecorderJConsoleStart_CheckedChanged(sender As Object, e As EventArgs) Handles cbRecorderJConsoleStart.CheckedChanged
         GlobalSettings.RecorderStartJConsole = cbRecorderJConsoleStart.Checked
         GlobalSettings.Save()
     End Sub
@@ -929,17 +931,17 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub cbRewriteUrls_CheckedChanged(sender As Object, e As EventArgs)
+    Private Sub cbRewriteUrls_CheckedChanged(sender As Object, e As EventArgs) Handles cbRewriteUrls.CheckedChanged
         GlobalSettings.RecorderRewriteUrls = cbRewriteUrls.Checked
         GlobalSettings.Save()
     End Sub
 
-    Private Sub cbOverrideHostHeader_CheckedChanged(sender As Object, e As EventArgs)
+    Private Sub cbOverrideHostHeader_CheckedChanged(sender As Object, e As EventArgs) Handles cbOverrideHostHeader.CheckedChanged
         GlobalSettings.RecorderOverrideHostHeader = cbOverrideHostHeader.Checked
         GlobalSettings.Save()
     End Sub
 
-    Private Sub txtCookieWhiteList_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerCookieWhiteList.LostFocus
+    Private Sub txtPlayerCookieWhiteList_LostFocus(sender As Object, e As EventArgs) Handles txtPlayerCookieWhiteList.LostFocus
         If GlobalSettings.PlayerCookieWhitelist <> txtPlayerCookieWhiteList.Text Then
             GlobalSettings.PlayerCookieWhitelist = txtPlayerCookieWhiteList.Text
             GlobalSettings.Save()
@@ -957,4 +959,5 @@ Public Class frmMain
         GlobalSettings.PlayerShareConnections = cbPlayerShareConnections.Checked
         GlobalSettings.Save()
     End Sub
+
 End Class
