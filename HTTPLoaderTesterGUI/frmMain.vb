@@ -96,7 +96,13 @@ Public Class frmMain
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lbActions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
+
+        'Reload settings from the file
+        GlobalSettings = Settings.Load(Settings.settingsPath)
         ReloadFromSettings()
+
+        'Application initilaization is now complete
+        Initialization = False
     End Sub
 
     Private Sub ClearStats()

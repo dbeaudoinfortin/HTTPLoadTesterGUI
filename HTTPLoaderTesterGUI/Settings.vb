@@ -99,6 +99,8 @@ Public Class Settings
     End Sub
 
     Public Shared Sub Save(ByRef settingsObj As Settings, ByRef path As String)
+        'Prevent saving the settings on startup
+        If Initialization Then Return
         Utils.SaveTextToFile(Json.JsonConvert.SerializeObject(settingsObj), path)
     End Sub
 End Class

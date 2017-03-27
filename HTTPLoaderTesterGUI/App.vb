@@ -3,9 +3,12 @@ Imports System.Text
 Imports Newtonsoft
 
 Module App
+    ''Track the start-up of the application to disable saving
+    Public Initialization As Boolean = True
+
     Public Const RECORDER_PROXY_CLASS = "com.dbf.loadtester.recorder.proxy.RecorderProxy"
     Public Const PLAYER_CLASS = "com.dbf.loadtester.player.LoadTestPlayer"
-    Public GlobalSettings As Settings = Settings.Load(Settings.settingsPath)
+    Public GlobalSettings As Settings = New Settings()
     Public EditorTestPlan As List(Of HTTPAction)
 
     Public Sub SaveEditorTestPlan()
