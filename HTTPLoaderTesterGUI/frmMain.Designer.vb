@@ -146,12 +146,14 @@ Partial Class frmMain
         Me.cmdDeleteActions = New System.Windows.Forms.Button()
         Me.lbActions = New System.Windows.Forms.CheckedListBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.cbActionSubstitutions = New System.Windows.Forms.CheckBox()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.txtActionContentType = New System.Windows.Forms.TextBox()
+        Me.TestPlanBodyHeaderSplit = New System.Windows.Forms.SplitContainer()
+        Me.Label23 = New System.Windows.Forms.Label()
         Me.dgActionHeaders = New System.Windows.Forms.DataGridView()
         Me.clHeaderKey = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clHeaderVal = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cbActionSubstitutions = New System.Windows.Forms.CheckBox()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.txtActionContentType = New System.Windows.Forms.TextBox()
         Me.cbActionMethod = New System.Windows.Forms.ComboBox()
         Me.txtActionDelay = New System.Windows.Forms.TextBox()
         Me.cbActionScheme = New System.Windows.Forms.ComboBox()
@@ -159,7 +161,6 @@ Partial Class frmMain
         Me.Label24 = New System.Windows.Forms.Label()
         Me.cmdUpdateAction = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
         Me.txtActionBody = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -212,6 +213,10 @@ Partial Class frmMain
         Me.EditorSplitContainer.Panel2.SuspendLayout()
         Me.EditorSplitContainer.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.TestPlanBodyHeaderSplit, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TestPlanBodyHeaderSplit.Panel1.SuspendLayout()
+        Me.TestPlanBodyHeaderSplit.Panel2.SuspendLayout()
+        Me.TestPlanBodyHeaderSplit.SuspendLayout()
         CType(Me.dgActionHeaders, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer2.SuspendLayout()
@@ -1532,19 +1537,16 @@ Partial Class frmMain
         Me.GroupBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox1.Controls.Add(Me.TestPlanBodyHeaderSplit)
         Me.GroupBox1.Controls.Add(Me.cbActionSubstitutions)
         Me.GroupBox1.Controls.Add(Me.Label27)
         Me.GroupBox1.Controls.Add(Me.txtActionContentType)
-        Me.GroupBox1.Controls.Add(Me.dgActionHeaders)
         Me.GroupBox1.Controls.Add(Me.cbActionMethod)
         Me.GroupBox1.Controls.Add(Me.txtActionDelay)
         Me.GroupBox1.Controls.Add(Me.cbActionScheme)
         Me.GroupBox1.Controls.Add(Me.cmdAddAction)
-        Me.GroupBox1.Controls.Add(Me.Label24)
         Me.GroupBox1.Controls.Add(Me.cmdUpdateAction)
         Me.GroupBox1.Controls.Add(Me.Label6)
-        Me.GroupBox1.Controls.Add(Me.Label23)
-        Me.GroupBox1.Controls.Add(Me.txtActionBody)
         Me.GroupBox1.Controls.Add(Me.Label7)
         Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.txtActionPath)
@@ -1559,6 +1561,65 @@ Partial Class frmMain
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Edit Action"
+        '
+        'TestPlanBodyHeaderSplit
+        '
+        Me.TestPlanBodyHeaderSplit.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TestPlanBodyHeaderSplit.Location = New System.Drawing.Point(0, 226)
+        Me.TestPlanBodyHeaderSplit.Name = "TestPlanBodyHeaderSplit"
+        Me.TestPlanBodyHeaderSplit.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'TestPlanBodyHeaderSplit.Panel1
+        '
+        Me.TestPlanBodyHeaderSplit.Panel1.Controls.Add(Me.Label23)
+        Me.TestPlanBodyHeaderSplit.Panel1.Controls.Add(Me.dgActionHeaders)
+        Me.TestPlanBodyHeaderSplit.Panel1MinSize = 90
+        '
+        'TestPlanBodyHeaderSplit.Panel2
+        '
+        Me.TestPlanBodyHeaderSplit.Panel2.Controls.Add(Me.Label24)
+        Me.TestPlanBodyHeaderSplit.Panel2.Controls.Add(Me.txtActionBody)
+        Me.TestPlanBodyHeaderSplit.Panel2MinSize = 90
+        Me.TestPlanBodyHeaderSplit.Size = New System.Drawing.Size(430, 310)
+        Me.TestPlanBodyHeaderSplit.SplitterDistance = 150
+        Me.TestPlanBodyHeaderSplit.TabIndex = 31
+        '
+        'Label23
+        '
+        Me.Label23.Location = New System.Drawing.Point(42, 0)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(60, 16)
+        Me.Label23.TabIndex = 18
+        Me.Label23.Text = "Headers"
+        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'dgActionHeaders
+        '
+        Me.dgActionHeaders.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgActionHeaders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.dgActionHeaders.BackgroundColor = System.Drawing.SystemColors.Window
+        Me.dgActionHeaders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgActionHeaders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clHeaderKey, Me.clHeaderVal})
+        Me.dgActionHeaders.Location = New System.Drawing.Point(108, 0)
+        Me.dgActionHeaders.Name = "dgActionHeaders"
+        Me.dgActionHeaders.RowHeadersVisible = False
+        Me.dgActionHeaders.Size = New System.Drawing.Size(322, 147)
+        Me.dgActionHeaders.TabIndex = 9
+        Me.ttGeneral.SetToolTip(Me.dgActionHeaders, "HTTP Request Headers")
+        '
+        'clHeaderKey
+        '
+        Me.clHeaderKey.HeaderText = "Key"
+        Me.clHeaderKey.Name = "clHeaderKey"
+        '
+        'clHeaderVal
+        '
+        Me.clHeaderVal.HeaderText = "Value"
+        Me.clHeaderVal.Name = "clHeaderVal"
         '
         'cbActionSubstitutions
         '
@@ -1592,31 +1653,6 @@ Partial Class frmMain
         Me.txtActionContentType.Size = New System.Drawing.Size(322, 20)
         Me.txtActionContentType.TabIndex = 8
         Me.ttGeneral.SetToolTip(Me.txtActionContentType, "Content Type of the HTTP Request. Does not apply to all HTTP methods.")
-        '
-        'dgActionHeaders
-        '
-        Me.dgActionHeaders.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dgActionHeaders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgActionHeaders.BackgroundColor = System.Drawing.SystemColors.Window
-        Me.dgActionHeaders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgActionHeaders.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.clHeaderKey, Me.clHeaderVal})
-        Me.dgActionHeaders.Location = New System.Drawing.Point(108, 226)
-        Me.dgActionHeaders.Name = "dgActionHeaders"
-        Me.dgActionHeaders.RowHeadersVisible = False
-        Me.dgActionHeaders.Size = New System.Drawing.Size(322, 142)
-        Me.dgActionHeaders.TabIndex = 9
-        Me.ttGeneral.SetToolTip(Me.dgActionHeaders, "HTTP Request Headers")
-        '
-        'clHeaderKey
-        '
-        Me.clHeaderKey.HeaderText = "Key"
-        Me.clHeaderKey.Name = "clHeaderKey"
-        '
-        'clHeaderVal
-        '
-        Me.clHeaderVal.HeaderText = "Value"
-        Me.clHeaderVal.Name = "clHeaderVal"
         '
         'cbActionMethod
         '
@@ -1668,7 +1704,7 @@ Partial Class frmMain
         '
         'Label24
         '
-        Me.Label24.Location = New System.Drawing.Point(42, 375)
+        Me.Label24.Location = New System.Drawing.Point(42, 4)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(60, 16)
         Me.Label24.TabIndex = 20
@@ -1695,15 +1731,6 @@ Partial Class frmMain
         Me.Label6.Text = "Time Delay (ms)"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Label23
-        '
-        Me.Label23.Location = New System.Drawing.Point(42, 226)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(60, 16)
-        Me.Label23.TabIndex = 18
-        Me.Label23.Text = "Headers"
-        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'txtActionBody
         '
         Me.txtActionBody.AcceptsReturn = True
@@ -1712,11 +1739,11 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtActionBody.CausesValidation = False
-        Me.txtActionBody.Location = New System.Drawing.Point(108, 374)
+        Me.txtActionBody.Location = New System.Drawing.Point(107, 3)
         Me.txtActionBody.Multiline = True
         Me.txtActionBody.Name = "txtActionBody"
         Me.txtActionBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtActionBody.Size = New System.Drawing.Size(322, 162)
+        Me.txtActionBody.Size = New System.Drawing.Size(323, 150)
         Me.txtActionBody.TabIndex = 10
         Me.ttGeneral.SetToolTip(Me.txtActionBody, "HTTP Request Body")
         '
@@ -1918,6 +1945,11 @@ Partial Class frmMain
         Me.EditorSplitContainer.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.TestPlanBodyHeaderSplit.Panel1.ResumeLayout(False)
+        Me.TestPlanBodyHeaderSplit.Panel2.ResumeLayout(False)
+        Me.TestPlanBodyHeaderSplit.Panel2.PerformLayout()
+        CType(Me.TestPlanBodyHeaderSplit, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TestPlanBodyHeaderSplit.ResumeLayout(False)
         CType(Me.dgActionHeaders, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
@@ -2066,4 +2098,5 @@ Partial Class frmMain
     Friend WithEvents Label11 As Label
     Friend WithEvents txtPlayerConsole As TextBox
     Friend WithEvents cmdPlayerLaunch As Button
+    Friend WithEvents TestPlanBodyHeaderSplit As SplitContainer
 End Class
