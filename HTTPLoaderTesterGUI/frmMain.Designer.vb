@@ -29,14 +29,30 @@ Partial Class frmMain
         Dim DataPoint2 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
         Dim Title1 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
         Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
         Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim DataPoint3 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
-        Dim DataPoint4 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
+        Dim DataPoint3 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 1000.0R)
+        Dim DataPoint4 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 1.0R)
+        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint5 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 1.0R)
+        Dim DataPoint6 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 556.0R)
+        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint7 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 985.0R)
+        Dim DataPoint8 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 1.0R)
+        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint9 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 185.0R)
+        Dim DataPoint10 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 1.0R)
+        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint11 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 225.0R)
+        Dim DataPoint12 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 11.0R)
+        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint13 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 456.0R)
+        Dim DataPoint14 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 110.0R)
         Dim Title2 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
         Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim DataPoint5 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
-        Dim DataPoint6 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
+        Dim Series8 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim DataPoint15 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(44195.0R, 6.0R)
+        Dim DataPoint16 As System.Windows.Forms.DataVisualization.Charting.DataPoint = New System.Windows.Forms.DataVisualization.Charting.DataPoint(43829.0R, 0R)
         Dim Title3 As System.Windows.Forms.DataVisualization.Charting.Title = New System.Windows.Forms.DataVisualization.Charting.Title()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
@@ -113,9 +129,24 @@ Partial Class frmMain
         Me.StatsSplitContainer = New System.Windows.Forms.SplitContainer()
         Me.crtThreads = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.StatsSubSplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.cbActionStat250 = New System.Windows.Forms.CheckBox()
+        Me.cbActionStat100 = New System.Windows.Forms.CheckBox()
+        Me.cbActionStat50 = New System.Windows.Forms.CheckBox()
+        Me.cbActionStat25 = New System.Windows.Forms.CheckBox()
+        Me.cbActionStat10 = New System.Windows.Forms.CheckBox()
+        Me.cbActionStat5 = New System.Windows.Forms.CheckBox()
         Me.crtActions = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.gbActionStats = New System.Windows.Forms.GroupBox()
-        Me.lblActionRollingAvg = New System.Windows.Forms.Label()
+        Me.lblActionRolling250Avg = New System.Windows.Forms.Label()
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.lblActionRolling100Avg = New System.Windows.Forms.Label()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.lblActionRolling50Avg = New System.Windows.Forms.Label()
+        Me.lblActionRolling25Avg = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.lblActionRolling10Avg = New System.Windows.Forms.Label()
+        Me.lblActionRolling5Avg = New System.Windows.Forms.Label()
         Me.lblActionAvg = New System.Windows.Forms.Label()
         Me.lblActionMax = New System.Windows.Forms.Label()
         Me.lblActionMin = New System.Windows.Forms.Label()
@@ -127,6 +158,7 @@ Partial Class frmMain
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Label45 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
         Me.crtTestPlan = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.gbTestPlanStats = New System.Windows.Forms.GroupBox()
         Me.lblTestPlanRollingAvg = New System.Windows.Forms.Label()
@@ -151,6 +183,8 @@ Partial Class frmMain
         Me.dgActionHeaders = New System.Windows.Forms.DataGridView()
         Me.clHeaderKey = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.clHeaderVal = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.txtActionBody = New System.Windows.Forms.TextBox()
         Me.cbActionSubstitutions = New System.Windows.Forms.CheckBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.txtActionContentType = New System.Windows.Forms.TextBox()
@@ -158,10 +192,8 @@ Partial Class frmMain
         Me.txtActionDelay = New System.Windows.Forms.TextBox()
         Me.cbActionScheme = New System.Windows.Forms.ComboBox()
         Me.cmdAddAction = New System.Windows.Forms.Button()
-        Me.Label24 = New System.Windows.Forms.Label()
         Me.cmdUpdateAction = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtActionBody = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtActionPath = New System.Windows.Forms.TextBox()
@@ -1057,7 +1089,7 @@ Partial Class frmMain
         'StatsSplitContainer.Panel1
         '
         Me.StatsSplitContainer.Panel1.Controls.Add(Me.crtThreads)
-        Me.StatsSplitContainer.Panel1MinSize = 180
+        Me.StatsSplitContainer.Panel1MinSize = 140
         '
         'StatsSplitContainer.Panel2
         '
@@ -1078,13 +1110,11 @@ Partial Class frmMain
         ChartArea1.Area3DStyle.IsRightAngleAxes = False
         ChartArea1.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
         ChartArea1.Area3DStyle.Rotation = 0
-        ChartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
         ChartArea1.AxisX.IsMarginVisible = False
         ChartArea1.AxisX.IsStartedFromZero = False
         ChartArea1.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
         ChartArea1.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
         ChartArea1.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
         ChartArea1.Name = "ChartArea"
         Me.crtThreads.ChartAreas.Add(ChartArea1)
         Me.crtThreads.Location = New System.Drawing.Point(3, 3)
@@ -1117,18 +1147,96 @@ Partial Class frmMain
         '
         'StatsSubSplitContainer.Panel1
         '
+        Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.cbActionStat250)
+        Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.cbActionStat100)
+        Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.cbActionStat50)
+        Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.cbActionStat25)
+        Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.cbActionStat10)
+        Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.cbActionStat5)
         Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.crtActions)
         Me.StatsSubSplitContainer.Panel1.Controls.Add(Me.gbActionStats)
-        Me.StatsSubSplitContainer.Panel1MinSize = 180
+        Me.StatsSubSplitContainer.Panel1MinSize = 218
         '
         'StatsSubSplitContainer.Panel2
         '
         Me.StatsSubSplitContainer.Panel2.Controls.Add(Me.crtTestPlan)
         Me.StatsSubSplitContainer.Panel2.Controls.Add(Me.gbTestPlanStats)
-        Me.StatsSubSplitContainer.Panel2MinSize = 180
+        Me.StatsSubSplitContainer.Panel2MinSize = 155
         Me.StatsSubSplitContainer.Size = New System.Drawing.Size(818, 443)
         Me.StatsSubSplitContainer.SplitterDistance = 220
         Me.StatsSubSplitContainer.TabIndex = 0
+        '
+        'cbActionStat250
+        '
+        Me.cbActionStat250.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbActionStat250.AutoSize = True
+        Me.cbActionStat250.Checked = True
+        Me.cbActionStat250.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbActionStat250.Location = New System.Drawing.Point(763, 194)
+        Me.cbActionStat250.Name = "cbActionStat250"
+        Me.cbActionStat250.Size = New System.Drawing.Size(44, 17)
+        Me.cbActionStat250.TabIndex = 9
+        Me.cbActionStat250.Text = "250"
+        Me.cbActionStat250.UseVisualStyleBackColor = True
+        '
+        'cbActionStat100
+        '
+        Me.cbActionStat100.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbActionStat100.AutoSize = True
+        Me.cbActionStat100.Location = New System.Drawing.Point(717, 194)
+        Me.cbActionStat100.Name = "cbActionStat100"
+        Me.cbActionStat100.Size = New System.Drawing.Size(44, 17)
+        Me.cbActionStat100.TabIndex = 8
+        Me.cbActionStat100.Text = "100"
+        Me.cbActionStat100.UseVisualStyleBackColor = True
+        '
+        'cbActionStat50
+        '
+        Me.cbActionStat50.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbActionStat50.AutoSize = True
+        Me.cbActionStat50.Checked = True
+        Me.cbActionStat50.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbActionStat50.Location = New System.Drawing.Point(677, 194)
+        Me.cbActionStat50.Name = "cbActionStat50"
+        Me.cbActionStat50.Size = New System.Drawing.Size(38, 17)
+        Me.cbActionStat50.TabIndex = 7
+        Me.cbActionStat50.Text = "50"
+        Me.cbActionStat50.UseVisualStyleBackColor = True
+        '
+        'cbActionStat25
+        '
+        Me.cbActionStat25.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbActionStat25.AutoSize = True
+        Me.cbActionStat25.Location = New System.Drawing.Point(763, 178)
+        Me.cbActionStat25.Name = "cbActionStat25"
+        Me.cbActionStat25.Size = New System.Drawing.Size(38, 17)
+        Me.cbActionStat25.TabIndex = 6
+        Me.cbActionStat25.Text = "25"
+        Me.cbActionStat25.UseVisualStyleBackColor = True
+        '
+        'cbActionStat10
+        '
+        Me.cbActionStat10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbActionStat10.AutoSize = True
+        Me.cbActionStat10.Checked = True
+        Me.cbActionStat10.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbActionStat10.Location = New System.Drawing.Point(717, 178)
+        Me.cbActionStat10.Name = "cbActionStat10"
+        Me.cbActionStat10.Size = New System.Drawing.Size(38, 17)
+        Me.cbActionStat10.TabIndex = 5
+        Me.cbActionStat10.Text = "10"
+        Me.cbActionStat10.UseVisualStyleBackColor = True
+        '
+        'cbActionStat5
+        '
+        Me.cbActionStat5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbActionStat5.AutoSize = True
+        Me.cbActionStat5.Location = New System.Drawing.Point(677, 178)
+        Me.cbActionStat5.Name = "cbActionStat5"
+        Me.cbActionStat5.Size = New System.Drawing.Size(32, 17)
+        Me.cbActionStat5.TabIndex = 4
+        Me.cbActionStat5.Text = "5"
+        Me.cbActionStat5.UseVisualStyleBackColor = True
         '
         'crtActions
         '
@@ -1141,38 +1249,113 @@ Partial Class frmMain
         ChartArea2.Area3DStyle.IsRightAngleAxes = False
         ChartArea2.Area3DStyle.LightStyle = System.Windows.Forms.DataVisualization.Charting.LightStyle.Realistic
         ChartArea2.Area3DStyle.Rotation = 0
-        ChartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
         ChartArea2.AxisX.IsMarginVisible = False
         ChartArea2.AxisX.IsStartedFromZero = False
         ChartArea2.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
         ChartArea2.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
-        ChartArea2.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea2.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
+        ChartArea2.AxisY.IsLogarithmic = True
+        ChartArea2.AxisY.IsStartedFromZero = False
+        ChartArea2.AxisY.MinorGrid.Enabled = True
+        ChartArea2.AxisY.MinorGrid.Interval = 1.0R
+        ChartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.LightGray
+        ChartArea2.AxisY2.IsLogarithmic = True
         ChartArea2.Name = "ChartArea"
         Me.crtActions.ChartAreas.Add(ChartArea2)
+        Legend1.BackColor = System.Drawing.Color.White
+        Legend1.DockedToChartArea = "ChartArea"
+        Legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left
+        Legend1.LegendItemOrder = System.Windows.Forms.DataVisualization.Charting.LegendItemOrder.ReversedSeriesOrder
+        Legend1.Name = "Legend1"
+        Legend1.TableStyle = System.Windows.Forms.DataVisualization.Charting.LegendTableStyle.Tall
+        Legend1.TitleBackColor = System.Drawing.Color.Black
+        Me.crtActions.Legends.Add(Legend1)
         Me.crtActions.Location = New System.Drawing.Point(3, 4)
         Me.crtActions.Name = "crtActions"
-        Me.crtActions.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
         Series2.ChartArea = "ChartArea"
-        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
-        Series2.Name = "Series"
+        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series2.Enabled = False
+        Series2.Legend = "Legend1"
+        Series2.LegendText = "5"
+        Series2.Name = "rolling5"
         Series2.Points.Add(DataPoint3)
         Series2.Points.Add(DataPoint4)
         Series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
-        Series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
+        Series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64
+        Series3.ChartArea = "ChartArea"
+        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series3.Legend = "Legend1"
+        Series3.LegendText = "10"
+        Series3.Name = "rolling10"
+        Series3.Points.Add(DataPoint5)
+        Series3.Points.Add(DataPoint6)
+        Series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64
+        Series4.ChartArea = "ChartArea"
+        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
+        Series4.Enabled = False
+        Series4.Legend = "Legend1"
+        Series4.LegendText = "25"
+        Series4.Name = "rolling25"
+        Series4.Points.Add(DataPoint7)
+        Series4.Points.Add(DataPoint8)
+        Series4.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64
+        Series5.BorderWidth = 2
+        Series5.ChartArea = "ChartArea"
+        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
+        Series5.Legend = "Legend1"
+        Series5.LegendText = "50"
+        Series5.Name = "rolling50"
+        Series5.Points.Add(DataPoint9)
+        Series5.Points.Add(DataPoint10)
+        Series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64
+        Series6.ChartArea = "ChartArea"
+        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
+        Series6.Enabled = False
+        Series6.Legend = "Legend1"
+        Series6.LegendText = "100"
+        Series6.Name = "rolling100"
+        Series6.Points.Add(DataPoint11)
+        Series6.Points.Add(DataPoint12)
+        Series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64
+        Series7.ChartArea = "ChartArea"
+        Series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
+        Series7.Legend = "Legend1"
+        Series7.LegendText = "250"
+        Series7.Name = "rolling250"
+        Series7.Points.Add(DataPoint13)
+        Series7.Points.Add(DataPoint14)
+        Series7.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series7.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64
         Me.crtActions.Series.Add(Series2)
-        Me.crtActions.Size = New System.Drawing.Size(593, 213)
+        Me.crtActions.Series.Add(Series3)
+        Me.crtActions.Series.Add(Series4)
+        Me.crtActions.Series.Add(Series5)
+        Me.crtActions.Series.Add(Series6)
+        Me.crtActions.Series.Add(Series7)
+        Me.crtActions.Size = New System.Drawing.Size(654, 213)
         Me.crtActions.TabIndex = 1
         Title2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Title2.Name = "Title"
         Title2.Text = "Actions - Rolling Average Duration"
         Me.crtActions.Titles.Add(Title2)
-        Me.ttGeneral.SetToolTip(Me.crtActions, "The average duration of the last 10 completed HTTP actions.")
+        Me.ttGeneral.SetToolTip(Me.crtActions, "The average duration of the last 5, 10, 25 and 50 completed HTTP actions.")
         '
         'gbActionStats
         '
         Me.gbActionStats.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gbActionStats.Controls.Add(Me.lblActionRollingAvg)
+        Me.gbActionStats.Controls.Add(Me.lblActionRolling250Avg)
+        Me.gbActionStats.Controls.Add(Me.Label46)
+        Me.gbActionStats.Controls.Add(Me.lblActionRolling100Avg)
+        Me.gbActionStats.Controls.Add(Me.Label36)
+        Me.gbActionStats.Controls.Add(Me.lblActionRolling50Avg)
+        Me.gbActionStats.Controls.Add(Me.lblActionRolling25Avg)
+        Me.gbActionStats.Controls.Add(Me.Label37)
+        Me.gbActionStats.Controls.Add(Me.Label38)
+        Me.gbActionStats.Controls.Add(Me.lblActionRolling10Avg)
+        Me.gbActionStats.Controls.Add(Me.lblActionRolling5Avg)
         Me.gbActionStats.Controls.Add(Me.lblActionAvg)
         Me.gbActionStats.Controls.Add(Me.lblActionMax)
         Me.gbActionStats.Controls.Add(Me.lblActionMin)
@@ -1184,27 +1367,109 @@ Partial Class frmMain
         Me.gbActionStats.Controls.Add(Me.Label43)
         Me.gbActionStats.Controls.Add(Me.Label44)
         Me.gbActionStats.Controls.Add(Me.Label45)
+        Me.gbActionStats.Controls.Add(Me.Label35)
         Me.gbActionStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.gbActionStats.Location = New System.Drawing.Point(602, 0)
+        Me.gbActionStats.Location = New System.Drawing.Point(663, 0)
         Me.gbActionStats.Name = "gbActionStats"
-        Me.gbActionStats.Size = New System.Drawing.Size(213, 131)
+        Me.gbActionStats.Size = New System.Drawing.Size(152, 177)
         Me.gbActionStats.TabIndex = 3
         Me.gbActionStats.TabStop = False
         Me.gbActionStats.Text = "Action Stats"
         '
-        'lblActionRollingAvg
+        'lblActionRolling250Avg
         '
-        Me.lblActionRollingAvg.AutoSize = True
-        Me.lblActionRollingAvg.Location = New System.Drawing.Point(102, 111)
-        Me.lblActionRollingAvg.Name = "lblActionRollingAvg"
-        Me.lblActionRollingAvg.Size = New System.Drawing.Size(13, 13)
-        Me.lblActionRollingAvg.TabIndex = 23
-        Me.lblActionRollingAvg.Text = "0"
+        Me.lblActionRolling250Avg.AutoSize = True
+        Me.lblActionRolling250Avg.Location = New System.Drawing.Point(91, 161)
+        Me.lblActionRolling250Avg.Name = "lblActionRolling250Avg"
+        Me.lblActionRolling250Avg.Size = New System.Drawing.Size(13, 13)
+        Me.lblActionRolling250Avg.TabIndex = 34
+        Me.lblActionRolling250Avg.Text = "0"
+        '
+        'Label46
+        '
+        Me.Label46.AutoSize = True
+        Me.Label46.Location = New System.Drawing.Point(0, 160)
+        Me.Label46.Name = "Label46"
+        Me.Label46.Size = New System.Drawing.Size(85, 13)
+        Me.Label46.TabIndex = 33
+        Me.Label46.Text = "Rolling 250 Avg:"
+        '
+        'lblActionRolling100Avg
+        '
+        Me.lblActionRolling100Avg.AutoSize = True
+        Me.lblActionRolling100Avg.Location = New System.Drawing.Point(91, 146)
+        Me.lblActionRolling100Avg.Name = "lblActionRolling100Avg"
+        Me.lblActionRolling100Avg.Size = New System.Drawing.Size(13, 13)
+        Me.lblActionRolling100Avg.TabIndex = 32
+        Me.lblActionRolling100Avg.Text = "0"
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(0, 145)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(85, 13)
+        Me.Label36.TabIndex = 31
+        Me.Label36.Text = "Rolling 100 Avg:"
+        '
+        'lblActionRolling50Avg
+        '
+        Me.lblActionRolling50Avg.AutoSize = True
+        Me.lblActionRolling50Avg.Location = New System.Drawing.Point(91, 131)
+        Me.lblActionRolling50Avg.Name = "lblActionRolling50Avg"
+        Me.lblActionRolling50Avg.Size = New System.Drawing.Size(13, 13)
+        Me.lblActionRolling50Avg.TabIndex = 30
+        Me.lblActionRolling50Avg.Text = "0"
+        '
+        'lblActionRolling25Avg
+        '
+        Me.lblActionRolling25Avg.AutoSize = True
+        Me.lblActionRolling25Avg.Location = New System.Drawing.Point(91, 116)
+        Me.lblActionRolling25Avg.Name = "lblActionRolling25Avg"
+        Me.lblActionRolling25Avg.Size = New System.Drawing.Size(13, 13)
+        Me.lblActionRolling25Avg.TabIndex = 29
+        Me.lblActionRolling25Avg.Text = "0"
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(6, 131)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(79, 13)
+        Me.Label37.TabIndex = 27
+        Me.Label37.Text = "Rolling 50 Avg:"
+        '
+        'Label38
+        '
+        Me.Label38.AutoSize = True
+        Me.Label38.Location = New System.Drawing.Point(6, 116)
+        Me.Label38.Name = "Label38"
+        Me.Label38.Size = New System.Drawing.Size(79, 13)
+        Me.Label38.TabIndex = 26
+        Me.Label38.Text = "Rolling 25 Avg:"
+        '
+        'lblActionRolling10Avg
+        '
+        Me.lblActionRolling10Avg.AutoSize = True
+        Me.lblActionRolling10Avg.Location = New System.Drawing.Point(91, 101)
+        Me.lblActionRolling10Avg.Name = "lblActionRolling10Avg"
+        Me.lblActionRolling10Avg.Size = New System.Drawing.Size(13, 13)
+        Me.lblActionRolling10Avg.TabIndex = 24
+        Me.lblActionRolling10Avg.Text = "0"
+        '
+        'lblActionRolling5Avg
+        '
+        Me.lblActionRolling5Avg.AutoSize = True
+        Me.lblActionRolling5Avg.Location = New System.Drawing.Point(91, 86)
+        Me.lblActionRolling5Avg.Name = "lblActionRolling5Avg"
+        Me.lblActionRolling5Avg.Size = New System.Drawing.Size(13, 13)
+        Me.lblActionRolling5Avg.TabIndex = 23
+        Me.lblActionRolling5Avg.Text = "0"
         '
         'lblActionAvg
         '
         Me.lblActionAvg.AutoSize = True
-        Me.lblActionAvg.Location = New System.Drawing.Point(102, 93)
+        Me.lblActionAvg.Location = New System.Drawing.Point(91, 72)
         Me.lblActionAvg.Name = "lblActionAvg"
         Me.lblActionAvg.Size = New System.Drawing.Size(13, 13)
         Me.lblActionAvg.TabIndex = 22
@@ -1213,7 +1478,7 @@ Partial Class frmMain
         'lblActionMax
         '
         Me.lblActionMax.AutoSize = True
-        Me.lblActionMax.Location = New System.Drawing.Point(102, 75)
+        Me.lblActionMax.Location = New System.Drawing.Point(91, 58)
         Me.lblActionMax.Name = "lblActionMax"
         Me.lblActionMax.Size = New System.Drawing.Size(27, 13)
         Me.lblActionMax.TabIndex = 21
@@ -1222,7 +1487,7 @@ Partial Class frmMain
         'lblActionMin
         '
         Me.lblActionMin.AutoSize = True
-        Me.lblActionMin.Location = New System.Drawing.Point(102, 57)
+        Me.lblActionMin.Location = New System.Drawing.Point(91, 44)
         Me.lblActionMin.Name = "lblActionMin"
         Me.lblActionMin.Size = New System.Drawing.Size(27, 13)
         Me.lblActionMin.TabIndex = 20
@@ -1231,7 +1496,7 @@ Partial Class frmMain
         'lblActionTotal
         '
         Me.lblActionTotal.AutoSize = True
-        Me.lblActionTotal.Location = New System.Drawing.Point(102, 39)
+        Me.lblActionTotal.Location = New System.Drawing.Point(91, 30)
         Me.lblActionTotal.Name = "lblActionTotal"
         Me.lblActionTotal.Size = New System.Drawing.Size(13, 13)
         Me.lblActionTotal.TabIndex = 19
@@ -1240,7 +1505,7 @@ Partial Class frmMain
         'lblActionCount
         '
         Me.lblActionCount.AutoSize = True
-        Me.lblActionCount.Location = New System.Drawing.Point(102, 21)
+        Me.lblActionCount.Location = New System.Drawing.Point(91, 16)
         Me.lblActionCount.Name = "lblActionCount"
         Me.lblActionCount.Size = New System.Drawing.Size(13, 13)
         Me.lblActionCount.TabIndex = 18
@@ -1249,16 +1514,16 @@ Partial Class frmMain
         'Label40
         '
         Me.Label40.AutoSize = True
-        Me.Label40.Location = New System.Drawing.Point(6, 111)
+        Me.Label40.Location = New System.Drawing.Point(12, 86)
         Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(90, 13)
+        Me.Label40.Size = New System.Drawing.Size(73, 13)
         Me.Label40.TabIndex = 17
-        Me.Label40.Text = "Rolling Avg Time:"
+        Me.Label40.Text = "Rolling 5 Avg:"
         '
         'Label41
         '
         Me.Label41.AutoSize = True
-        Me.Label41.Location = New System.Drawing.Point(41, 93)
+        Me.Label41.Location = New System.Drawing.Point(30, 72)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(55, 13)
         Me.Label41.TabIndex = 16
@@ -1267,7 +1532,7 @@ Partial Class frmMain
         'Label42
         '
         Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(43, 57)
+        Me.Label42.Location = New System.Drawing.Point(32, 44)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(53, 13)
         Me.Label42.TabIndex = 15
@@ -1276,7 +1541,7 @@ Partial Class frmMain
         'Label43
         '
         Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(40, 75)
+        Me.Label43.Location = New System.Drawing.Point(29, 58)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(56, 13)
         Me.Label43.TabIndex = 14
@@ -1285,7 +1550,7 @@ Partial Class frmMain
         'Label44
         '
         Me.Label44.AutoSize = True
-        Me.Label44.Location = New System.Drawing.Point(36, 39)
+        Me.Label44.Location = New System.Drawing.Point(25, 30)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(60, 13)
         Me.Label44.TabIndex = 13
@@ -1294,11 +1559,20 @@ Partial Class frmMain
         'Label45
         '
         Me.Label45.AutoSize = True
-        Me.Label45.Location = New System.Drawing.Point(58, 21)
+        Me.Label45.Location = New System.Drawing.Point(47, 16)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(38, 13)
         Me.Label45.TabIndex = 12
         Me.Label45.Text = "Count:"
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.Location = New System.Drawing.Point(6, 101)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(79, 13)
+        Me.Label35.TabIndex = 25
+        Me.Label35.Text = "Rolling 10 Avg:"
         '
         'crtTestPlan
         '
@@ -1316,22 +1590,22 @@ Partial Class frmMain
         ChartArea3.AxisX.IsStartedFromZero = False
         ChartArea3.AxisX.MinorGrid.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
         ChartArea3.AxisX.MinorTickMark.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Milliseconds
+        ChartArea3.AxisY.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
         ChartArea3.AxisY.TitleFont = New System.Drawing.Font("Lucida Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        ChartArea3.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.[True]
         ChartArea3.Name = "ChartArea"
         Me.crtTestPlan.ChartAreas.Add(ChartArea3)
         Me.crtTestPlan.Location = New System.Drawing.Point(3, 6)
         Me.crtTestPlan.Name = "crtTestPlan"
         Me.crtTestPlan.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel
-        Series3.ChartArea = "ChartArea"
-        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
-        Series3.Name = "Series"
-        Series3.Points.Add(DataPoint5)
-        Series3.Points.Add(DataPoint6)
-        Series3.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
-        Series3.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
-        Me.crtTestPlan.Series.Add(Series3)
-        Me.crtTestPlan.Size = New System.Drawing.Size(593, 210)
+        Series8.ChartArea = "ChartArea"
+        Series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
+        Series8.Name = "Series"
+        Series8.Points.Add(DataPoint15)
+        Series8.Points.Add(DataPoint16)
+        Series8.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
+        Series8.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32
+        Me.crtTestPlan.Series.Add(Series8)
+        Me.crtTestPlan.Size = New System.Drawing.Size(654, 210)
         Me.crtTestPlan.TabIndex = 1
         Title3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Title3.Name = "Title"
@@ -1355,17 +1629,16 @@ Partial Class frmMain
         Me.gbTestPlanStats.Controls.Add(Me.Label29)
         Me.gbTestPlanStats.Controls.Add(Me.Label28)
         Me.gbTestPlanStats.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.gbTestPlanStats.Location = New System.Drawing.Point(602, 3)
+        Me.gbTestPlanStats.Location = New System.Drawing.Point(663, 3)
         Me.gbTestPlanStats.Name = "gbTestPlanStats"
-        Me.gbTestPlanStats.Size = New System.Drawing.Size(213, 133)
+        Me.gbTestPlanStats.Size = New System.Drawing.Size(152, 123)
         Me.gbTestPlanStats.TabIndex = 2
         Me.gbTestPlanStats.TabStop = False
         Me.gbTestPlanStats.Text = "Test Plan Stats"
         '
         'lblTestPlanRollingAvg
         '
-        Me.lblTestPlanRollingAvg.AutoSize = True
-        Me.lblTestPlanRollingAvg.Location = New System.Drawing.Point(102, 111)
+        Me.lblTestPlanRollingAvg.Location = New System.Drawing.Point(91, 106)
         Me.lblTestPlanRollingAvg.Name = "lblTestPlanRollingAvg"
         Me.lblTestPlanRollingAvg.Size = New System.Drawing.Size(13, 13)
         Me.lblTestPlanRollingAvg.TabIndex = 11
@@ -1373,8 +1646,7 @@ Partial Class frmMain
         '
         'lblTestPlanAvg
         '
-        Me.lblTestPlanAvg.AutoSize = True
-        Me.lblTestPlanAvg.Location = New System.Drawing.Point(102, 93)
+        Me.lblTestPlanAvg.Location = New System.Drawing.Point(91, 88)
         Me.lblTestPlanAvg.Name = "lblTestPlanAvg"
         Me.lblTestPlanAvg.Size = New System.Drawing.Size(13, 13)
         Me.lblTestPlanAvg.TabIndex = 10
@@ -1382,8 +1654,7 @@ Partial Class frmMain
         '
         'lblTestPlanMax
         '
-        Me.lblTestPlanMax.AutoSize = True
-        Me.lblTestPlanMax.Location = New System.Drawing.Point(102, 75)
+        Me.lblTestPlanMax.Location = New System.Drawing.Point(91, 70)
         Me.lblTestPlanMax.Name = "lblTestPlanMax"
         Me.lblTestPlanMax.Size = New System.Drawing.Size(27, 13)
         Me.lblTestPlanMax.TabIndex = 9
@@ -1391,8 +1662,7 @@ Partial Class frmMain
         '
         'lblTestPlanMin
         '
-        Me.lblTestPlanMin.AutoSize = True
-        Me.lblTestPlanMin.Location = New System.Drawing.Point(102, 57)
+        Me.lblTestPlanMin.Location = New System.Drawing.Point(91, 52)
         Me.lblTestPlanMin.Name = "lblTestPlanMin"
         Me.lblTestPlanMin.Size = New System.Drawing.Size(27, 13)
         Me.lblTestPlanMin.TabIndex = 8
@@ -1400,8 +1670,7 @@ Partial Class frmMain
         '
         'lblTestPlanTotal
         '
-        Me.lblTestPlanTotal.AutoSize = True
-        Me.lblTestPlanTotal.Location = New System.Drawing.Point(102, 39)
+        Me.lblTestPlanTotal.Location = New System.Drawing.Point(91, 34)
         Me.lblTestPlanTotal.Name = "lblTestPlanTotal"
         Me.lblTestPlanTotal.Size = New System.Drawing.Size(13, 13)
         Me.lblTestPlanTotal.TabIndex = 7
@@ -1409,8 +1678,7 @@ Partial Class frmMain
         '
         'lblTestPlanCount
         '
-        Me.lblTestPlanCount.AutoSize = True
-        Me.lblTestPlanCount.Location = New System.Drawing.Point(102, 21)
+        Me.lblTestPlanCount.Location = New System.Drawing.Point(91, 16)
         Me.lblTestPlanCount.Name = "lblTestPlanCount"
         Me.lblTestPlanCount.Size = New System.Drawing.Size(13, 13)
         Me.lblTestPlanCount.TabIndex = 6
@@ -1418,17 +1686,15 @@ Partial Class frmMain
         '
         'Label33
         '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(6, 111)
+        Me.Label33.Location = New System.Drawing.Point(21, 106)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(90, 13)
         Me.Label33.TabIndex = 5
-        Me.Label33.Text = "Rolling Avg Time:"
+        Me.Label33.Text = "Rolling Avg:"
         '
         'Label32
         '
-        Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(41, 93)
+        Me.Label32.Location = New System.Drawing.Point(30, 88)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(55, 13)
         Me.Label32.TabIndex = 4
@@ -1436,8 +1702,7 @@ Partial Class frmMain
         '
         'Label31
         '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(43, 57)
+        Me.Label31.Location = New System.Drawing.Point(32, 52)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(53, 13)
         Me.Label31.TabIndex = 3
@@ -1445,8 +1710,7 @@ Partial Class frmMain
         '
         'Label30
         '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(40, 75)
+        Me.Label30.Location = New System.Drawing.Point(29, 70)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(56, 13)
         Me.Label30.TabIndex = 2
@@ -1454,8 +1718,7 @@ Partial Class frmMain
         '
         'Label29
         '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(36, 39)
+        Me.Label29.Location = New System.Drawing.Point(25, 34)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(60, 13)
         Me.Label29.TabIndex = 1
@@ -1463,8 +1726,7 @@ Partial Class frmMain
         '
         'Label28
         '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(58, 21)
+        Me.Label28.Location = New System.Drawing.Point(47, 16)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(38, 13)
         Me.Label28.TabIndex = 0
@@ -1583,7 +1845,7 @@ Partial Class frmMain
         Me.TestPlanBodyHeaderSplit.Panel2.Controls.Add(Me.txtActionBody)
         Me.TestPlanBodyHeaderSplit.Panel2MinSize = 90
         Me.TestPlanBodyHeaderSplit.Size = New System.Drawing.Size(430, 310)
-        Me.TestPlanBodyHeaderSplit.SplitterDistance = 150
+        Me.TestPlanBodyHeaderSplit.SplitterDistance = 149
         Me.TestPlanBodyHeaderSplit.TabIndex = 31
         '
         'Label23
@@ -1607,7 +1869,7 @@ Partial Class frmMain
         Me.dgActionHeaders.Location = New System.Drawing.Point(108, 0)
         Me.dgActionHeaders.Name = "dgActionHeaders"
         Me.dgActionHeaders.RowHeadersVisible = False
-        Me.dgActionHeaders.Size = New System.Drawing.Size(322, 147)
+        Me.dgActionHeaders.Size = New System.Drawing.Size(322, 146)
         Me.dgActionHeaders.TabIndex = 9
         Me.ttGeneral.SetToolTip(Me.dgActionHeaders, "HTTP Request Headers")
         '
@@ -1620,6 +1882,31 @@ Partial Class frmMain
         '
         Me.clHeaderVal.HeaderText = "Value"
         Me.clHeaderVal.Name = "clHeaderVal"
+        '
+        'Label24
+        '
+        Me.Label24.Location = New System.Drawing.Point(42, 4)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(60, 16)
+        Me.Label24.TabIndex = 20
+        Me.Label24.Text = "Body"
+        Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'txtActionBody
+        '
+        Me.txtActionBody.AcceptsReturn = True
+        Me.txtActionBody.AcceptsTab = True
+        Me.txtActionBody.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtActionBody.CausesValidation = False
+        Me.txtActionBody.Location = New System.Drawing.Point(107, 3)
+        Me.txtActionBody.Multiline = True
+        Me.txtActionBody.Name = "txtActionBody"
+        Me.txtActionBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtActionBody.Size = New System.Drawing.Size(323, 151)
+        Me.txtActionBody.TabIndex = 10
+        Me.ttGeneral.SetToolTip(Me.txtActionBody, "HTTP Request Body")
         '
         'cbActionSubstitutions
         '
@@ -1702,15 +1989,6 @@ Partial Class frmMain
         Me.cmdAddAction.Text = "Add New "
         Me.cmdAddAction.UseVisualStyleBackColor = True
         '
-        'Label24
-        '
-        Me.Label24.Location = New System.Drawing.Point(42, 4)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(60, 16)
-        Me.Label24.TabIndex = 20
-        Me.Label24.Text = "Body"
-        Me.Label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'cmdUpdateAction
         '
         Me.cmdUpdateAction.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
@@ -1730,22 +2008,6 @@ Partial Class frmMain
         Me.Label6.TabIndex = 5
         Me.Label6.Text = "Time Delay (ms)"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'txtActionBody
-        '
-        Me.txtActionBody.AcceptsReturn = True
-        Me.txtActionBody.AcceptsTab = True
-        Me.txtActionBody.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtActionBody.CausesValidation = False
-        Me.txtActionBody.Location = New System.Drawing.Point(107, 3)
-        Me.txtActionBody.Multiline = True
-        Me.txtActionBody.Name = "txtActionBody"
-        Me.txtActionBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtActionBody.Size = New System.Drawing.Size(323, 150)
-        Me.txtActionBody.TabIndex = 10
-        Me.ttGeneral.SetToolTip(Me.txtActionBody, "HTTP Request Body")
         '
         'Label7
         '
@@ -1928,6 +2190,7 @@ Partial Class frmMain
         Me.StatsSplitContainer.ResumeLayout(False)
         CType(Me.crtThreads, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatsSubSplitContainer.Panel1.ResumeLayout(False)
+        Me.StatsSubSplitContainer.Panel1.PerformLayout()
         Me.StatsSubSplitContainer.Panel2.ResumeLayout(False)
         CType(Me.StatsSubSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatsSubSplitContainer.ResumeLayout(False)
@@ -1936,7 +2199,6 @@ Partial Class frmMain
         Me.gbActionStats.PerformLayout()
         CType(Me.crtTestPlan, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbTestPlanStats.ResumeLayout(False)
-        Me.gbTestPlanStats.PerformLayout()
         Me.EditorTab.ResumeLayout(False)
         Me.EditorTab.PerformLayout()
         Me.EditorSplitContainer.Panel1.ResumeLayout(False)
@@ -2032,7 +2294,7 @@ Partial Class frmMain
     Friend WithEvents Label31 As Label
     Friend WithEvents Label30 As Label
     Friend WithEvents Label29 As Label
-    Friend WithEvents lblActionRollingAvg As Label
+    Friend WithEvents lblActionRolling5Avg As Label
     Friend WithEvents lblActionAvg As Label
     Friend WithEvents lblActionMax As Label
     Friend WithEvents lblActionMin As Label
@@ -2099,4 +2361,20 @@ Partial Class frmMain
     Friend WithEvents txtPlayerConsole As TextBox
     Friend WithEvents cmdPlayerLaunch As Button
     Friend WithEvents TestPlanBodyHeaderSplit As SplitContainer
+    Friend WithEvents lblActionRolling50Avg As Label
+    Friend WithEvents lblActionRolling25Avg As Label
+    Friend WithEvents Label37 As Label
+    Friend WithEvents Label38 As Label
+    Friend WithEvents Label35 As Label
+    Friend WithEvents lblActionRolling10Avg As Label
+    Friend WithEvents cbActionStat5 As CheckBox
+    Friend WithEvents cbActionStat250 As CheckBox
+    Friend WithEvents cbActionStat100 As CheckBox
+    Friend WithEvents cbActionStat50 As CheckBox
+    Friend WithEvents cbActionStat25 As CheckBox
+    Friend WithEvents cbActionStat10 As CheckBox
+    Friend WithEvents lblActionRolling250Avg As Label
+    Friend WithEvents Label46 As Label
+    Friend WithEvents lblActionRolling100Avg As Label
+    Friend WithEvents Label36 As Label
 End Class

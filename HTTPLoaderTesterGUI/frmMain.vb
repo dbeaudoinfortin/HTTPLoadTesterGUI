@@ -109,7 +109,14 @@ Public Class frmMain
         TimerStats.Enabled = False
         crtThreads.Series(0).Points.Clear()
         crtThreads.Series(0).Points.AddXY(DateTime.Now.ToOADate, 0)
+
         crtActions.Series(0).Points.Clear()
+        crtActions.Series(1).Points.Clear()
+        crtActions.Series(2).Points.Clear()
+        crtActions.Series(3).Points.Clear()
+        crtActions.Series(4).Points.Clear()
+        crtActions.Series(5).Points.Clear()
+
         crtTestPlan.Series(0).Points.Clear()
     End Sub
 
@@ -883,7 +890,10 @@ Public Class frmMain
     Private Sub TimerStats_Tick(sender As Object, e As EventArgs) Handles TimerStats.Tick
         Task.Run(Sub()
                      Try
-                         If Not StatsClient.IsRunning Then Return
+                         'Need to pull data from the player 1 last time after it's done running to get the final stats
+                         Dim PlayerNowRunning = StatsClient.IsRunning
+                         If Not StatsClient.PlayerWasRunning AndAlso Not PlayerNowRunning Then Exit Sub
+                         StatsClient.PlayerWasRunning = PlayerNowRunning
 
                          'Update Thread Stats
                          Dim ThreadCount As Integer = StatsClient.GetPlayerThreadCount
@@ -901,7 +911,13 @@ Public Class frmMain
                                            lblActionMax.Text = (ActionTimeStats.max / 1000).ToString
                                            If ActionTimeStats.lastUpdated > StatsClient.ActionStatsLastUpdate Then
                                                StatsClient.ActionStatsLastUpdate = ActionTimeStats.lastUpdated
-                                               crtActions.Series(0).Points.AddXY(ActionTimeStats.lastUpdated.ToOADate, ActionTimeStats.rollingAverage)
+                                               Dim OADate As Double = ActionTimeStats.lastUpdated.ToOADate
+                                               crtActions.Series(0).Points.AddXY(OADate, Math.Max(ActionTimeStats.rolling5.rollingAverage / 1000, 0.01))
+                                               crtActions.Series(1).Points.AddXY(OADate, Math.Max(ActionTimeStats.rolling10.rollingAverage / 1000, 0.01))
+                                               crtActions.Series(2).Points.AddXY(OADate, Math.Max(ActionTimeStats.rolling25.rollingAverage / 1000, 0.01))
+                                               crtActions.Series(3).Points.AddXY(OADate, Math.Max(ActionTimeStats.rolling50.rollingAverage / 1000, 0.01))
+                                               crtActions.Series(4).Points.AddXY(OADate, Math.Max(ActionTimeStats.rolling100.rollingAverage / 1000, 0.01))
+                                               crtActions.Series(5).Points.AddXY(OADate, Math.Max(ActionTimeStats.rolling250.rollingAverage / 1000, 0.01))
                                            End If
                                        Else
                                            lblActionMin.Text = "N/A"
@@ -911,7 +927,13 @@ Public Class frmMain
                                        lblActionTotal.Text = (ActionTimeStats.total / 1000).ToString
                                        lblActionCount.Text = ActionTimeStats.count.ToString
                                        lblActionAvg.Text = (ActionTimeStats.average / 1000).ToString
-                                       lblActionRollingAvg.Text = (ActionTimeStats.rollingAverage / 1000).ToString
+
+                                       lblActionRolling5Avg.Text = (ActionTimeStats.rolling5.rollingAverage / 1000).ToString
+                                       lblActionRolling10Avg.Text = (ActionTimeStats.rolling10.rollingAverage / 1000).ToString
+                                       lblActionRolling25Avg.Text = (ActionTimeStats.rolling25.rollingAverage / 1000).ToString
+                                       lblActionRolling50Avg.Text = (ActionTimeStats.rolling50.rollingAverage / 1000).ToString
+                                       lblActionRolling100Avg.Text = (ActionTimeStats.rolling100.rollingAverage / 1000).ToString
+                                       lblActionRolling250Avg.Text = (ActionTimeStats.rolling250.rollingAverage / 1000).ToString
                                    End Sub)
 
                          'Update Test Plan Stats
@@ -922,7 +944,7 @@ Public Class frmMain
                                            lblTestPlanMax.Text = (TestPlanTimeStats.max / 1000).ToString
                                            If TestPlanTimeStats.lastUpdated > StatsClient.TestPlanStatsLastUpdate Then
                                                StatsClient.TestPlanStatsLastUpdate = TestPlanTimeStats.lastUpdated
-                                               crtTestPlan.Series(0).Points.AddXY(TestPlanTimeStats.lastUpdated.ToOADate, TestPlanTimeStats.rollingAverage)
+                                               crtTestPlan.Series(0).Points.AddXY(TestPlanTimeStats.lastUpdated.ToOADate, TestPlanTimeStats.rolling5.rollingAverage / 1000)
                                            End If
                                        Else
                                            lblTestPlanMin.Text = "N/A"
@@ -932,7 +954,7 @@ Public Class frmMain
                                        lblTestPlanTotal.Text = (TestPlanTimeStats.total / 1000).ToString
                                        lblTestPlanCount.Text = TestPlanTimeStats.count.ToString
                                        lblTestPlanAvg.Text = (TestPlanTimeStats.average / 1000).ToString
-                                       lblTestPlanRollingAvg.Text = (TestPlanTimeStats.rollingAverage / 1000).ToString
+                                       lblTestPlanRollingAvg.Text = (TestPlanTimeStats.rolling5.rollingAverage / 1000).ToString
                                    End Sub)
                      Catch ex As Exception
                          'Do nothing in this case, its just monitoring
@@ -973,4 +995,37 @@ Public Class frmMain
         GlobalSettings.Save()
     End Sub
 
+    Private Sub Label40_Click(sender As Object, e As EventArgs) Handles Label40.Click
+
+    End Sub
+
+    Private Sub cbActionStat5_CheckedChanged(sender As Object, e As EventArgs) Handles cbActionStat5.CheckedChanged
+        If (crtActions.Series.Count < 1) Then Exit Sub
+        crtActions.Series(0).Enabled = cbActionStat5.Checked
+    End Sub
+
+    Private Sub cbActionStat10_CheckedChanged(sender As Object, e As EventArgs) Handles cbActionStat10.CheckedChanged
+        If (crtActions.Series.Count < 1) Then Exit Sub
+        crtActions.Series(1).Enabled = cbActionStat10.Checked
+    End Sub
+
+    Private Sub cbActionStat25_CheckedChanged(sender As Object, e As EventArgs) Handles cbActionStat25.CheckedChanged
+        If (crtActions.Series.Count < 1) Then Exit Sub
+        crtActions.Series(2).Enabled = cbActionStat25.Checked
+    End Sub
+
+    Private Sub cbActionStat50_CheckedChanged(sender As Object, e As EventArgs) Handles cbActionStat50.CheckedChanged
+        If (crtActions.Series.Count < 1) Then Exit Sub
+        crtActions.Series(3).Enabled = cbActionStat50.Checked
+    End Sub
+
+    Private Sub cbActionStat100_CheckedChanged(sender As Object, e As EventArgs) Handles cbActionStat100.CheckedChanged
+        If (crtActions.Series.Count < 1) Then Exit Sub
+        crtActions.Series(4).Enabled = cbActionStat100.Checked
+    End Sub
+
+    Private Sub cbActionStat250_CheckedChanged(sender As Object, e As EventArgs) Handles cbActionStat250.CheckedChanged
+        If (crtActions.Series.Count < 1) Then Exit Sub
+        crtActions.Series(5).Enabled = cbActionStat250.Checked
+    End Sub
 End Class

@@ -7,6 +7,7 @@ Class StatsClient
     Public Shared RestClient As New HttpClient()
     Public Shared ActionStatsLastUpdate As New Date(1900, 1, 1)
     Public Shared TestPlanStatsLastUpdate As New Date(1900, 1, 1)
+    Public Shared PlayerWasRunning As Boolean = False
 
     Shared Sub New()
         RestClient.BaseAddress = New Uri("http://localhost:5009/player/")
