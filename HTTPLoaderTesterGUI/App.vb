@@ -29,7 +29,9 @@ Module App
                 Do While objReader.Peek() >= 0
                     lineNumber += 1
                     actionString = objReader.ReadLine
-                    NewTestPlan.Add(Json.JsonConvert.DeserializeObject(Of HTTPAction)(actionString))
+                    Dim action As HTTPAction = Json.JsonConvert.DeserializeObject(Of HTTPAction)(actionString)
+                    NewTestPlan.Add(action)
+                    action.id = lineNumber
                 Loop
             End Using
         Catch ex As Exception

@@ -1,6 +1,10 @@
 ﻿Imports Newtonsoft.Json
 
 Public Class HTTPAction
+
+    <JsonIgnore>
+    Public id As Integer
+
     Public absoluteTime As Date
     Public timePassed As Long
     Public path As String
@@ -17,11 +21,12 @@ Public Class HTTPAction
     Public isStartDummy As Boolean
 
     Public Sub New()
-        Me.New(False)
+        Me.New(False, -1)
     End Sub
 
-    Public Sub New(ByRef isStartDummy As Boolean)
+    Public Sub New(ByRef isStartDummy As Boolean, ByVal id As Integer)
         Me.isStartDummy = isStartDummy
+        Me.id = id
         absoluteTime = Now
         timePassed = 0
         path = ""
@@ -30,6 +35,7 @@ Public Class HTTPAction
         contentType = "text/html"
         scheme = "HTTP"
         headers = New Dictionary(Of String, String)
+
     End Sub
 
     Public Overrides Function ToString() As String
@@ -38,6 +44,11 @@ Public Class HTTPAction
         End If
 
         Dim sb As New System.Text.StringBuilder()
+        If id > 0 Then
+            sb.Append(id)
+            sb.Append(": ")
+        End If
+
         sb.Append(method)
         sb.Append(" ")
         sb.Append(path)

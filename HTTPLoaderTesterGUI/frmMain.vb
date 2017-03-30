@@ -171,9 +171,10 @@ Public Class frmMain
     End Sub
 
     Private Sub UpdateTestPlanEditor()
+        lbActions.SuspendLayout()
         lbActions.Items.Clear()
         lbActions.Enabled = True
-        lbActions.Items.Add(New HTTPAction(True), CheckState.Indeterminate)
+        lbActions.Items.Add(New HTTPAction(True, 0), CheckState.Indeterminate) 'Add the dummy header
         lbActions.SelectedIndex = 0
         For Each action As HTTPAction In EditorTestPlan
             lbActions.Items.Add(action)
@@ -182,6 +183,7 @@ Public Class frmMain
         tsTestPlanStatus.Text = "Test Plan Loaded - " + EditorTestPlan.Count.ToString + " Action(s)"
         UpdateActionEditor(DirectCast(lbActions.SelectedItem, HTTPAction), True)
         UpdateTestPlanButtons(True)
+        lbActions.ResumeLayout()
     End Sub
 
     Private Sub UpdateActionHeaders(ByRef headers As Dictionary(Of String, String))
@@ -741,7 +743,7 @@ Public Class frmMain
         lbActions.Items.Insert(insertIndex, action)
         EditorTestPlan.Insert(insertIndex - 1, action)
 
-        RecalculateAbsoluteTimes()
+        RecalculateAbsoluteTimesAndPositions()
         SaveEditorTestPlan()
 
         tsTestPlanStatus.Text = "Test Plan Loaded - " + EditorTestPlan.Count.ToString + " Action(s)"
@@ -757,10 +759,11 @@ Public Class frmMain
         Dim OldAction As HTTPAction = EditorTestPlan.Item(insertIndex - 1)
         Dim RecalulateTimes As Boolean = Not OldAction.timePassed.Equals(NewAction.timePassed)
 
+        NewAction.id = OldAction.id
         lbActions.Items.Item(insertIndex) = NewAction
         EditorTestPlan.Item(insertIndex - 1) = NewAction
 
-        If (RecalulateTimes) Then RecalculateAbsoluteTimes()
+        If (RecalulateTimes) Then RecalculateAbsoluteTimesAndPositions()
         SaveEditorTestPlan()
     End Sub
 
@@ -772,6 +775,7 @@ Public Class frmMain
             lbActions.Items.Remove(action)
             EditorTestPlan.Remove(action)
         Next
+        RecalculateAbsoluteTimesAndPositions()
         SaveEditorTestPlan()
         cmdDeleteActions.Enabled = False
     End Sub
@@ -856,14 +860,17 @@ Public Class frmMain
         EditorTestPlan.Insert(NewIndex - 1, ActionToMove)
 
         'We need to recalculate all of the absolute times!
-        RecalculateAbsoluteTimes()
+        RecalculateAbsoluteTimesAndPositions()
         SaveEditorTestPlan()
     End Sub
 
-    Private Sub RecalculateAbsoluteTimes()
+    Private Sub RecalculateAbsoluteTimesAndPositions()
         If EditorTestPlan.Count > 1 Then
+            EditorTestPlan.Item(0).id = 1
             For i As Integer = 1 To EditorTestPlan.Count - 1
-                EditorTestPlan.Item(i).absoluteTime = EditorTestPlan.Item(i - 1).absoluteTime.AddMilliseconds(EditorTestPlan.Item(i).timePassed)
+                Dim action As HTTPAction = EditorTestPlan.Item(i)
+                action.id = i + 1
+                action.absoluteTime = EditorTestPlan.Item(i - 1).absoluteTime.AddMilliseconds(action.timePassed)
             Next
         End If
     End Sub
