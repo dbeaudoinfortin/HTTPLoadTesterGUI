@@ -69,6 +69,7 @@ Partial Class frmMain
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ImportSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tcMain = New System.Windows.Forms.TabControl()
         Me.RecorderTab = New System.Windows.Forms.TabPage()
         Me.RecorderSplit = New System.Windows.Forms.SplitContainer()
@@ -212,6 +213,7 @@ Partial Class frmMain
         Me.ttGeneral = New System.Windows.Forms.ToolTip(Me.components)
         Me.TimerStats = New System.Windows.Forms.Timer(Me.components)
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.AboutHTTPLoadTesterGUIToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.tcMain.SuspendLayout()
@@ -299,7 +301,7 @@ Partial Class frmMain
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.SettingsToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(826, 24)
@@ -348,6 +350,13 @@ Partial Class frmMain
         Me.ExportSettingsToolStripMenuItem.Name = "ExportSettingsToolStripMenuItem"
         Me.ExportSettingsToolStripMenuItem.Size = New System.Drawing.Size(209, 22)
         Me.ExportSettingsToolStripMenuItem.Text = "Export Settings"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutHTTPLoadTesterGUIToolStripMenuItem})
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
         '
         'tcMain
         '
@@ -1271,6 +1280,8 @@ Partial Class frmMain
         Me.crtActions.Legends.Add(Legend1)
         Me.crtActions.Location = New System.Drawing.Point(3, 4)
         Me.crtActions.Name = "crtActions"
+        Me.crtActions.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None
+        Me.crtActions.PaletteCustomColors = New System.Drawing.Color() {System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(155, Byte), Integer)), System.Drawing.Color.FromArgb(CType(CType(53, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(219, Byte), Integer)), System.Drawing.Color.FromArgb(CType(CType(155, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(181, Byte), Integer)), System.Drawing.Color.FromArgb(CType(CType(241, Byte), Integer), CType(CType(196, Byte), Integer), CType(CType(15, Byte), Integer)), System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(76, Byte), Integer), CType(CType(61, Byte), Integer)), System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(94, Byte), Integer))}
         Series2.ChartArea = "ChartArea"
         Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
         Series2.Enabled = False
@@ -1302,7 +1313,7 @@ Partial Class frmMain
         Series4.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64
         Series5.BorderWidth = 2
         Series5.ChartArea = "ChartArea"
-        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
+        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
         Series5.Legend = "Legend1"
         Series5.LegendText = "50"
         Series5.Name = "rolling50"
@@ -1310,8 +1321,9 @@ Partial Class frmMain
         Series5.Points.Add(DataPoint10)
         Series5.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
         Series5.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64
+        Series6.BorderWidth = 2
         Series6.ChartArea = "ChartArea"
-        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
+        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
         Series6.Enabled = False
         Series6.Legend = "Legend1"
         Series6.LegendText = "100"
@@ -1320,8 +1332,9 @@ Partial Class frmMain
         Series6.Points.Add(DataPoint12)
         Series6.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time
         Series6.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int64
+        Series7.BorderWidth = 2
         Series7.ChartArea = "ChartArea"
-        Series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline
+        Series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line
         Series7.Legend = "Legend1"
         Series7.LegendText = "250"
         Series7.Name = "rolling250"
@@ -2152,6 +2165,12 @@ Partial Class frmMain
         Me.SplitContainer2.SplitterDistance = 69
         Me.SplitContainer2.TabIndex = 0
         '
+        'AboutHTTPLoadTesterGUIToolStripMenuItem
+        '
+        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Name = "AboutHTTPLoadTesterGUIToolStripMenuItem"
+        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Size = New System.Drawing.Size(225, 22)
+        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Text = "About HTTP Load Tester GUI"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2377,4 +2396,6 @@ Partial Class frmMain
     Friend WithEvents Label46 As Label
     Friend WithEvents lblActionRolling100Avg As Label
     Friend WithEvents Label36 As Label
+    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AboutHTTPLoadTesterGUIToolStripMenuItem As ToolStripMenuItem
 End Class

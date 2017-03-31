@@ -1028,4 +1028,9 @@ Public Class frmMain
         If (crtActions.Series.Count < 1) Then Exit Sub
         crtActions.Series(5).Enabled = cbActionStat250.Checked
     End Sub
+
+    Private Sub AboutHTTPLoadTesterGUIToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutHTTPLoadTesterGUIToolStripMenuItem.Click
+        Dim msg As String = "HTTP Load Tester GUI (" + System.Reflection.Assembly.GetExecutingAssembly.GetName.Version.ToString + ")" + vbCrLf + "© 2017 David Fortin"
+        MsgBox(msg, MsgBoxStyle.Information, "About")
+    End Sub
 End Class
