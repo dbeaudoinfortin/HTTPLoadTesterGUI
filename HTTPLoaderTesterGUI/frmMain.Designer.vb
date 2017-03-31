@@ -70,6 +70,7 @@ Partial Class frmMain
         Me.ImportSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExportSettingsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutHTTPLoadTesterGUIToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tcMain = New System.Windows.Forms.TabControl()
         Me.RecorderTab = New System.Windows.Forms.TabPage()
         Me.RecorderSplit = New System.Windows.Forms.SplitContainer()
@@ -213,7 +214,6 @@ Partial Class frmMain
         Me.ttGeneral = New System.Windows.Forms.ToolTip(Me.components)
         Me.TimerStats = New System.Windows.Forms.Timer(Me.components)
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.AboutHTTPLoadTesterGUIToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.tcMain.SuspendLayout()
@@ -357,6 +357,12 @@ Partial Class frmMain
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
+        '
+        'AboutHTTPLoadTesterGUIToolStripMenuItem
+        '
+        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Name = "AboutHTTPLoadTesterGUIToolStripMenuItem"
+        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Size = New System.Drawing.Size(225, 22)
+        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Text = "About HTTP Load Tester GUI"
         '
         'tcMain
         '
@@ -1651,6 +1657,7 @@ Partial Class frmMain
         '
         'lblTestPlanRollingAvg
         '
+        Me.lblTestPlanRollingAvg.AutoSize = True
         Me.lblTestPlanRollingAvg.Location = New System.Drawing.Point(91, 106)
         Me.lblTestPlanRollingAvg.Name = "lblTestPlanRollingAvg"
         Me.lblTestPlanRollingAvg.Size = New System.Drawing.Size(13, 13)
@@ -1659,6 +1666,7 @@ Partial Class frmMain
         '
         'lblTestPlanAvg
         '
+        Me.lblTestPlanAvg.AutoSize = True
         Me.lblTestPlanAvg.Location = New System.Drawing.Point(91, 88)
         Me.lblTestPlanAvg.Name = "lblTestPlanAvg"
         Me.lblTestPlanAvg.Size = New System.Drawing.Size(13, 13)
@@ -1667,6 +1675,7 @@ Partial Class frmMain
         '
         'lblTestPlanMax
         '
+        Me.lblTestPlanMax.AutoSize = True
         Me.lblTestPlanMax.Location = New System.Drawing.Point(91, 70)
         Me.lblTestPlanMax.Name = "lblTestPlanMax"
         Me.lblTestPlanMax.Size = New System.Drawing.Size(27, 13)
@@ -1675,6 +1684,7 @@ Partial Class frmMain
         '
         'lblTestPlanMin
         '
+        Me.lblTestPlanMin.AutoSize = True
         Me.lblTestPlanMin.Location = New System.Drawing.Point(91, 52)
         Me.lblTestPlanMin.Name = "lblTestPlanMin"
         Me.lblTestPlanMin.Size = New System.Drawing.Size(27, 13)
@@ -1683,6 +1693,7 @@ Partial Class frmMain
         '
         'lblTestPlanTotal
         '
+        Me.lblTestPlanTotal.AutoSize = True
         Me.lblTestPlanTotal.Location = New System.Drawing.Point(91, 34)
         Me.lblTestPlanTotal.Name = "lblTestPlanTotal"
         Me.lblTestPlanTotal.Size = New System.Drawing.Size(13, 13)
@@ -1691,6 +1702,7 @@ Partial Class frmMain
         '
         'lblTestPlanCount
         '
+        Me.lblTestPlanCount.AutoSize = True
         Me.lblTestPlanCount.Location = New System.Drawing.Point(91, 16)
         Me.lblTestPlanCount.Name = "lblTestPlanCount"
         Me.lblTestPlanCount.Size = New System.Drawing.Size(13, 13)
@@ -2165,12 +2177,6 @@ Partial Class frmMain
         Me.SplitContainer2.SplitterDistance = 69
         Me.SplitContainer2.TabIndex = 0
         '
-        'AboutHTTPLoadTesterGUIToolStripMenuItem
-        '
-        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Name = "AboutHTTPLoadTesterGUIToolStripMenuItem"
-        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Size = New System.Drawing.Size(225, 22)
-        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Text = "About HTTP Load Tester GUI"
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2218,6 +2224,7 @@ Partial Class frmMain
         Me.gbActionStats.PerformLayout()
         CType(Me.crtTestPlan, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbTestPlanStats.ResumeLayout(False)
+        Me.gbTestPlanStats.PerformLayout()
         Me.EditorTab.ResumeLayout(False)
         Me.EditorTab.PerformLayout()
         Me.EditorSplitContainer.Panel1.ResumeLayout(False)
