@@ -37,6 +37,7 @@ Public Class Settings
     Public PlayerCookieWhitelist As String
     Public PlayerVariableSubstitutions As String
     Public PlayerShareConnections As Boolean
+    Public PlayerConcurrentActions As Boolean
 
     Public EditorTestPlanFile As String
 
@@ -82,6 +83,7 @@ Public Class Settings
         PlayerOverrideHTTPS = True
         PlayerApplyFixedSubs = False
         PlayerShareConnections = False
+        PlayerConcurrentActions = False
     End Sub
 
     Public Shared Function Load(ByRef path As String) As Settings

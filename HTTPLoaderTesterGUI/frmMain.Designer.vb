@@ -214,6 +214,7 @@ Partial Class frmMain
         Me.ttGeneral = New System.Windows.Forms.ToolTip(Me.components)
         Me.TimerStats = New System.Windows.Forms.Timer(Me.components)
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.cbConcurrentActions = New System.Windows.Forms.CheckBox()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.tcMain.SuspendLayout()
@@ -691,6 +692,7 @@ Partial Class frmMain
         '
         'PlayerSplit.Panel1
         '
+        Me.PlayerSplit.Panel1.Controls.Add(Me.cbConcurrentActions)
         Me.PlayerSplit.Panel1.Controls.Add(Me.cbPlayerShareConnections)
         Me.PlayerSplit.Panel1.Controls.Add(Me.Label9)
         Me.PlayerSplit.Panel1.Controls.Add(Me.txtPlayerVariableSubs)
@@ -2177,6 +2179,18 @@ Partial Class frmMain
         Me.SplitContainer2.SplitterDistance = 69
         Me.SplitContainer2.TabIndex = 0
         '
+        'cbConcurrentActions
+        '
+        Me.cbConcurrentActions.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cbConcurrentActions.AutoSize = True
+        Me.cbConcurrentActions.Location = New System.Drawing.Point(555, 364)
+        Me.cbConcurrentActions.Name = "cbConcurrentActions"
+        Me.cbConcurrentActions.Size = New System.Drawing.Size(160, 17)
+        Me.cbConcurrentActions.TabIndex = 70
+        Me.cbConcurrentActions.Text = "Run Concurrently (Stateless)"
+        Me.ttGeneral.SetToolTip(Me.cbConcurrentActions, "Run the test plan actions concurrently. Used for stateless test plans.")
+        Me.cbConcurrentActions.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2405,4 +2419,5 @@ Partial Class frmMain
     Friend WithEvents Label36 As Label
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutHTTPLoadTesterGUIToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents cbConcurrentActions As CheckBox
 End Class

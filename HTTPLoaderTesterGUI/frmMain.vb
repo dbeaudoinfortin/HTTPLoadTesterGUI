@@ -151,6 +151,7 @@ Public Class frmMain
         txtEditorTestPlanFile.Text = GlobalSettings.EditorTestPlanFile
         txtPlayerVariableSubs.Text = GlobalSettings.PlayerVariableSubstitutions
         cbPlayerShareConnections.Checked = GlobalSettings.PlayerShareConnections
+        cbConcurrentActions.Checked = GlobalSettings.PlayerConcurrentActions
 
         txtPlayerMinRunTime.Enabled = Not GlobalSettings.PlayerCalcMinRunTime
         txtPlayerActionDelay.Enabled = Not GlobalSettings.PlayerCalcActionDelay
@@ -615,6 +616,10 @@ Public Class frmMain
             javaCommand.Append(" -shareConnections")
         End If
 
+        If GlobalSettings.PlayerConcurrentActions Then
+            javaCommand.Append(" -concurrentActions")
+        End If
+
         javaCommand.Append(" -keepAlive")
 
         javaCommand.Append("""")
@@ -1032,5 +1037,10 @@ Public Class frmMain
     Private Sub AboutHTTPLoadTesterGUIToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutHTTPLoadTesterGUIToolStripMenuItem.Click
         Dim msg As String = "HTTP Load Tester GUI (" + System.Reflection.Assembly.GetExecutingAssembly.GetName.Version.ToString + ")" + vbCrLf + "© 2017 David Fortin"
         MsgBox(msg, MsgBoxStyle.Information, "About")
+    End Sub
+
+    Private Sub cbConcurrentActions_CheckedChanged(sender As Object, e As EventArgs) Handles cbConcurrentActions.CheckedChanged
+        GlobalSettings.PlayerConcurrentActions = cbConcurrentActions.Checked
+        GlobalSettings.Save()
     End Sub
 End Class
