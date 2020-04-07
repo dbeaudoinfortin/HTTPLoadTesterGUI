@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>https://raw.githubusercontent.com/dbeaudoinfortin/HTTPLoadTesterGUI/master/Publish/</InstallUrl>
-    <ApplicationRevision>30</ApplicationRevision>
+    <ApplicationRevision>31</ApplicationRevision>
     <ApplicationVersion>1.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -74,10 +74,10 @@
     <ApplicationIcon>1484879022_100_Pressure_Reading.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>846C60CB558675E6821603AD11845714687D05FD</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8183FA10C5BE4EC98BE6648B2E900315D0469F76</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>HTTPLoaderTesterGUI_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>HTTPLoaderTesterGUI_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -172,6 +172,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="HTTPLoaderTesterGUI_1_TemporaryKey.pfx" />
+    <None Include="HTTPLoaderTesterGUI_TemporaryKey.pfx" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

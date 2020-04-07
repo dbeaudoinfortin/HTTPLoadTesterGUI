@@ -97,6 +97,7 @@ Partial Class frmMain
         Me.cmdRecorderLaunch = New System.Windows.Forms.Button()
         Me.PlayerTab = New System.Windows.Forms.TabPage()
         Me.PlayerSplit = New System.Windows.Forms.SplitContainer()
+        Me.cbConcurrentActions = New System.Windows.Forms.CheckBox()
         Me.cbPlayerShareConnections = New System.Windows.Forms.CheckBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtPlayerVariableSubs = New System.Windows.Forms.TextBox()
@@ -214,7 +215,6 @@ Partial Class frmMain
         Me.ttGeneral = New System.Windows.Forms.ToolTip(Me.components)
         Me.TimerStats = New System.Windows.Forms.Timer(Me.components)
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
-        Me.cbConcurrentActions = New System.Windows.Forms.CheckBox()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.tcMain.SuspendLayout()
@@ -319,7 +319,7 @@ Partial Class frmMain
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'SettingsToolStripMenuItem
@@ -362,7 +362,7 @@ Partial Class frmMain
         'AboutHTTPLoadTesterGUIToolStripMenuItem
         '
         Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Name = "AboutHTTPLoadTesterGUIToolStripMenuItem"
-        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Size = New System.Drawing.Size(225, 22)
+        Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Size = New System.Drawing.Size(222, 22)
         Me.AboutHTTPLoadTesterGUIToolStripMenuItem.Text = "About HTTP Load Tester GUI"
         '
         'tcMain
@@ -731,6 +731,18 @@ Partial Class frmMain
         Me.PlayerSplit.Size = New System.Drawing.Size(818, 646)
         Me.PlayerSplit.SplitterDistance = 384
         Me.PlayerSplit.TabIndex = 18
+        '
+        'cbConcurrentActions
+        '
+        Me.cbConcurrentActions.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cbConcurrentActions.AutoSize = True
+        Me.cbConcurrentActions.Location = New System.Drawing.Point(555, 364)
+        Me.cbConcurrentActions.Name = "cbConcurrentActions"
+        Me.cbConcurrentActions.Size = New System.Drawing.Size(160, 17)
+        Me.cbConcurrentActions.TabIndex = 70
+        Me.cbConcurrentActions.Text = "Run Concurrently (Stateless)"
+        Me.ttGeneral.SetToolTip(Me.cbConcurrentActions, "Run the test plan actions concurrently. Used for stateless test plans.")
+        Me.cbConcurrentActions.UseVisualStyleBackColor = True
         '
         'cbPlayerShareConnections
         '
@@ -1974,7 +1986,7 @@ Partial Class frmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbActionMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbActionMethod.FormattingEnabled = True
-        Me.cbActionMethod.Items.AddRange(New Object() {"POST", "PUT", "HEAD", "GET", "DELETE"})
+        Me.cbActionMethod.Items.AddRange(New Object() {"POST", "PUT", "HEAD", "GET", "DELETE", "OPTIONS"})
         Me.cbActionMethod.Location = New System.Drawing.Point(108, 72)
         Me.cbActionMethod.Name = "cbActionMethod"
         Me.cbActionMethod.Size = New System.Drawing.Size(322, 21)
@@ -2178,18 +2190,6 @@ Partial Class frmMain
         Me.SplitContainer2.Size = New System.Drawing.Size(208, 100)
         Me.SplitContainer2.SplitterDistance = 69
         Me.SplitContainer2.TabIndex = 0
-        '
-        'cbConcurrentActions
-        '
-        Me.cbConcurrentActions.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.cbConcurrentActions.AutoSize = True
-        Me.cbConcurrentActions.Location = New System.Drawing.Point(555, 364)
-        Me.cbConcurrentActions.Name = "cbConcurrentActions"
-        Me.cbConcurrentActions.Size = New System.Drawing.Size(160, 17)
-        Me.cbConcurrentActions.TabIndex = 70
-        Me.cbConcurrentActions.Text = "Run Concurrently (Stateless)"
-        Me.ttGeneral.SetToolTip(Me.cbConcurrentActions, "Run the test plan actions concurrently. Used for stateless test plans.")
-        Me.cbConcurrentActions.UseVisualStyleBackColor = True
         '
         'frmMain
         '
