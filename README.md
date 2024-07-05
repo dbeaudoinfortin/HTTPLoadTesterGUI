@@ -12,3 +12,5 @@ Functionality provided:
 ![image](https://github.com/dbeaudoinfortin/HTTPLoadTesterGUI/assets/15943629/79edeaa8-7250-4cda-b0fe-230ac6ce65c2)
 ![image](https://github.com/dbeaudoinfortin/HTTPLoadTesterGUI/assets/15943629/b06e3747-d0a2-46f8-bd22-5feb4bb1c27e)
 ![image](https://github.com/dbeaudoinfortin/HTTPLoadTesterGUI/assets/15943629/3d5ac23f-4101-4e5e-8057-7f5a305936d5)
+![image](https://github.com/dbeaudoinfortin/HTTPLoadTesterGUI/assets/15943629/c09a79c9-5ca8-4281-bd97-638fbb94fa43)
+
