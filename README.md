@@ -14,3 +14,8 @@ Functionality provided:
 ![image](https://github.com/dbeaudoinfortin/HTTPLoadTesterGUI/assets/15943629/3d5ac23f-4101-4e5e-8057-7f5a305936d5)
 ![image](https://github.com/dbeaudoinfortin/HTTPLoadTesterGUI/assets/15943629/c09a79c9-5ca8-4281-bd97-638fbb94fa43)
 
+## Legal Stuff
+
+Copyright (c) 2017 David Fortin
+
+This software is provided by David Fortin under the MIT License, meaning you are free to use it however you want, as long as you include the original copyright notice (above) and license notice in any copy you make. You just can't hold me liable in case something goes wrong. License details can be read [here](https://github.com/dbeaudoinfortin/StackTraceCompactor?tab=MIT-1-ov-file)
