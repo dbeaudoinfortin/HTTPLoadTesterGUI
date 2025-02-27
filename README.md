@@ -1,4 +1,5 @@
-# HTTPLoadTesterGUI
+# HTTPLoadTesterGUI <img src="https://github.com/user-attachments/assets/644c49a8-3ab7-4e67-ad70-4e66aa805235" height="35"/>
+
 I'm not a big fan of the command line for a tool as complicated as the HTTPLoadTester, so I thought it might be nice to build GUI for it. 
 
 Functionality provided:
